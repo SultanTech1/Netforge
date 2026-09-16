@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0f1e">
+<meta name="description" content="NetLab Academy — Free platform to learn Networking, Linux, Windows, Cybersecurity, and Programming. Developed by SultTik.">
+<meta name="author" content="SultTik">
+<meta name="copyright" content="SultTik">
+<meta name="instagram" content="@sln6_">
+<title>NetLab Academy — Free IT Learning Platform | by SultTik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root{
+  --bg-primary:#0a0f1e;--bg-secondary:#111827;--bg-card:rgba(20,30,55,.72);
+  --border-glass:rgba(0,180,255,.15);--text-primary:#f0f4ff;--text-secondary:#b0c4de;
+  --text-muted:#7e8ea8;--accent-blue:#1e6df2;--accent-cyan:#00d4ff;--accent-green:#00c878;
+  --accent-red:#ff5050;--accent-yellow:#ffb400;--accent-purple:#a855f7;--accent-pink:#ec4899;
+  --gradient-2:linear-gradient(90deg,#1e6df2,#00d4ff);
+  --gradient-green:linear-gradient(90deg,#00c878,#7ee787);
+  --gradient-purple:linear-gradient(90deg,#a855f7,#ec4899);
+  --gradient-red:linear-gradient(90deg,#ff5050,#fb923c);
+  --gradient-insta:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  --shadow-card:0 10px 30px -10px rgba(0,0,0,.6);
+  --radius:20px;--radius-sm:12px;
+  --font-en:'Inter',sans-serif;--font-ar:'IBM Plex Sans Arabic','Inter',sans-serif;
+  --font-mono:'JetBrains Mono','Courier New',monospace;--transition:all .25s ease;
+  --nav-h:64px;
+}
+[lang="ar"]{--font-en:'IBM Plex Sans Arabic','Inter',sans-serif;--font-ar:'IBM Plex Sans Arabic','Inter',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-en);background:var(--bg-primary);color:var(--text-primary);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.menu-open{overflow:hidden}
+[dir="rtl"]{font-family:var(--font-ar)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img{max-width:100%}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg-secondary)}
+::-webkit-scrollbar-thumb{background:var(--accent-blue);border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent-cyan)}
+:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:2px;border-radius:6px}
+
+#loginScreen{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 20% 30%,#0d1a35 0%,#0a0f1e 60%,#060a14 100%);padding:1.5rem}
+#loginScreen::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.login-box{position:relative;z-index:2;background:rgba(17,24,39,.85);backdrop-filter:blur(20px);border:1px solid rgba(0,212,255,.25);border-radius:24px;padding:3rem 2.5rem;max-width:460px;width:100%;box-shadow:0 25px 60px -15px rgba(0,0,0,.8),0 0 80px -20px rgba(0,212,255,.3);text-align:center}
+.login-box .lock-icon{font-size:2.5rem;color:var(--accent-cyan);margin-bottom:1rem;display:inline-flex;align-items:center;justify-content:center;width:70px;height:70px;border-radius:50%;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.3);animation:lockPulse 3s infinite}
+@keyframes lockPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,.3)}50%{box-shadow:0 0 0 12px rgba(0,212,255,0)}}
+.login-box h1{font-size:1.6rem;font-weight:800;margin-bottom:.2rem;background:var(--gradient-2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.login-box .subtitle{font-size:.8rem;color:var(--accent-cyan);letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:1.5rem}
+.login-box .message{font-size:.95rem;color:var(--text-secondary);margin-bottom:1.8rem}
+.login-input{width:100%;padding:.95rem 1.2rem;background:rgba(0,0,0,.35);border:1.5px solid rgba(0,212,255,.25);border-radius:12px;color:var(--text-primary);font-size:1rem;text-align:center;margin-bottom:1rem}
+.login-input:focus{outline:none;border-color:var(--accent-cyan);box-shadow:0 0 0 4px rgba(0,212,255,.12)}
+.login-btn{width:100%;padding:.95rem 1.5rem;background:var(--gradient-2);color:#fff;border-radius:12px;font-size:1rem;font-weight:700;box-shadow:0 8px 25px -5px rgba(30,109,242,.5);transition:var(--transition)}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -5px rgba(0,212,255,.6)}
+.login-error{color:#ff9b9b;font-size:.88rem;margin-top:.8rem;min-height:1.3rem;font-weight:500;opacity:0;transition:opacity .3s}
+.login-error.show{opacity:1;animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.login-footer{margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.06);font-size:.75rem;color:var(--text-muted)}
+.login-footer i{color:var(--accent-cyan);margin-right:.3rem}
+.login-dev{margin-top:.7rem;padding-top:.7rem;border-top:1px solid rgba(0,212,255,.15);font-size:.78rem;color:var(--accent-cyan);font-weight:600}
+.login-social{display:flex;justify-content:center;gap:.6rem;margin-top:.8rem}
+.login-social a{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border:1px solid rgba(0,180,255,.15);color:var(--text-secondary);transition:all .25s;font-size:1rem;text-decoration:none}
+.login-social a:hover{background:var(--gradient-insta);color:#fff;border-color:transparent;transform:translateY(-2px)}
+
+#mainSite{display:none}
+#mainSite.unlocked{display:block}
+
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(10,15,30,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-glass);padding:.55rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem;box-shadow:0 4px 20px rgba(0,0,0,.4);height:var(--nav-h)}
+.logo{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:1.35rem;background:var(--gradient-2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;cursor:pointer;flex-shrink:0}
+.logo i{font-size:1.5rem;color:var(--accent-cyan);-webkit-text-fill-color:var(--accent-cyan)}
+.logo small{font-size:.55rem;font-weight:500;color:var(--text-muted);-webkit-text-fill-color:var(--text-muted);display:block;margin-top:-4px;letter-spacing:1px}
+.nav-links{display:flex;align-items:center;gap:.15rem;flex-wrap:nowrap;overflow-x:auto;list-style:none;scrollbar-width:none;padding:0 .5rem}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{padding:.32rem .65rem;border-radius:40px;font-size:.76rem;font-weight:500;color:var(--text-secondary);cursor:pointer;white-space:nowrap;transition:var(--transition)}
+.nav-links a:hover,.nav-links a.active{background:rgba(0,212,255,.12);color:var(--accent-cyan)}
+.nav-actions{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.search-btn{background:rgba(255,255,255,.06);border:1px solid var(--border-glass);color:var(--text-secondary);padding:.36rem .8rem;border-radius:40px;font-size:.76rem;display:flex;align-items:center;gap:.4rem;transition:var(--transition)}
+.search-btn:hover{background:rgba(0,212,255,.1);border-color:var(--accent-cyan);color:var(--accent-cyan)}
+.search-btn kbd{background:rgba(255,255,255,.08);border:1px solid var(--border-glass);border-radius:4px;padding:.05rem .3rem;font-size:.62rem;font-family:var(--font-mono)}
+.lang-switch{display:flex;background:rgba(255,255,255,.05);border-radius:40px;border:1px solid var(--border-glass);overflow:hidden}
+.lang-switch button{color:var(--text-secondary);padding:.3rem .8rem;font-size:.76rem;font-weight:600}
+.lang-switch button.active{background:var(--gradient-2);color:#fff}
+.logout-btn{background:rgba(255,80,80,.08);border:1px solid rgba(255,80,80,.35);color:#ff9b9b;padding:.34rem .8rem;border-radius:40px;font-size:.74rem;font-weight:600;display:flex;align-items:center;gap:.35rem;transition:var(--transition)}
+.logout-btn:hover{background:rgba(255,80,80,.2);color:#fff}
+.mobile-menu-btn{display:none;background:rgba(0,212,255,.1);border:1px solid var(--border-glass);color:var(--accent-cyan);width:38px;height:38px;border-radius:10px;font-size:1rem;align-items:center;justify-content:center}
+
+.breadcrumb{max-width:1400px;margin:1rem auto 0;padding:0 2rem;font-size:.82rem;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;min-height:1.2rem}
+.breadcrumb .crumb{cursor:pointer;color:var(--accent-cyan)}
+.breadcrumb .crumb:hover{text-decoration:underline}
+.breadcrumb .sep{opacity:.5}
+.breadcrumb .current{color:var(--text-primary)}
+
+#viewContainer{max-width:1400px;margin:0 auto;padding:1.5rem 2rem 5rem;min-height:60vh}
+
+.hero{position:relative;padding:3rem 0 2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem}
+.hero-content{flex:1 1 450px}
+.hero-badge{display:inline-block;background:rgba(0,212,255,.12);border:1px solid rgba(0,212,255,.3);color:var(--accent-cyan);font-size:.72rem;font-weight:600;padding:.3rem 1rem;border-radius:40px;margin-bottom:1rem;letter-spacing:.5px;text-transform:uppercase}
+.hero-dev{font-size:.78rem;color:var(--accent-cyan);font-weight:600;margin-bottom:.8rem}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.15;margin-bottom:1rem;background:linear-gradient(135deg,#fff 30%,#b0c4de 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 span{background:var(--gradient-2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.05rem;color:var(--text-secondary);max-width:620px;margin-bottom:1.6rem}
+.hero-buttons{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{padding:.7rem 1.5rem;border-radius:60px;font-weight:600;font-size:.88rem;display:inline-flex;align-items:center;gap:.5rem;transition:var(--transition);cursor:pointer}
+.btn-primary{background:var(--gradient-2);color:#fff;box-shadow:0 8px 25px -5px rgba(30,109,242,.5)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px -5px rgba(0,212,255,.6)}
+.btn-green{background:var(--gradient-green);color:#fff;box-shadow:0 8px 25px -5px rgba(0,200,120,.5)}
+.btn-green:hover{transform:translateY(-3px)}
+.btn-purple{background:var(--gradient-purple);color:#fff;box-shadow:0 8px 25px -5px rgba(168,85,247,.5)}
+.btn-purple:hover{transform:translateY(-3px)}
+.btn-red{background:var(--gradient-red);color:#fff;box-shadow:0 8px 25px -5px rgba(255,80,80,.5)}
+.btn-red:hover{transform:translateY(-3px)}
+.btn-insta{background:var(--gradient-insta);color:#fff;box-shadow:0 8px 25px -5px rgba(220,39,67,.5)}
+.btn-insta:hover{transform:translateY(-3px);box-shadow:0 12px 30px -5px rgba(220,39,67,.7)}
+.btn-outline{background:transparent;border:1.5px solid var(--border-glass);color:var(--text-primary)}
+.btn-outline:hover{border-color:var(--accent-cyan);background:rgba(0,212,255,.08);color:var(--accent-cyan)}
+.btn-small{padding:.4rem 1rem;font-size:.78rem;border-radius:40px}
+.hero-visual{flex:1 1 380px;min-height:340px;display:flex;align-items:center;justify-content:center}
+.network-canvas{width:100%;max-width:500px;height:auto;filter:drop-shadow(0 0 30px rgba(0,212,255,.15))}
+.node-pulse{animation:pulse 3s infinite ease-in-out}
+.node-pulse:nth-child(2){animation-delay:.5s}
+.node-pulse:nth-child(3){animation-delay:1s}
+.node-pulse:nth-child(4){animation-delay:1.5s}
+@keyframes pulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.data-line{stroke-dasharray:6 10;animation:dash 1.5s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-32}}
+
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+.feature-card{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius);padding:1.6rem;transition:var(--transition);text-align:center}
+.feature-card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.4)}
+.feature-card i{font-size:2rem;color:var(--accent-cyan);margin-bottom:.8rem}
+.feature-card h4{font-size:1rem;margin-bottom:.5rem}
+.feature-card p{font-size:.82rem;color:var(--text-secondary)}
+.stats-banner{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:2rem 0}
+.stat-item{text-align:center;padding:1.4rem 1rem;background:linear-gradient(135deg,rgba(30,109,242,.1),rgba(0,212,255,.05));border:1px solid var(--border-glass);border-radius:16px}
+.stat-item strong{display:block;font-size:1.8rem;font-weight:800;background:var(--gradient-2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-item span{font-size:.78rem;color:var(--text-muted)}
+.cta-box{background:linear-gradient(135deg,rgba(30,109,242,.2),rgba(0,212,255,.1));border:1px solid rgba(0,212,255,.35);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;margin:2rem 0}
+.cta-box h2{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.6rem;font-weight:800}
+.cta-box p{color:var(--text-secondary);margin-bottom:1.5rem;max-width:600px;margin-left:auto;margin-right:auto}
+.free-banner{background:linear-gradient(135deg,rgba(0,200,120,.15),rgba(126,231,135,.08));border:1px solid rgba(0,200,120,.35);border-radius:var(--radius-sm);padding:1rem 1.5rem;text-align:center;margin:1.5rem 0;font-weight:600;color:#7ee787}
+.free-banner i{color:#7ee787;margin-right:.5rem}
+
+.progress-banner{background:linear-gradient(135deg,rgba(30,109,242,.15),rgba(0,212,255,.08));border:1px solid var(--border-glass);border-radius:var(--radius);padding:1.4rem;margin-bottom:1.6rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.progress-banner .pb-icon{font-size:2rem;color:var(--accent-cyan)}
+.progress-banner .pb-content{flex:1;min-width:200px}
+.progress-banner h3{font-size:1rem;margin-bottom:.3rem}
+.progress-banner p{font-size:.85rem;color:var(--text-secondary)}
+.progress-banner .pb-dev{font-size:.75rem;color:var(--accent-cyan);margin-top:.4rem;font-weight:600}
+.progress-banner .pb-stats{display:flex;gap:1.2rem}
+.progress-banner .pb-stat{text-align:center}
+.progress-banner .pb-stat strong{display:block;color:var(--accent-cyan);font-size:1.2rem}
+.progress-banner .pb-stat span{color:var(--text-muted);font-size:.72rem}
+
+.section{padding:2rem 0}
+.section-header{text-align:center;margin-bottom:2rem}
+.section-header h2{font-size:clamp(1.5rem,3.5vw,2.1rem);font-weight:800;margin-bottom:.5rem}
+.section-header p{color:var(--text-secondary);max-width:640px;margin:0 auto}
+.section-header .accent-line{width:60px;height:3px;background:var(--gradient-2);margin:.8rem auto 0;border-radius:4px}
+
+.dash-grid,.category-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+.dash-card,.category-card{background:var(--bg-card);backdrop-filter:blur(12px);border:1px solid var(--border-glass);border-radius:var(--radius);padding:1.4rem;cursor:pointer;display:flex;flex-direction:column;gap:.6rem;box-shadow:var(--shadow-card);transition:var(--transition);position:relative;overflow:hidden}
+.dash-card:hover,.category-card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.45);box-shadow:0 20px 40px -15px rgba(0,212,255,.2)}
+.dash-card .dash-icon,.category-icon{font-size:1.7rem;color:var(--accent-cyan)}
+.dash-card.linux .dash-icon{color:var(--accent-green)}
+.dash-card.windows .dash-icon{color:var(--accent-blue)}
+.dash-card.cyber .dash-icon{color:var(--accent-red)}
+.dash-card.code .dash-icon{color:var(--accent-purple)}
+.dash-card.cloud .dash-icon{color:var(--accent-purple)}
+.dash-card.tools .dash-icon{color:var(--accent-yellow)}
+.dash-card h4,.category-card h3{font-size:1rem;font-weight:600}
+.dash-card p,.category-card p{font-size:.82rem;color:var(--text-secondary);flex:1}
+.dash-progress{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-top:.3rem}
+.dash-progress span{display:block;height:100%;background:var(--gradient-2);border-radius:3px;transition:width .4s}
+.dash-meta,.category-meta{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text-muted)}
+.badge-new{position:absolute;top:.7rem;right:.7rem;background:var(--gradient-red);color:#fff;font-size:.6rem;font-weight:700;padding:.15rem .5rem;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
+[dir="rtl"] .badge-new{right:auto;left:.7rem}
+
+.content-card{background:var(--bg-card);backdrop-filter:blur(12px);border:1px solid var(--border-glass);border-radius:var(--radius);padding:1.8rem;margin-bottom:1.6rem;box-shadow:var(--shadow-card)}
+.content-card h3{font-size:1.35rem;font-weight:700;margin-bottom:.6rem;color:var(--accent-cyan);display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.content-card h3 i{font-size:1.15rem;color:var(--accent-blue)}
+.content-card h4{font-size:1rem;font-weight:600;margin:1.3rem 0 .5rem;color:var(--text-primary);border-inline-start:3px solid var(--accent-cyan);padding-inline-start:.7rem}
+.content-card p{font-size:.92rem;color:var(--text-secondary);margin-bottom:.7rem}
+.content-card ul,.content-card ol{margin:.5rem 0 .9rem 1.5rem;color:var(--text-secondary);font-size:.9rem}
+[dir="rtl"] .content-card ul,[dir="rtl"] .content-card ol{margin:.5rem 1.5rem .9rem 0}
+.content-card li{margin-bottom:.25rem}
+.lesson-meta{display:flex;gap:.8rem;flex-wrap:wrap;font-size:.75rem;color:var(--text-muted);margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid var(--border-glass)}
+.lesson-meta span{display:flex;align-items:center;gap:.3rem}
+.lesson-meta i{color:var(--accent-cyan)}
+
+.code-block{background:#0d1117;border:1px solid rgba(0,212,255,.2);border-radius:var(--radius-sm);padding:1rem 1.2rem;margin:1rem 0;overflow-x:auto;position:relative;direction:ltr;text-align:left}
+.code-block pre{font-family:var(--font-mono);font-size:.8rem;color:#c9d1d9;line-height:1.55;white-space:pre;margin:0}
+.code-block .comment{color:#8b949e}
+.code-block .keyword{color:#ff7b72}
+.code-block .cmd{color:#79c0ff}
+.copy-btn{position:absolute;top:.5rem;right:.5rem;background:rgba(0,212,255,.1);border:1px solid var(--border-glass);color:var(--text-secondary);padding:.22rem .55rem;border-radius:6px;font-size:.68rem;z-index:2}
+.copy-btn:hover{background:var(--gradient-2);color:#fff;border-color:transparent}
+
+.data-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.82rem;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border-glass)}
+.data-table th{background:rgba(0,212,255,.1);color:var(--accent-cyan);padding:.65rem .9rem;text-align:left;font-weight:600;border-bottom:1px solid var(--border-glass);font-size:.78rem}
+[dir="rtl"] .data-table th{text-align:right}
+.data-table td{padding:.55rem .9rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-secondary);vertical-align:top}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:rgba(0,212,255,.03)}
+.table-wrap{overflow-x:auto;border-radius:var(--radius-sm)}
+
+.info-box{border-radius:var(--radius-sm);padding:1rem 1.2rem;margin:1rem 0;font-size:.86rem;border-inline-start:4px solid}
+.info-box.note{background:rgba(30,109,242,.08);border-color:var(--accent-blue);color:#a0c4ff}
+.info-box.warning{background:rgba(255,180,0,.08);border-color:var(--accent-yellow);color:#ffd166}
+.info-box.success{background:rgba(0,200,120,.08);border-color:var(--accent-green);color:#7ee787}
+.info-box.danger{background:rgba(255,80,80,.08);border-color:var(--accent-red);color:#ff9b9b}
+
+.topology{background:#0d1117;border:1px solid var(--border-glass);border-radius:var(--radius-sm);padding:1.3rem;margin:1rem 0;font-family:var(--font-mono);font-size:.78rem;color:#7ee787;line-height:1.75;overflow-x:auto;direction:ltr;text-align:left;white-space:pre}
+
+.tool-input{width:100%;padding:.75rem 1rem;background:rgba(0,0,0,.35);border:1.5px solid var(--border-glass);border-radius:10px;color:var(--text-primary);font-size:.95rem;font-family:var(--font-mono);margin-bottom:.8rem}
+.tool-input:focus{outline:none;border-color:var(--accent-cyan);box-shadow:0 0 0 3px rgba(0,212,255,.12)}
+.tool-btn{padding:.7rem 1.5rem;background:var(--gradient-2);color:#fff;border-radius:10px;font-weight:600;font-size:.88rem}
+.tool-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px -5px rgba(0,212,255,.4)}
+.tool-result{background:rgba(0,0,0,.3);border:1px solid var(--border-glass);border-radius:12px;padding:1.2rem;margin-top:1rem;font-family:var(--font-mono);font-size:.85rem;display:none}
+.tool-result.show{display:block}
+.result-row{display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.85rem;gap:1rem;flex-wrap:wrap}
+.result-row:last-child{border-bottom:none}
+.result-label{color:var(--text-muted)}
+.result-value{color:var(--accent-cyan);font-weight:600}
+
+.terminal{background:#0d1117;border:1px solid rgba(0,212,255,.25);border-radius:12px;padding:1.2rem;font-family:var(--font-mono);font-size:.85rem;height:340px;overflow-y:auto;direction:ltr;text-align:left}
+.terminal-header{display:flex;gap:.4rem;margin-bottom:.8rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;background:#0d1117;z-index:2}
+.terminal-header span{width:11px;height:11px;border-radius:50%}
+.t-red{background:#ff5f56}.t-yellow{background:#ffbd2e}.t-green{background:#27c93f}
+.terminal-line{color:#7ee787;margin-bottom:.3rem;white-space:pre-wrap;word-break:break-word;font-size:.82rem;font-family:var(--font-mono)}
+.terminal-line.echo{color:#79c0ff}
+.terminal-input-line{display:flex;align-items:center;gap:.4rem;margin-top:.5rem;border-top:1px solid rgba(255,255,255,.06);padding-top:.5rem}
+.terminal-prompt{color:var(--accent-cyan);font-weight:600;white-space:nowrap}
+.terminal-input{flex:1;background:transparent;border:none;color:#fff;font-family:var(--font-mono);font-size:.82rem;outline:none;min-width:0}
+
+.builder-canvas{position:relative;background:#0d1117;border:1px solid var(--border-glass);border-radius:12px;min-height:400px;padding:1rem;overflow:hidden;background-image:radial-gradient(rgba(0,212,255,.08) 1px,transparent 1px);background-size:24px 24px;touch-action:none}
+.builder-device{position:absolute;background:rgba(20,30,55,.95);border:1.5px solid var(--accent-cyan);border-radius:10px;padding:.5rem .7rem;cursor:grab;user-select:none;font-size:.72rem;color:var(--text-primary);display:flex;flex-direction:column;align-items:center;gap:.2rem;min-width:65px;z-index:2;touch-action:none}
+.builder-device.selected{border-color:var(--accent-yellow);box-shadow:0 0 0 3px rgba(255,209,102,.3)}
+.builder-toolbar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.builder-tool{background:rgba(0,212,255,.08);border:1px solid var(--border-glass);color:var(--text-secondary);padding:.5rem .9rem;border-radius:8px;font-size:.78rem;display:flex;align-items:center;gap:.4rem}
+.builder-tool:hover{background:rgba(0,212,255,.2);color:var(--accent-cyan)}
+.builder-info{background:rgba(0,212,255,.05);border:1px solid var(--border-glass);border-radius:10px;padding:1rem;margin-top:1rem;font-size:.85rem;color:var(--text-secondary)}
+.builder-info h5{color:var(--accent-cyan);margin-bottom:.5rem}
+
+.quiz-container{margin-top:1.5rem;padding:1.2rem;background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.15);border-radius:12px}
+.quiz-container h4{color:var(--accent-cyan);margin-bottom:1rem;font-size:.95rem;border:none;padding:0}
+.quiz-question{margin-bottom:1.2rem}
+.quiz-question p{font-weight:600;color:var(--text-primary);margin-bottom:.6rem;font-size:.9rem}
+.quiz-option{display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;background:rgba(0,0,0,.2);border:1px solid var(--border-glass);border-radius:8px;margin-bottom:.5rem;cursor:pointer;font-size:.85rem;color:var(--text-secondary);transition:var(--transition)}
+.quiz-option:hover{background:rgba(0,212,255,.08);border-color:var(--accent-cyan)}
+.quiz-option.correct{background:rgba(0,200,120,.15);border-color:var(--accent-green);color:#7ee787}
+.quiz-option.wrong{background:rgba(255,80,80,.15);border-color:var(--accent-red);color:#ff9b9b}
+.quiz-option.disabled{pointer-events:none}
+.quiz-feedback{margin-top:.6rem;font-size:.82rem;padding:.6rem .9rem;border-radius:8px;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:rgba(0,200,120,.1);color:#7ee787;border-inline-start:3px solid var(--accent-green)}
+.quiz-feedback.wrong{background:rgba(255,80,80,.1);color:#ff9b9b;border-inline-start:3px solid var(--accent-red)}
+
+.glossary-cats{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.glossary-cat{padding:.4rem .9rem;border-radius:40px;font-size:.78rem;font-weight:600;color:var(--text-secondary);background:rgba(255,255,255,.05);border:1px solid var(--border-glass);cursor:pointer;transition:var(--transition)}
+.glossary-cat:hover{color:var(--accent-cyan);border-color:var(--accent-cyan)}
+.glossary-cat.active{background:var(--gradient-2);color:#fff;border-color:transparent}
+.glossary-item{background:rgba(255,255,255,.02);border:1px solid var(--border-glass);border-radius:12px;padding:1rem 1.2rem;margin-bottom:.7rem;transition:var(--transition)}
+.glossary-item:hover{border-color:rgba(0,212,255,.35);background:rgba(0,212,255,.04)}
+.glossary-item .term{font-weight:700;color:var(--accent-cyan);font-size:.95rem;display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap}
+.glossary-item .term-ar{color:var(--text-muted);font-size:.85rem;font-weight:500}
+.glossary-item .def{font-size:.85rem;color:var(--text-secondary);margin-top:.4rem;line-height:1.5}
+
+.lesson-nav{display:flex;justify-content:space-between;gap:.6rem;margin-top:1.5rem;flex-wrap:wrap}
+.lesson-nav .btn{flex:1;min-width:130px;justify-content:center}
+.lesson-complete-btn{background:var(--gradient-green);color:#fff}
+.lesson-complete-btn.done{background:rgba(0,200,120,.2);border:1.5px solid var(--accent-green);color:#7ee787}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);z-index:10000;display:none;align-items:flex-start;justify-content:center;padding:3rem 1rem;overflow-y:auto}
+.modal-overlay.show{display:flex}
+.modal{background:#111827;border:1px solid var(--border-glass);border-radius:var(--radius);max-width:800px;width:100%;padding:2rem;position:relative;margin:auto}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.3);color:#ff9b9b;width:34px;height:34px;border-radius:50%;font-size:1rem;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:rgba(255,80,80,.25);color:#fff}
+
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:rgba(10,15,30,.98);z-index:1500;padding:1.5rem;overflow-y:auto;backdrop-filter:blur(20px)}
+.mobile-menu.show{display:block}
+.mobile-menu ul{list-style:none}
+.mobile-menu li{padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.06);color:var(--text-primary);font-size:.95rem;cursor:pointer;transition:var(--transition)}
+.mobile-menu li:hover{color:var(--accent-cyan);padding-inline-start:.5rem}
+
+#scrollTop{position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:var(--gradient-2);color:#fff;font-size:1rem;box-shadow:0 8px 20px -5px rgba(30,109,242,.6);display:none;z-index:900;align-items:center;justify-content:center;transition:var(--transition)}
+#scrollTop.show{display:flex}
+#scrollTop:hover{transform:translateY(-3px)}
+[dir="rtl"] #scrollTop{right:auto;left:1.5rem}
+
+footer{border-top:1px solid var(--border-glass);padding:2.5rem 2rem 1.5rem;margin-top:2rem;background:rgba(10,15,30,.7)}
+.footer-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.6rem}
+.footer-col h4{font-size:.92rem;margin-bottom:.8rem;color:var(--accent-cyan)}
+.footer-col a{display:block;color:var(--text-secondary);font-size:.8rem;padding:.22rem 0;cursor:pointer;transition:var(--transition)}
+.footer-col a:hover{color:var(--accent-cyan);padding-inline-start:.3rem}
+.footer-dev{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem}
+.footer-dev .av{width:42px;height:42px;border-radius:50%;background:var(--gradient-2);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:1.1rem;flex-shrink:0}
+.footer-dev .nm{font-weight:700;color:var(--accent-cyan);font-size:.95rem}
+.footer-dev .rl{font-size:.7rem;color:var(--text-muted)}
+.footer-bottom{max-width:1400px;margin:1.5rem auto 0;padding-top:1.3rem;border-top:1px solid rgba(255,255,255,.05);text-align:center;font-size:.78rem;color:var(--text-muted);line-height:1.8}
+.footer-bottom strong{color:var(--accent-cyan)}
+.footer-insta{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:30px;background:var(--gradient-insta);color:#fff;font-weight:600;font-size:.82rem;text-decoration:none;transition:var(--transition)}
+.footer-insta:hover{transform:translateY(-2px);box-shadow:0 8px 20px -5px rgba(220,39,67,.5)}
+
+.empty-state{text-align:center;padding:3rem 1.5rem;color:var(--text-muted)}
+.empty-state i{font-size:2.5rem;color:var(--accent-cyan);opacity:.5;margin-bottom:1rem;display:block}
+
+@media(max-width:1100px){.nav-links{display:none}.mobile-menu-btn{display:flex}}
+@media(max-width:768px){
+  .navbar{padding:.5rem .9rem}
+  .breadcrumb{padding:0 1rem;font-size:.75rem}
+  #viewContainer{padding:1rem 1rem 3rem}
+  .hero{padding:1.5rem 0}
+  .hero-visual{min-height:220px}
+  .dash-grid,.category-grid,.features-grid{grid-template-columns:1fr 1fr;gap:.8rem}
+  .content-card{padding:1.2rem}
+  .search-btn kbd{display:none}
+  .terminal{height:280px;font-size:.78rem}
+  .logo small{display:none}
+}
+@media(max-width:520px){
+  .dash-grid,.category-grid,.features-grid{grid-template-columns:1fr}
+  .data-table{font-size:.7rem}
+  .data-table th,.data-table td{padding:.35rem .5rem}
+  .login-box{padding:2rem 1.5rem}
+  .lesson-nav .btn{flex:1 1 100%}
+  .hero h1{font-size:1.5rem}
+  .hero-buttons .btn{flex:1}
+}
+.lang-en,.lang-ar{display:none}
+.lang-en.active,.lang-ar.active{display:block}
+.lang-en.inline.active,.lang-ar.inline.active{display:inline}
+.lang-en.inline,.lang-ar.inline{display:none}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+    <h1>NETLAB ACADEMY</h1>
+    <div class="subtitle">Networking · Linux · Windows · Cyber · Code</div>
+    <p class="message">This academy is private.<br>Enter the password to continue.</p>
+    <input type="password" id="passwordInput" class="login-input" placeholder="Enter password" autocomplete="off">
+    <button class="login-btn" onclick="checkPassword()"><i class="fas fa-sign-in-alt"></i> Access Academy</button>
+    <div class="login-error" id="loginError"></div>
+    <div class="login-footer"><i class="fas fa-shield-alt"></i> Protected content · Authorized access only</div>
+    <div class="login-dev"><i class="fas fa-code"></i> Developed by SultTik</div>
+    <div class="login-social">
+      <a href="https://instagram.com/sln6_" target="_blank" rel="noopener" title="Instagram: @sln6_" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu"><ul id="mobileMenuList"></ul></div>
+
+<div id="mainSite">
+<nav class="navbar">
+  <div class="logo" onclick="goHome()"><i class="fas fa-project-diagram"></i><span>NetLab<small>ACADEMY · BY SULTTIK</small></span></div>
+  <ul class="nav-links" id="navLinks"></ul>
+  <div class="nav-actions">
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+    <button class="search-btn" onclick="openSearch()">
+      <i class="fas fa-search"></i>
+      <span class="lang-en inline active">Search</span>
+      <span class="lang-ar inline">بحث</span>
+      <kbd>Ctrl K</kbd>
+    </button>
+    <div class="lang-switch">
+      <button id="langEn" class="active" onclick="setLanguage('en')">EN</button>
+      <button id="langAr" onclick="setLanguage('ar')">ع</button>
+    </div>
+    <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i><span class="lang-en inline active">Logout</span><span class="lang-ar inline">خروج</span></button>
+  </div>
+</nav>
+<div class="breadcrumb" id="breadcrumb"></div>
+<div id="viewContainer"></div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>NetLab Academy</h4>
+      <p style="font-size:.78rem;color:var(--text-muted);line-height:1.5">
+        <span class="lang-en inline active">100% Free IT learning platform.</span>
+        <span class="lang-ar inline">منصة تعليمية مجانية بالكامل 100%.</span>
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4 class="lang-en active">Tracks</h4><h4 class="lang-ar">المسارات</h4>
+      <a onclick="navigate('networking')">Networking</a>
+      <a onclick="navigate('linux')">Linux</a>
+      <a onclick="navigate('windows')">Windows</a>
+      <a onclick="navigate('cybersecurity')">Cybersecurity</a>
+      <a onclick="navigate('programming')">Programming</a>
+    </div>
+    <div class="footer-col">
+      <h4 class="lang-en active">Learn</h4><h4 class="lang-ar">تعلم</h4>
+      <a onclick="navigate('virtualization')">Virtualization</a>
+      <a onclick="navigate('labs')">Labs</a>
+      <a onclick="navigate('tools')">Tools</a>
+      <a onclick="navigate('commands')">Commands</a>
+    </div>
+    <div class="footer-col">
+      <h4 class="lang-en active">Reference</h4><h4 class="lang-ar">المراجع</h4>
+      <a onclick="navigate('glossary')">Glossary</a>
+      <a onclick="navigate('about')">About</a>
+      <a onclick="navigate('references')">References</a>
+    </div>
+    <div class="footer-col">
+      <h4 class="lang-en active">Follow Us</h4><h4 class="lang-ar">تابعنا</h4>
+      <a href="https://instagram.com/sln6_" target="_blank" rel="noopener" class="footer-insta">
+        <i class="fab fa-instagram"></i> @sln6_
+      </a>
+    </div>
+    <div class="footer-col">
+      <h4 class="lang-en active">Developer</h4><h4 class="lang-ar">المطوّر</h4>
+      <div class="footer-dev">
+        <div class="av">S</div>
+        <div>
+          <div class="nm">SultTik</div>
+          <div class="rl"><span class="lang-en inline active">Founder & Developer</span><span class="lang-ar inline">المؤسس والمطوّر</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 <strong>SultTik</strong> — All Rights Reserved · NetLab Academy<br>
+    <span class="lang-en inline active">100% Free for personal & educational use</span>
+    <span class="lang-ar inline">مجاني بالكامل 100% للاستخدام الشخصي والتعليمي</span>
+  </div>
+</footer>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+/* ============================================================
+   NETLAB ACADEMY — Developed by SultTik
+   © 2025 SultTik — All Rights Reserved
+   ============================================================ */
+const NETLAB_PASSWORD = "S7uL!tA92#nQx4@N8$L2";
+window.addEventListener('error', e => console.error('NetLab:', e.message));
+
+/* ============================================================
+   DATA — All categories (NO FAQ, NO CONTACT)
+   ============================================================ */
+const DATA = {
+  dashboard: {icon:'fa-th-large', en:'Dashboard', ar:'لوحة التحكم', desc_en:'Your learning hub.', desc_ar:'مركز التعلم.'},
+
+  networking: {icon:'fa-network-wired', en:'Networking', ar:'الشبكات', desc_en:'Complete networking curriculum.', desc_ar:'منهج شبكات كامل.',
+    topics:[
+      {id:'fundamentals', en:'Fundamentals', ar:'الأساسيات', lessons:[
+        {id:'what-is', en:'What is Networking', ar:'ما هي الشبكات', body:'netIntro', min:8, level:'beginner'},
+        {id:'types', en:'Network Types', ar:'أنواع الشبكات', body:'netTypes', min:10, level:'beginner'},
+        {id:'topologies', en:'Network Topologies', ar:'طبولوجيا الشبكة', body:'netTopologies', min:12, level:'beginner'},
+        {id:'metrics', en:'Performance Metrics', ar:'مقاييس الأداء', body:'netMetrics', min:12, level:'beginner'}
+      ]},
+      {id:'osi-tcpip', en:'OSI & TCP/IP', ar:'OSI و TCP/IP', lessons:[
+        {id:'osi', en:'OSI 7-Layer Model', ar:'نموذج OSI', body:'osiLayers', min:15, level:'beginner'},
+        {id:'tcpip', en:'TCP/IP Model', ar:'نموذج TCP/IP', body:'tcpipModel', min:12, level:'beginner'}
+      ]},
+      {id:'devices', en:'Network Devices', ar:'أجهزة الشبكات', lessons:[
+        {id:'router', en:'Router', ar:'الموجّه', body:'routerIntro', min:15, level:'beginner'},
+        {id:'switch', en:'Switch', ar:'المبدّل', body:'switchIntro', min:15, level:'beginner'},
+        {id:'firewall', en:'Firewall', ar:'الجدار الناري', body:'firewallIntro', min:12, level:'beginner'}
+      ]},
+      {id:'ip', en:'IP Addressing', ar:'عناوين IP', lessons:[
+        {id:'ipv4', en:'IPv4 Basics', ar:'أساسيات IPv4', body:'ipv4Basics', min:15, level:'beginner'},
+        {id:'classes', en:'Address Classes', ar:'فئات العناوين', body:'ipv4Classes', min:10, level:'beginner'},
+        {id:'ipv6', en:'IPv6 Fundamentals', ar:'أساسيات IPv6', body:'ipv6Basics', min:18, level:'intermediate'}
+      ]},
+      {id:'subnetting', en:'Subnetting', ar:'التقسيم', lessons:[
+        {id:'basics', en:'Subnetting Basics', ar:'أساسيات التقسيم', body:'subnetExample', min:20, level:'intermediate'},
+        {id:'vlsm', en:'VLSM', ar:'VLSM', body:'vlsmLesson', min:15, level:'intermediate'},
+        {id:'calc', en:'Calculator', ar:'حاسبة', body:'subnetCalc', min:8, level:'beginner'}
+      ]},
+      {id:'vlan', en:'VLAN', ar:'VLAN', lessons:[
+        {id:'intro', en:'VLAN Configuration', ar:'إعداد VLAN', body:'vlanConfig', min:20, level:'intermediate'},
+        {id:'router-stick', en:'Router-on-a-Stick', ar:'Router-on-a-Stick', body:'routerOnStick', min:20, level:'intermediate'}
+      ]},
+      {id:'switching', en:'Switching', ar:'التبديل', lessons:[
+        {id:'mac', en:'MAC Learning', ar:'تعلم MAC', body:'switchLearning', min:15, level:'beginner'},
+        {id:'stp', en:'Spanning Tree', ar:'الشجرة الممتدة', body:'stpIntro', min:20, level:'intermediate'}
+      ]},
+      {id:'routing', en:'Routing', ar:'التوجيه', lessons:[
+        {id:'static', en:'Static Routing', ar:'التوجيه الثابت', body:'staticRoute', min:15, level:'beginner'},
+        {id:'ospf', en:'OSPF', ar:'OSPF', body:'ospfConfig', min:25, level:'advanced'},
+        {id:'compare', en:'Protocol Comparison', ar:'مقارنة', body:'routingCompare', min:15, level:'intermediate'}
+      ]},
+      {id:'protocols', en:'Protocols', ar:'البروتوكولات', lessons:[
+        {id:'tcp', en:'TCP', ar:'TCP', body:'protocolTCP', min:15, level:'beginner'},
+        {id:'udp', en:'UDP', ar:'UDP', body:'protocolUDP', min:12, level:'beginner'},
+        {id:'dns', en:'DNS', ar:'DNS', body:'protocolDNS', min:15, level:'beginner'},
+        {id:'dhcp', en:'DHCP', ar:'DHCP', body:'protocolDHCP', min:15, level:'beginner'},
+        {id:'http', en:'HTTP / HTTPS', ar:'HTTP / HTTPS', body:'protocolHTTP', min:10, level:'beginner'}
+      ]},
+      {id:'services', en:'Services', ar:'الخدمات', lessons:[
+        {id:'dhcp', en:'DHCP Service', ar:'خدمة DHCP', body:'serviceDHCP', min:15, level:'intermediate'},
+        {id:'dns', en:'DNS Service', ar:'خدمة DNS', body:'serviceDNS', min:15, level:'intermediate'},
+        {id:'ntp', en:'NTP', ar:'NTP', body:'serviceNTP', min:10, level:'intermediate'}
+      ]}
+    ]},
+
+  linux: {icon:'fa-linux', en:'Linux', ar:'لينكس', desc_en:'From terminal basics to Linux administration.', desc_ar:'من الطرفية إلى الإدارة.',
+    topics:[
+      {id:'intro', en:'Linux Fundamentals', ar:'أساسيات لينكس', lessons:[
+        {id:'what', en:'What is Linux', ar:'ما هو لينكس', body:'linuxWhat', min:10, level:'beginner'},
+        {id:'filesystem', en:'Filesystem', ar:'نظام الملفات', body:'linuxFilesystem', min:15, level:'beginner'},
+        {id:'terminal', en:'Terminal Basics', ar:'الطرفية', body:'linuxBasics', min:15, level:'beginner'}
+      ]},
+      {id:'files', en:'File Management', ar:'إدارة الملفات', lessons:[
+        {id:'commands', en:'File Commands', ar:'أوامر الملفات', body:'linuxFiles', min:20, level:'beginner'},
+        {id:'permissions', en:'Permissions', ar:'الصلاحيات', body:'linuxPermissions', min:20, level:'beginner'},
+        {id:'users', en:'Users & Groups', ar:'المستخدمون', body:'linuxUsers', min:18, level:'intermediate'}
+      ]},
+      {id:'networking', en:'Linux Networking', ar:'شبكات لينكس', lessons:[
+        {id:'ip', en:'ip & ss Commands', ar:'أوامر ip', body:'linuxNet', min:20, level:'intermediate'},
+        {id:'firewall', en:'Firewall', ar:'الجدار الناري', body:'linuxFirewall', min:25, level:'advanced'}
+      ]},
+      {id:'bash', en:'Bash Scripting', ar:'Bash', lessons:[
+        {id:'intro', en:'Bash Basics', ar:'أساسيات Bash', body:'bashIntro', min:20, level:'intermediate'},
+        {id:'variables', en:'Variables & Loops', ar:'المتغيرات', body:'bashVars', min:25, level:'intermediate'}
+      ]},
+      {id:'admin', en:'Administration', ar:'الإدارة', lessons:[
+        {id:'systemd', en:'Systemd', ar:'Systemd', body:'linuxSystemd', min:20, level:'advanced'},
+        {id:'logs', en:'Logs', ar:'السجلات', body:'linuxLogs', min:20, level:'advanced'}
+      ]},
+      {id:'terminal', en:'Terminal Simulator', ar:'محاكي الطرفية', lessons:[
+        {id:'try', en:'Try Commands', ar:'جرب الأوامر', body:'linuxSim', min:5, level:'beginner'}
+      ]}
+    ]},
+
+  windows: {icon:'fa-windows', en:'Windows', ar:'ويندوز', desc_en:'CMD, PowerShell, Server, and AD.', desc_ar:'CMD، PowerShell، Server، AD.',
+    topics:[
+      {id:'intro', en:'Fundamentals', ar:'الأساسيات', lessons:[
+        {id:'what', en:'Windows Editions', ar:'الإصدارات', body:'winEditions', min:10, level:'beginner'},
+        {id:'cmd', en:'Command Prompt', ar:'موجه الأوامر', body:'winCmd', min:15, level:'beginner'},
+        {id:'powershell', en:'PowerShell Basics', ar:'أساسيات PowerShell', body:'winPowershell', min:20, level:'beginner'}
+      ]},
+      {id:'network', en:'Networking', ar:'الشبكات', lessons:[
+        {id:'ipconfig', en:'ipconfig & Tools', ar:'أدوات', body:'winCommands', min:20, level:'beginner'},
+        {id:'firewall', en:'Windows Firewall', ar:'الجدار', body:'winFirewall', min:18, level:'intermediate'}
+      ]},
+      {id:'server', en:'Windows Server', ar:'السيرفر', lessons:[
+        {id:'roles', en:'Server Roles', ar:'الأدوار', body:'winServerRoles', min:20, level:'intermediate'},
+        {id:'hyper-v', en:'Hyper-V', ar:'Hyper-V', body:'winHyperV', min:25, level:'advanced'}
+      ]},
+      {id:'ad', en:'Active Directory', ar:'الدليل النشط', lessons:[
+        {id:'intro', en:'AD DS Basics', ar:'أساسيات AD DS', body:'winAdIntro', min:25, level:'advanced'},
+        {id:'gpo', en:'Group Policy', ar:'نهج المجموعة', body:'winGpo', min:25, level:'advanced'}
+      ]},
+      {id:'powershell-sim', en:'PowerShell Simulator', ar:'محاكي PowerShell', lessons:[
+        {id:'try', en:'Try Commands', ar:'جرب الأوامر', body:'powershellSim', min:5, level:'beginner'}
+      ]}
+    ]},
+
+  cybersecurity: {icon:'fa-shield-halved', en:'Cybersecurity', ar:'الأمن السيبراني', desc_en:'Defensive security fundamentals.', desc_ar:'أساسيات الأمن السيبراني.',
+    topics:[
+      {id:'fundamentals', en:'Fundamentals', ar:'الأساسيات', lessons:[
+        {id:'cia', en:'CIA Triad', ar:'ثالوث CIA', body:'secCIA', min:15, level:'beginner'},
+        {id:'threats', en:'Common Threats', ar:'التهديدات', body:'secThreats', min:18, level:'beginner'},
+        {id:'principles', en:'Security Principles', ar:'مبادئ الأمان', body:'secPrinciples', min:15, level:'beginner'}
+      ]},
+      {id:'crypto', en:'Cryptography', ar:'التشفير', lessons:[
+        {id:'basics', en:'Encryption Basics', ar:'أساسيات التشفير', body:'secCrypto', min:20, level:'intermediate'},
+        {id:'hashing', en:'Hashing & Certs', ar:'التجزئة والشهادات', body:'secHash', min:20, level:'intermediate'}
+      ]},
+      {id:'attacks', en:'Attacks', ar:'الهجمات', lessons:[
+        {id:'malware', en:'Malware Types', ar:'أنواع البرمجيات', body:'secMalware', min:20, level:'intermediate'},
+        {id:'web', en:'Web Attacks', ar:'هجمات الويب', body:'secWeb', min:25, level:'intermediate'},
+        {id:'social', en:'Social Engineering', ar:'الهندسة الاجتماعية', body:'secSocial', min:15, level:'beginner'}
+      ]},
+      {id:'defense', en:'Defense', ar:'الدفاع', lessons:[
+        {id:'soc', en:'SOC & Monitoring', ar:'المراقبة', body:'secSOC', min:20, level:'intermediate'},
+        {id:'hardening', en:'System Hardening', ar:'تقوية الأنظمة', body:'secHardening', min:18, level:'intermediate'}
+      ]},
+      {id:'career', en:'Career', ar:'المسار المهني', lessons:[
+        {id:'certs', en:'Certifications', ar:'الشهادات', body:'secCerts', min:15, level:'beginner'}
+      ]}
+    ]},
+
+  programming: {icon:'fa-code', en:'Programming', ar:'البرمجة', desc_en:'Python, JS, Bash for IT automation.', desc_ar:'بايثون، JS، Bash للأتمتة.',
+    topics:[
+      {id:'intro', en:'Intro', ar:'مقدمة', lessons:[
+        {id:'what', en:'Why Program?', ar:'لماذا البرمجة؟', body:'progIntro', min:10, level:'beginner'},
+        {id:'concepts', en:'Core Concepts', ar:'المفاهيم', body:'progConcepts', min:15, level:'beginner'}
+      ]},
+      {id:'python', en:'Python', ar:'بايثون', lessons:[
+        {id:'basics', en:'Python Basics', ar:'أساسيات بايثون', body:'pyBasics', min:25, level:'beginner'},
+        {id:'data', en:'Data Structures', ar:'البنى البيانية', body:'pyData', min:25, level:'intermediate'},
+        {id:'net', en:'Python for Networking', ar:'بايثون للشبكات', body:'pyNet', min:30, level:'intermediate'}
+      ]},
+      {id:'js', en:'JavaScript', ar:'جافاسكربت', lessons:[
+        {id:'basics', en:'JavaScript Basics', ar:'أساسيات JS', body:'jsBasics', min:25, level:'beginner'}
+      ]},
+      {id:'api', en:'APIs & Automation', ar:'APIs', lessons:[
+        {id:'rest', en:'REST APIs', ar:'أساسيات REST', body:'apiRest', min:20, level:'intermediate'}
+      ]}
+    ]},
+
+  virtualization: {icon:'fa-cube', en:'Virtualization', ar:'المحاكاة', desc_en:'Hypervisors, VMs, containers.', desc_ar:'الهايبرفايزر، VMs، الحاويات.',
+    topics:[
+      {id:'concepts', en:'Concepts', ar:'المفاهيم', lessons:[
+        {id:'basics', en:'What is Virtualization', ar:'ما هي المحاكاة', body:'virtBasics', min:12, level:'beginner'},
+        {id:'hypervisors', en:'Type 1 vs Type 2', ar:'النوع 1 مقابل 2', body:'virtHypervisors', min:15, level:'beginner'},
+        {id:'containers', en:'Containers', ar:'الحاويات', body:'virtContainers', min:20, level:'intermediate'}
+      ]},
+      {id:'vms', en:'VMs', ar:'VMs', lessons:[
+        {id:'networking', en:'VM Networking', ar:'شبكة VM', body:'vmNetworking', min:15, level:'intermediate'}
+      ]},
+      {id:'platforms', en:'Platforms', ar:'المنصات', lessons:[
+        {id:'compare', en:'Comparison', ar:'مقارنة', body:'virtPlatforms', min:18, level:'intermediate'}
+      ]}
+    ]},
+
+  labs: {icon:'fa-flask', en:'Labs', ar:'المعامل', desc_en:'Hands-on labs.', desc_ar:'معامل عملية.',
+    topics:[
+      {id:'packettracer', en:'Packet Tracer', ar:'Packet Tracer', lessons:[
+        {id:'lab1', en:'Lab 1: Two PCs', ar:'معمل 1', body:'ptLab1', min:20, level:'beginner'},
+        {id:'lab2', en:'Lab 2: Router & Two Nets', ar:'معمل 2', body:'ptLab2', min:30, level:'beginner'},
+        {id:'lab3', en:'Lab 3: Static Routing', ar:'معمل 3', body:'ptLab3', min:45, level:'intermediate'},
+        {id:'vlan', en:'Lab 4: VLAN', ar:'معمل 4', body:'ptVlanLab', min:40, level:'intermediate'},
+        {id:'ospf', en:'Lab 5: OSPF', ar:'معمل 5', body:'ptOspfLab', min:60, level:'advanced'}
+      ]},
+      {id:'gns3', en:'GNS3', ar:'GNS3', lessons:[
+        {id:'setup', en:'GNS3 VM Setup', ar:'إعداد GNS3', body:'gns3Setup', min:30, level:'intermediate'},
+        {id:'compare', en:'PT vs GNS3', ar:'مقارنة', body:'ptVsGns3', min:15, level:'beginner'}
+      ]}
+    ]},
+
+  tools: {icon:'fa-calculator', en:'Tools', ar:'الأدوات', desc_en:'Calculators and simulators.', desc_ar:'حاسبات ومحاكيات.',
+    topics:[
+      {id:'calc', en:'Calculators', ar:'الحاسبات', lessons:[
+        {id:'subnet', en:'Subnet Calculator', ar:'حاسبة التقسيم', body:'subnetCalc', min:5, level:'beginner'},
+        {id:'ip', en:'IP Analyzer', ar:'محلل IP', body:'ipAnalyzer', min:5, level:'beginner'}
+      ]},
+      {id:'builder', en:'Network Builder', ar:'بناء الشبكة', lessons:[
+        {id:'open', en:'Open Builder', ar:'افتح البناء', body:'builderCanvas', min:10, level:'beginner'}
+      ]},
+      {id:'terminals', en:'Terminals', ar:'الطرفيات', lessons:[
+        {id:'cisco', en:'Cisco Simulator', ar:'محاكي Cisco', body:'ciscoSim', min:10, level:'beginner'},
+        {id:'linux-sim', en:'Linux Terminal', ar:'طرفية لينكس', body:'linuxSim', min:10, level:'beginner'},
+        {id:'ps-sim', en:'PowerShell Simulator', ar:'محاكي PS', body:'powershellSim', min:10, level:'beginner'}
+      ]}
+    ]},
+
+  commands: {icon:'fa-terminal', en:'Commands', ar:'الأوامر', desc_en:'Cisco, Linux, Windows, PowerShell.', desc_ar:'Cisco، لينكس، ويندوز، PS.',
+    topics:[
+      {id:'cisco', en:'Cisco IOS', ar:'Cisco IOS', lessons:[
+        {id:'show', en:'Show Commands', ar:'أوامر العرض', body:'ciscoShow', min:15, level:'beginner'},
+        {id:'config', en:'Configuration', ar:'الإعداد', body:'ciscoConfig', min:20, level:'beginner'}
+      ]},
+      {id:'linux-cmds', en:'Linux Commands', ar:'أوامر لينكس', lessons:[
+        {id:'list', en:'Essential', ar:'الأساسية', body:'linuxCmdRef', min:20, level:'beginner'}
+      ]},
+      {id:'windows-cmds', en:'Windows Commands', ar:'أوامر ويندوز', lessons:[
+        {id:'cmd', en:'CMD', ar:'CMD', body:'winCommands', min:20, level:'beginner'},
+        {id:'ps', en:'PowerShell', ar:'PowerShell', body:'psCmdRef', min:20, level:'beginner'}
+      ]},
+      {id:'ports', en:'Port Reference', ar:'المنافذ', lessons:[
+        {id:'list', en:'Common Ports', ar:'المنافذ الشائعة', body:'portRef', min:10, level:'beginner'}
+      ]}
+    ]},
+
+  glossary: {icon:'fa-book', en:'Glossary', ar:'المصطلحات', desc_en:'200+ IT terms by category.', desc_ar:'+200 مصطلح حسب الفئة.',
+    topics:[{id:'all', en:'Browse', ar:'تصفح', lessons:[{id:'terms', en:'All Terms', ar:'جميع المصطلحات', body:'glossaryMain', min:20, level:'beginner'}]}]},
+
+  about: {icon:'fa-user-astronaut', en:'About', ar:'من نحن', desc_en:'About the academy and developer.', desc_ar:'عن الأكاديمية والمطوّر.',
+    topics:[{id:'info', en:'Info', ar:'معلومات', lessons:[{id:'dev', en:'About Developer', ar:'عن المطوّر', body:'aboutMain', min:3, level:'beginner'}]}]},
+
+  references: {icon:'fa-link', en:'References', ar:'المراجع', desc_en:'Authoritative sources.', desc_ar:'مصادر موثوقة.',
+    topics:[{id:'sources', en:'Sources', ar:'المصادر', lessons:[{id:'list', en:'Browse', ar:'تصفح', body:'refsList', min:10, level:'beginner'}]}]}
+};
+
+/* ============================================================
+   LESSON BODIES — Full Educational Content
+   ============================================================ */
+const LESSON_BODIES = {
+  /* NETWORKING */
+  netIntro: () => '<div class="content-card"><h3><i class="fas fa-network-wired"></i> ' + t('What is Computer Networking?','ما هي شبكات الحاسوب؟') + '</h3>' +
+    '<p>' + t('A computer network is a collection of two or more computing devices connected to share resources and communicate.','شبكة الحاسوب هي مجموعة من جهازين أو أكثر متصلة لمشاركة الموارد والتواصل.') + '</p>' +
+    '<h4>' + t('Why Networks Are Used','لماذا تُستخدم الشبكات') + '</h4>' +
+    '<ul><li>' + t('Resource sharing: printers, files, applications.','مشاركة الموارد.') + '</li><li>' + t('Communication: email, messaging, VoIP.','التواصل: البريد، VoIP.') + '</li><li>' + t('Centralized management.','الإدارة المركزية.') + '</li><li>' + t('Scalability.','قابلية التوسع.') + '</li></ul>' +
+    '<div class="info-box note"><i class="fas fa-info-circle"></i> ' + t('Networks are the foundation of everything digital.','الشبكات هي أساس كل شيء رقمي.') + '</div></div>',
+  netTypes: () => '<div class="content-card"><h3><i class="fas fa-sitemap"></i> ' + t('Network Types','أنواع الشبكات') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>Type</th><th>' + t('Range','النطاق') + '</th><th>' + t('Example','مثال') + '</th></tr></thead><tbody>' +
+    '<tr><td>PAN</td><td>~10 m</td><td>' + t('Bluetooth','بلوتوث') + '</td></tr>' +
+    '<tr><td>LAN</td><td>' + t('Building','مبنى') + '</td><td>' + t('Office','مكتب') + '</td></tr>' +
+    '<tr><td>MAN</td><td>' + t('City','مدينة') + '</td><td>ISP</td></tr>' +
+    '<tr><td>WAN</td><td>' + t('Global','عالمي') + '</td><td>Internet</td></tr>' +
+    '<tr><td>WLAN</td><td>' + t('Building','مبنى') + '</td><td>Wi-Fi</td></tr></tbody></table></div></div>',
+  netTopologies: () => '<div class="content-card"><h3><i class="fas fa-project-diagram"></i> ' + t('Topologies','الطوبولوجيا') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Topology','الطوبولوجيا') + '</th><th>' + t('Advantage','الميزة') + '</th><th>' + t('Disadvantage','العيب') + '</th></tr></thead><tbody>' +
+    '<tr><td>Star</td><td>' + t('Easy to manage','سهل') + '</td><td>' + t('Central failure','نقطة فشل') + '</td></tr>' +
+    '<tr><td>Mesh</td><td>' + t('High redundancy','تكرار') + '</td><td>' + t('Expensive','مكلف') + '</td></tr>' +
+    '<tr><td>Bus</td><td>' + t('Low cost','رخيص') + '</td><td>' + t('Single break','انقطاع') + '</td></tr>' +
+    '<tr><td>Ring</td><td>' + t('Predictable','متوقع') + '</td><td>' + t('Break affects','تأثير') + '</td></tr></tbody></table></div></div>',
+  netMetrics: () => '<div class="content-card"><h3><i class="fas fa-tachometer-alt"></i> ' + t('Performance Metrics','مقاييس الأداء') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Metric','المقياس') + '</th><th>' + t('Definition','التعريف') + '</th><th>' + t('Unit','الوحدة') + '</th></tr></thead><tbody>' +
+    '<tr><td>Bandwidth</td><td>' + t('Max theoretical','نظري') + '</td><td>Mbps</td></tr>' +
+    '<tr><td>Throughput</td><td>' + t('Actual','فعلي') + '</td><td>Mbps</td></tr>' +
+    '<tr><td>Latency</td><td>' + t('Travel time','زمن الانتقال') + '</td><td>ms</td></tr>' +
+    '<tr><td>Jitter</td><td>' + t('Variation','تباين') + '</td><td>ms</td></tr>' +
+    '<tr><td>Packet Loss</td><td>' + t('% lost','مفقود') + '</td><td>%</td></tr></tbody></table></div></div>',
+  osiLayers: () => '<div class="content-card"><h3><i class="fas fa-layer-group"></i> ' + t('OSI Model','نموذج OSI') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>#</th><th>' + t('Layer','الطبقة') + '</th><th>' + t('Examples','أمثلة') + '</th></tr></thead><tbody>' +
+    '<tr><td>7</td><td>Application</td><td>HTTP, DNS, SMTP</td></tr>' +
+    '<tr><td>6</td><td>Presentation</td><td>SSL/TLS</td></tr>' +
+    '<tr><td>5</td><td>Session</td><td>NetBIOS</td></tr>' +
+    '<tr><td>4</td><td>Transport</td><td>TCP, UDP</td></tr>' +
+    '<tr><td>3</td><td>Network</td><td>IP, ICMP</td></tr>' +
+    '<tr><td>2</td><td>Data Link</td><td>Ethernet</td></tr>' +
+    '<tr><td>1</td><td>Physical</td><td>' + t('Cables','كابلات') + '</td></tr></tbody></table></div></div>',
+  tcpipModel: () => '<div class="content-card"><h3><i class="fas fa-layer-group"></i> TCP/IP</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>#</th><th>' + t('Layer','الطبقة') + '</th><th>OSI</th></tr></thead><tbody>' +
+    '<tr><td>4</td><td>Application</td><td>5,6,7</td></tr>' +
+    '<tr><td>3</td><td>Transport</td><td>4</td></tr>' +
+    '<tr><td>2</td><td>Internet</td><td>3</td></tr>' +
+    '<tr><td>1</td><td>Network Access</td><td>1,2</td></tr></tbody></table></div></div>',
+  routerIntro: () => '<div class="content-card"><h3><i class="fas fa-route"></i> ' + t('Router Basics','أساسيات الموجّه') + '</h3>' +
+    '<p>' + t('A router forwards packets between IP networks using its routing table.','الموجّه يعيد توجيه الحزم بين شبكات IP.') + '</p>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">R1&gt;</span> <span class="keyword">enable</span>\n<span class="cmd">R1#</span> <span class="keyword">configure terminal</span>\n<span class="cmd">R1(config)#</span> <span class="keyword">interface</span> Gi0/0\n<span class="cmd">R1(config-if)#</span> <span class="keyword">ip address</span> 192.168.1.1 255.255.255.0\n<span class="cmd">R1(config-if)#</span> <span class="keyword">no shutdown</span></pre></div></div>',
+  switchIntro: () => '<div class="content-card"><h3><i class="fas fa-exchange-alt"></i> ' + t('Switch Basics','أساسيات المبدّل') + '</h3>' +
+    '<p>' + t('A switch forwards frames based on MAC addresses.','المبدّل يعيد توجيه الإطارات بناءً على عناوين MAC.') + '</p>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">SW1#</span> <span class="keyword">show mac address-table</span>\nVlan  Mac Address     Type     Ports\n10    0001.0203.0405  DYNAMIC  Gi0/3</pre></div></div>',
+  firewallIntro: () => '<div class="content-card"><h3><i class="fas fa-shield-alt"></i> ' + t('Firewall Basics','أساسيات الجدار الناري') + '</h3>' +
+    '<p>' + t('A firewall filters traffic based on rules.','الجدار يصفّي المرور بناءً على قواعد.') + '</p>' +
+    '<ul><li>Stateless</li><li>Stateful</li><li>Next-gen</li></ul></div>',
+  ipv4Basics: () => '<div class="content-card"><h3><i class="fas fa-ip"></i> IPv4</h3>' +
+    '<div class="table-wrap"><table class="data-table"><tbody>' +
+    '<tr><td>' + t('Network','الشبكة') + '</td><td>192.168.1.0</td></tr>' +
+    '<tr><td>' + t('Broadcast','البث') + '</td><td>192.168.1.255</td></tr>' +
+    '<tr><td>' + t('Hosts','المضيفون') + '</td><td>254</td></tr></tbody></table></div></div>',
+  ipv4Classes: () => '<div class="content-card"><h3><i class="fas fa-ip"></i> ' + t('Classes','الفئات') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>Class</th><th>' + t('Range','النطاق') + '</th></tr></thead><tbody>' +
+    '<tr><td>A</td><td>1-126</td></tr><tr><td>B</td><td>128-191</td></tr><tr><td>C</td><td>192-223</td></tr></tbody></table></div></div>',
+  ipv6Basics: () => '<div class="content-card"><h3><i class="fas fa-ip"></i> IPv6</h3>' +
+    '<p>128-bit, uses :: to shorten zeros.</p>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>2001:db8::ff00:42:8329</pre></div></div>',
+  subnetExample: () => '<div class="content-card"><h3><i class="fas fa-calculator"></i> ' + t('Subnet Example','مثال التقسيم') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>#</th><th>' + t('Network','الشبكة') + '</th><th>' + t('Range','النطاق') + '</th></tr></thead><tbody>' +
+    '<tr><td>1</td><td>192.168.10.0/26</td><td>.1-.62</td></tr>' +
+    '<tr><td>2</td><td>192.168.10.64/26</td><td>.65-.126</td></tr>' +
+    '<tr><td>3</td><td>192.168.10.128/26</td><td>.129-.190</td></tr>' +
+    '<tr><td>4</td><td>192.168.10.192/26</td><td>.193-.254</td></tr></tbody></table></div></div>',
+  vlsmLesson: () => '<div class="content-card"><h3>VLSM</h3><div class="topology">LAN A (100): 192.168.1.0/25\nLAN B (50):  192.168.1.128/26\nWAN (2):     192.168.1.192/30</div></div>',
+  subnetCalc: () => '<div class="content-card"><h3><i class="fas fa-calculator"></i> ' + t('Subnet Calculator','حاسبة التقسيم') + '</h3>' +
+    '<input class="tool-input" id="subnetInput" value="192.168.10.0/24">' +
+    '<button class="tool-btn" onclick="calculateSubnet()"><i class="fas fa-play"></i> ' + t('Calculate','احسب') + '</button>' +
+    '<div class="tool-result" id="subnetResult"></div></div>',
+  vlanConfig: () => '<div class="content-card"><h3><i class="fas fa-layer-group"></i> VLAN</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">SW1(config)#</span> <span class="keyword">vlan</span> 10\n<span class="cmd">SW1(config-vlan)#</span> <span class="keyword">name</span> Sales\n<span class="cmd">SW1(config)#</span> <span class="keyword">interface</span> Fa0/1\n<span class="cmd">SW1(config-if)#</span> <span class="keyword">switchport mode access</span>\n<span class="cmd">SW1(config-if)#</span> <span class="keyword">switchport access vlan</span> 10</pre></div></div>',
+  routerOnStick: () => '<div class="content-card"><h3>Router-on-a-Stick</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">R1(config)#</span> <span class="keyword">interface</span> Gi0/0.10\n<span class="cmd">R1(config-subif)#</span> <span class="keyword">encapsulation dot1q</span> 10\n<span class="cmd">R1(config-subif)#</span> <span class="keyword">ip address</span> 192.168.10.1 255.255.255.0</pre></div></div>',
+  switchLearning: () => '<div class="content-card"><h3>MAC Learning</h3><ol><li>Frame arrives</li><li>Record source MAC + port</li><li>Look up destination</li><li>Forward or flood</li></ol></div>',
+  stpIntro: () => '<div class="content-card"><h3>STP</h3><p>' + t('Prevents Layer 2 loops.','يمنع حلقات الطبقة 2.') + '</p></div>',
+  staticRoute: () => '<div class="content-card"><h3>' + t('Static Routing','التوجيه الثابت') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">R1(config)#</span> <span class="keyword">ip route</span> 0.0.0.0 0.0.0.0 10.0.0.2</pre></div></div>',
+  ospfConfig: () => '<div class="content-card"><h3>OSPF</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">R1(config)#</span> <span class="keyword">router ospf</span> 1\n<span class="cmd">R1(config-router)#</span> <span class="keyword">network</span> 192.168.1.0 0.0.0.255 area 0</pre></div></div>',
+  routingCompare: () => '<div class="content-card"><h3>' + t('Protocol Comparison','مقارنة البروتوكولات') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Protocol','البروتوكول') + '</th><th>Type</th><th>AD</th></tr></thead><tbody>' +
+    '<tr><td>RIP</td><td>DV</td><td>120</td></tr><tr><td>OSPF</td><td>LS</td><td>110</td></tr><tr><td>EIGRP</td><td>ADV</td><td>90</td></tr><tr><td>BGP</td><td>PV</td><td>20</td></tr></tbody></table></div></div>',
+  protocolTCP: () => '<div class="content-card"><h3>TCP</h3><p>' + t('Reliable, connection-oriented. Uses 3-way handshake.','موثوق، موجه للاتصال.') + '</p></div>',
+  protocolUDP: () => '<div class="content-card"><h3>UDP</h3><p>' + t('Fast, connectionless.','سريع بدون اتصال.') + '</p></div>',
+  protocolDNS: () => '<div class="content-card"><h3>DNS</h3><p>' + t('Translates names to IPs. Port 53.','يحول الأسماء إلى IP. المنفذ 53.') + '</p></div>',
+  protocolDHCP: () => '<div class="content-card"><h3>DHCP</h3><p>' + t('Assigns IPs using DORA. Ports 67/68.','يعين IP باستخدام DORA. المنافذ 67/68.') + '</p></div>',
+  protocolHTTP: () => '<div class="content-card"><h3>HTTP / HTTPS</h3><p>HTTP: 80 (unencrypted) · HTTPS: 443 (TLS)</p></div>',
+  serviceDHCP: () => '<div class="content-card"><h3>' + t('DHCP Service','خدمة DHCP') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">R1(config)#</span> <span class="keyword">ip dhcp pool</span> LAN\n<span class="cmd">R1(dhcp-config)#</span> <span class="keyword">network</span> 192.168.1.0 255.255.255.0\n<span class="cmd">R1(dhcp-config)#</span> <span class="keyword">default-router</span> 192.168.1.1</pre></div></div>',
+  serviceDNS: () => '<div class="content-card"><h3>' + t('DNS Service','خدمة DNS') + '</h3><p>' + t('Records: A, AAAA, CNAME, MX, NS.','السجلات: A، AAAA، CNAME، MX، NS.') + '</p></div>',
+  serviceNTP: () => '<div class="content-card"><h3>NTP</h3><p>' + t('Time sync. Port UDP 123.','مزامنة الوقت. المنفذ UDP 123.') + '</p></div>',
+
+  /* LINUX */
+  linuxWhat: () => '<div class="content-card"><h3><i class="fab fa-linux"></i> ' + t('What is Linux?','ما هو لينكس؟') + '</h3>' +
+    '<p>' + t('Open-source OS created by Linus Torvalds in 1991. Powers servers, cloud, Android, embedded.','نظام مفتوح المصدر أنشأه لينوس تورفالدس عام 1991.') + '</p>' +
+    '<h4>' + t('Popular Distributions','التوزيعات الشائعة') + '</h4>' +
+    '<ul><li>Ubuntu</li><li>Debian</li><li>CentOS / Rocky</li><li>Fedora</li><li>Kali</li></ul></div>',
+  linuxFilesystem: () => '<div class="content-card"><h3><i class="fas fa-folder-tree"></i> ' + t('Filesystem','نظام الملفات') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><tbody>' +
+    '<tr><td>/</td><td>' + t('Root','الجذر') + '</td></tr>' +
+    '<tr><td>/home</td><td>' + t('User home','مجلدات المستخدمين') + '</td></tr>' +
+    '<tr><td>/etc</td><td>' + t('Config','الإعداد') + '</td></tr>' +
+    '<tr><td>/var</td><td>' + t('Variable data','بيانات متغيرة') + '</td></tr>' +
+    '<tr><td>/bin</td><td>' + t('Binaries','الأوامر') + '</td></tr>' +
+    '<tr><td>/usr</td><td>' + t('Programs','البرامج') + '</td></tr>' +
+    '<tr><td>/tmp</td><td>' + t('Temp','مؤقت') + '</td></tr></tbody></table></div></div>',
+  linuxBasics: () => '<div class="content-card"><h3><i class="fas fa-terminal"></i> ' + t('Terminal Basics','أساسيات الطرفية') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">$</span> pwd\n/home/user\n<span class="cmd">$</span> ls -la\n<span class="cmd">$</span> whoami\nuser\n<span class="cmd">$</span> id\nuid=1000(user)</pre></div></div>',
+  linuxFiles: () => '<div class="content-card"><h3>' + t('File Commands','أوامر الملفات') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">$</span> mkdir projects\n<span class="cmd">$</span> cd projects\n<span class="cmd">$</span> touch file.txt\n<span class="cmd">$</span> cp file.txt copy.txt\n<span class="cmd">$</span> mv copy.txt renamed.txt\n<span class="cmd">$</span> rm renamed.txt</pre></div></div>',
+  linuxPermissions: () => '<div class="content-card"><h3>' + t('Permissions','الصلاحيات') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>#</th><th>Symbolic</th><th>' + t('Meaning','المعنى') + '</th></tr></thead><tbody>' +
+    '<tr><td>7</td><td>rwx</td><td>Read+Write+Execute</td></tr>' +
+    '<tr><td>6</td><td>rw-</td><td>Read+Write</td></tr>' +
+    '<tr><td>5</td><td>r-x</td><td>Read+Execute</td></tr>' +
+    '<tr><td>4</td><td>r--</td><td>Read</td></tr></tbody></table></div>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">$</span> chmod 755 script.sh\n<span class="cmd">$</span> chown user:group file.txt</pre></div></div>',
+  linuxUsers: () => '<div class="content-card"><h3>' + t('Users & Groups','المستخدمون') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">$</span> sudo useradd -m john\n<span class="cmd">$</span> sudo passwd john\n<span class="cmd">$</span> sudo groupadd devs\n<span class="cmd">$</span> sudo usermod -aG devs john</pre></div></div>',
+  linuxNet: () => '<div class="content-card"><h3>' + t('Linux Networking','شبكات لينكس') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">$</span> ip addr\n2: eth0: inet 192.168.1.100/24\n<span class="cmd">$</span> ip route\ndefault via 192.168.1.1\n<span class="cmd">$</span> ss -tuln\n<span class="cmd">$</span> ping 8.8.8.8</pre></div></div>',
+  linuxFirewall: () => '<div class="content-card"><h3>' + t('Linux Firewall','الجدار الناري') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="comment"># UFW</span>\n<span class="cmd">$</span> sudo ufw enable\n<span class="cmd">$</span> sudo ufw allow 22/tcp\n<span class="cmd">$</span> sudo ufw allow 80/tcp</pre></div></div>',
+  bashIntro: () => '<div class="content-card"><h3>Bash</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>#!/bin/bash\necho "Hello, NetLab!"\necho "Today is $(date)"</pre></div></div>',
+  bashVars: () => '<div class="content-card"><h3>' + t('Variables & Loops','المتغيرات والحلقات') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>NAME="NetLab"\necho "Hello $NAME"\n\nfor i in 1 2 3; do\n  echo "Number: $i"\ndone</pre></div></div>',
+  linuxSystemd: () => '<div class="content-card"><h3>systemd</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">$</span> systemctl start nginx\n<span class="cmd">$</span> systemctl enable nginx\n<span class="cmd">$</span> systemctl status nginx</pre></div></div>',
+  linuxLogs: () => '<div class="content-card"><h3>' + t('Logs','السجلات') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">$</span> journalctl -xe\n<span class="cmd">$</span> tail -f /var/log/syslog\n<span class="cmd">$</span> dmesg | tail</pre></div></div>',
+  linuxSim: () => '<div class="content-card"><h3><i class="fab fa-linux"></i> ' + t('Linux Simulator','محاكي لينكس') + '</h3>' +
+    '<p style="font-size:.82rem;color:var(--text-muted)">' + t('Educational simulator.','محاكي تعليمي.') + '</p>' +
+    '<div class="terminal" id="linuxTerminal">' +
+      '<div class="terminal-header"><span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span></div>' +
+      '<div class="terminal-line">NetLab Linux — type "help" for commands</div>' +
+      '<div class="terminal-input-line"><span class="terminal-prompt" id="linuxPrompt">user@netlab:~$</span><input class="terminal-input" id="linuxInput" autocomplete="off" spellcheck="false"></div>' +
+    '</div></div>',
+  linuxCmdRef: () => '<div class="content-card"><h3>' + t('Essential Linux Commands','أوامر لينكس') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Command','الأمر') + '</th><th>' + t('Purpose','الغرض') + '</th></tr></thead><tbody>' +
+    '<tr><td><code>pwd</code></td><td>Print working directory</td></tr>' +
+    '<tr><td><code>ls -la</code></td><td>List all files</td></tr>' +
+    '<tr><td><code>cd</code></td><td>Change directory</td></tr>' +
+    '<tr><td><code>mkdir</code></td><td>Create directory</td></tr>' +
+    '<tr><td><code>touch</code></td><td>Create empty file</td></tr>' +
+    '<tr><td><code>cp</code></td><td>Copy</td></tr>' +
+    '<tr><td><code>mv</code></td><td>Move/rename</td></tr>' +
+    '<tr><td><code>rm -rf</code></td><td>Remove recursively</td></tr>' +
+    '<tr><td><code>cat</code></td><td>View file</td></tr>' +
+    '<tr><td><code>grep</code></td><td>Search text</td></tr>' +
+    '<tr><td><code>chmod</code></td><td>Change permissions</td></tr>' +
+    '<tr><td><code>chown</code></td><td>Change owner</td></tr>' +
+    '<tr><td><code>ip addr</code></td><td>Show IP addresses</td></tr>' +
+    '<tr><td><code>ip route</code></td><td>Show routing</td></tr>' +
+    '<tr><td><code>ss -tuln</code></td><td>Show listening ports</td></tr>' +
+    '<tr><td><code>ps aux</code></td><td>List processes</td></tr>' +
+    '<tr><td><code>df -h</code></td><td>Disk usage</td></tr>' +
+    '<tr><td><code>systemctl</code></td><td>Manage services</td></tr>' +
+    '<tr><td><code>journalctl</code></td><td>View logs</td></tr>' +
+    '<tr><td><code>ssh</code></td><td>Remote login</td></tr></tbody></table></div></div>',
+
+  /* WINDOWS */
+  winEditions: () => '<div class="content-card"><h3><i class="fab fa-windows"></i> ' + t('Windows Editions','إصدارات ويندوز') + '</h3>' +
+    '<ul><li>Windows 11 Home — Personal</li><li>Windows 11 Pro — Business, domain</li><li>Windows 11 Enterprise — Large orgs</li><li>Windows Server 2022 — Servers, AD</li></ul></div>',
+  winCmd: () => '<div class="content-card"><h3><i class="fas fa-terminal"></i> CMD</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>C:\\&gt; ipconfig /all\nC:\\&gt; ping 8.8.8.8\nC:\\&gt; tracert google.com\nC:\\&gt; nslookup example.com\nC:\\&gt; netstat -an\nC:\\&gt; arp -a\nC:\\&gt; route print\nC:\\&gt; hostname</pre></div></div>',
+  winPowershell: () => '<div class="content-card"><h3>PowerShell</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>PS&gt; Get-Help Get-Process\nPS&gt; Get-Process\nPS&gt; Get-Service\nPS&gt; Get-ChildItem\nPS&gt; New-Item -ItemType Directory -Path C:\\Test</pre></div></div>',
+  winCommands: () => '<div class="content-card"><h3><i class="fab fa-windows"></i> ' + t('Windows Network Commands','أوامر شبكة ويندوز') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Command','الأمر') + '</th><th>' + t('Purpose','الغرض') + '</th></tr></thead><tbody>' +
+    '<tr><td><code>ipconfig /all</code></td><td>Full IP config</td></tr>' +
+    '<tr><td><code>ping</code></td><td>Test connectivity</td></tr>' +
+    '<tr><td><code>tracert</code></td><td>Trace route</td></tr>' +
+    '<tr><td><code>nslookup</code></td><td>DNS query</td></tr>' +
+    '<tr><td><code>netstat -an</code></td><td>Active connections</td></tr>' +
+    '<tr><td><code>arp -a</code></td><td>ARP cache</td></tr>' +
+    '<tr><td><code>route print</code></td><td>Routing table</td></tr>' +
+    '<tr><td><code>hostname</code></td><td>Computer name</td></tr></tbody></table></div></div>',
+  winFirewall: () => '<div class="content-card"><h3>' + t('Windows Firewall','جدار ويندوز') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>PS&gt; Get-NetFirewallProfile\nPS&gt; Get-NetFirewallRule\nPS&gt; New-NetFirewallRule -DisplayName "Allow HTTP" -Direction Inbound -Protocol TCP -LocalPort 80 -Action Allow</pre></div></div>',
+  winServerRoles: () => '<div class="content-card"><h3>' + t('Server Roles','الأدوار') + '</h3>' +
+    '<ul><li>AD DS — Domain controller</li><li>DNS Server</li><li>DHCP Server</li><li>File Server</li><li>IIS Web Server</li><li>Hyper-V</li></ul></div>',
+  winHyperV: () => '<div class="content-card"><h3>Hyper-V</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>PS&gt; Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All\nPS&gt; New-VM -Name "LabVM" -MemoryStartupBytes 2GB\nPS&gt; Start-VM -Name "LabVM"</pre></div></div>',
+  winAdIntro: () => '<div class="content-card"><h3>Active Directory</h3>' +
+    '<p>' + t('Microsoft directory service for centralized management.','خدمة دليل مايكروسوفت للإدارة المركزية.') + '</p>' +
+    '<ul><li>Domain</li><li>Forest</li><li>OU</li><li>DC</li><li>GPO</li></ul>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>PS&gt; Install-ADDSForest -DomainName "netlab.local"\nPS&gt; New-ADUser -Name "John" -SamAccountName jdoe</pre></div></div>',
+  winGpo: () => '<div class="content-card"><h3>GPO</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>PS&gt; New-GPO -Name "Block USB"\nPS&gt; New-GPLink -Name "Block USB" -Target "OU=IT,DC=netlab,DC=local"</pre></div></div>',
+  powershellSim: () => '<div class="content-card"><h3><i class="fas fa-code"></i> PowerShell</h3>' +
+    '<p style="font-size:.82rem;color:var(--text-muted)">' + t('Educational simulator.','محاكي تعليمي.') + '</p>' +
+    '<div class="terminal" id="psTerminal" style="background:#012456;border-color:rgba(0,180,255,.4)">' +
+      '<div class="terminal-header"><span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span></div>' +
+      '<div class="terminal-line" style="color:#fff">PowerShell — type "help" for commands</div>' +
+      '<div class="terminal-input-line"><span class="terminal-prompt" id="psPrompt" style="color:#ffff00">PS C:\\Users\\user&gt;</span><input class="terminal-input" id="psInput" autocomplete="off" spellcheck="false" style="color:#fff"></div>' +
+    '</div></div>',
+  psCmdRef: () => '<div class="content-card"><h3>PowerShell Cmdlets</h3>' +
+    '<div class="table-wrap"><table class="data-table"><tbody>' +
+    '<tr><td><code>Get-Process</code></td><td>List processes</td></tr>' +
+    '<tr><td><code>Get-Service</code></td><td>List services</td></tr>' +
+    '<tr><td><code>Get-ChildItem</code></td><td>List files</td></tr>' +
+    '<tr><td><code>Get-Content</code></td><td>Read file</td></tr>' +
+    '<tr><td><code>Copy-Item</code></td><td>Copy</td></tr>' +
+    '<tr><td><code>Remove-Item</code></td><td>Delete</td></tr>' +
+    '<tr><td><code>Get-Help</code></td><td>Help</td></tr>' +
+    '<tr><td><code>Test-Connection</code></td><td>Ping</td></tr>' +
+    '<tr><td><code>Test-NetConnection</code></td><td>Test TCP port</td></tr></tbody></table></div></div>',
+
+  /* CYBERSECURITY */
+  secCIA: () => '<div class="content-card"><h3><i class="fas fa-shield-halved"></i> ' + t('CIA Triad','ثالوث CIA') + '</h3>' +
+    '<p>' + t('The three pillars of information security.','الأركان الثلاثة لأمن المعلومات.') + '</p>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Pillar','الركن') + '</th><th>' + t('Meaning','المعنى') + '</th></tr></thead><tbody>' +
+    '<tr><td>Confidentiality</td><td>' + t('Only authorized users access data','فقط المصرح لهم') + '</td></tr>' +
+    '<tr><td>Integrity</td><td>' + t('Data is accurate and unmodified','البيانات دقيقة') + '</td></tr>' +
+    '<tr><td>Availability</td><td>' + t('Systems accessible when needed','الأنظمة متاحة') + '</td></tr></tbody></table></div></div>',
+  secThreats: () => '<div class="content-card"><h3><i class="fas fa-bug"></i> ' + t('Common Threats','التهديدات الشائعة') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Threat','التهديد') + '</th><th>' + t('Description','الوصف') + '</th></tr></thead><tbody>' +
+    '<tr><td>Malware</td><td>' + t('Malicious software','برمجيات خبيثة') + '</td></tr>' +
+    '<tr><td>Phishing</td><td>' + t('Fake emails/messages','رسائل مزيفة') + '</td></tr>' +
+    '<tr><td>Ransomware</td><td>' + t('Encrypts data for payment','تشفير مقابل فدية') + '</td></tr>' +
+    '<tr><td>DDoS</td><td>' + t('Flood of traffic','إغراق بالمرور') + '</td></tr>' +
+    '<tr><td>Insider Threat</td><td>' + t('Internal actor','تهديد داخلي') + '</td></tr>' +
+    '<tr><td>Zero-day</td><td>' + t('Unknown vulnerability','ثغرة غير معروفة') + '</td></tr></tbody></table></div></div>',
+  secPrinciples: () => '<div class="content-card"><h3><i class="fas fa-lock"></i> ' + t('Security Principles','مبادئ الأمان') + '</h3>' +
+    '<ul>' +
+    '<li><strong>' + t('Least Privilege','أقل صلاحية') + ':</strong> ' + t('Minimum access needed','أقل صلاحية') + '</li>' +
+    '<li><strong>' + t('Defense in Depth','الدفاع في العمق') + ':</strong> ' + t('Multiple security layers','طبقات متعددة') + '</li>' +
+    '<li><strong>' + t('Zero Trust','الثقة الصفرية') + ':</strong> ' + t('Never trust, always verify','لا تثق، تحقق') + '</li>' +
+    '<li><strong>' + t('Separation of Duties','فصل المهام') + ':</strong> ' + t('No single point of control','لا نقطة تحكم واحدة') + '</li></ul></div>',
+  secCrypto: () => '<div class="content-card"><h3><i class="fas fa-key"></i> ' + t('Encryption Basics','أساسيات التشفير') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Type','النوع') + '</th><th>' + t('Description','الوصف') + '</th></tr></thead><tbody>' +
+    '<tr><td>Symmetric</td><td>' + t('Same key (AES)','نفس المفتاح (AES)') + '</td></tr>' +
+    '<tr><td>Asymmetric</td><td>' + t('Public + private (RSA)','مفتاح عام وخاص (RSA)') + '</td></tr>' +
+    '<tr><td>Hashing</td><td>' + t('One-way (SHA-256)','اتجاه واحد (SHA-256)') + '</td></tr></tbody></table></div></div>',
+  secHash: () => '<div class="content-card"><h3><i class="fas fa-fingerprint"></i> ' + t('Hashing & Certificates','التجزئة والشهادات') + '</h3>' +
+    '<p>' + t('Hashing verifies integrity. Certificates authenticate identity via PKI.','التجزئة تتحقق من السلامة. الشهادات تصادق الهوية.') + '</p>' +
+    '<ul><li>MD5 (' + t('deprecated','ملغى') + ')</li><li>SHA-1 (' + t('deprecated','ملغى') + ')</li><li><strong>SHA-256</strong></li><li><strong>SHA-3</strong></li></ul></div>',
+  secMalware: () => '<div class="content-card"><h3><i class="fas fa-virus"></i> ' + t('Malware Types','أنواع البرمجيات الخبيثة') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Type','النوع') + '</th><th>' + t('Behavior','السلوك') + '</th></tr></thead><tbody>' +
+    '<tr><td>Virus</td><td>' + t('Attaches to files','يلتصق بالملفات') + '</td></tr>' +
+    '<tr><td>Worm</td><td>' + t('Self-replicates','ينسخ نفسه') + '</td></tr>' +
+    '<tr><td>Trojan</td><td>' + t('Disguised as legit','يتنكر كشرعي') + '</td></tr>' +
+    '<tr><td>Ransomware</td><td>' + t('Encrypts for ransom','تشفير للفدية') + '</td></tr>' +
+    '<tr><td>Spyware</td><td>' + t('Steals data','يسرق البيانات') + '</td></tr>' +
+    '<tr><td>Rootkit</td><td>' + t('Hides in OS','يختبئ في النظام') + '</td></tr></tbody></table></div></div>',
+  secWeb: () => '<div class="content-card"><h3><i class="fas fa-globe"></i> ' + t('Web Attacks (OWASP)','هجمات الويب') + '</h3>' +
+    '<ul>' +
+    '<li><strong>SQL Injection:</strong> ' + t('Malicious SQL in input','SQL خبيث') + '</li>' +
+    '<li><strong>XSS:</strong> ' + t('Cross-site scripting','سكربت عبر المواقع') + '</li>' +
+    '<li><strong>CSRF:</strong> ' + t('Cross-site request forgery','تزوير الطلبات') + '</li>' +
+    '<li><strong>Broken Auth:</strong> ' + t('Weak login','مصادقة ضعيفة') + '</li>' +
+    '<li><strong>Security Misconfig:</strong> ' + t('Wrong settings','إعدادات خاطئة') + '</li></ul></div>',
+  secSocial: () => '<div class="content-card"><h3><i class="fas fa-user-secret"></i> ' + t('Social Engineering','الهندسة الاجتماعية') + '</h3>' +
+    '<ul>' +
+    '<li><strong>Phishing:</strong> ' + t('Fake emails','رسائل مزيفة') + '</li>' +
+    '<li><strong>Vishing:</strong> ' + t('Voice phishing','تصيد صوتي') + '</li>' +
+    '<li><strong>Smishing:</strong> ' + t('SMS phishing','تصيد SMS') + '</li>' +
+    '<li><strong>Pretexting:</strong> ' + t('Fake scenario','سيناريو مزيف') + '</li>' +
+    '<li><strong>Baiting:</strong> ' + t('Infected USB','USB مصاب') + '</li></ul></div>',
+  secSOC: () => '<div class="content-card"><h3><i class="fas fa-desktop"></i> ' + t('SOC & Monitoring','مركز العمليات والمراقبة') + '</h3>' +
+    '<p>' + t('A Security Operations Center monitors, detects, and responds to threats.','مركز عمليات الأمن يراقب ويكتشف ويستجيب.') + '</p>' +
+    '<ul>' +
+    '<li><strong>SIEM:</strong> ' + t('Log aggregation','تجميع السجلات') + '</li>' +
+    '<li><strong>IDS/IPS:</strong> ' + t('Intrusion detection/prevention','كشف ومنع الاختراق') + '</li>' +
+    '<li><strong>EDR:</strong> ' + t('Endpoint detection','كشف النقاط الطرفية') + '</li>' +
+    '<li><strong>SOAR:</strong> ' + t('Automated response','استجابة آلية') + '</li></ul></div>',
+  secHardening: () => '<div class="content-card"><h3><i class="fas fa-wrench"></i> ' + t('System Hardening','تقوية الأنظمة') + '</h3>' +
+    '<ul>' +
+    '<li>' + t('Patch and update regularly','حدّث بانتظام') + '</li>' +
+    '<li>' + t('Disable unused services','عطّل الخدمات غير المستخدمة') + '</li>' +
+    '<li>' + t('Use strong passwords + MFA','كلمات قوية + MFA') + '</li>' +
+    '<li>' + t('Firewall rules (least privilege)','قواعد الجدار الناري') + '</li>' +
+    '<li>' + t('Encrypt sensitive data','شفر البيانات الحساسة') + '</li>' +
+    '<li>' + t('Regular backups','نسخ احتياطي منتظم') + '</li>' +
+    '<li>' + t('Security awareness training','تدريب التوعية') + '</li></ul></div>',
+  secCerts: () => '<div class="content-card"><h3><i class="fas fa-certificate"></i> ' + t('Certifications Guide','دليل الشهادات') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Certification','الشهادة') + '</th><th>' + t('Level','المستوى') + '</th><th>' + t('Focus','التركيز') + '</th></tr></thead><tbody>' +
+    '<tr><td>CompTIA Security+</td><td>' + t('Beginner','مبتدئ') + '</td><td>' + t('General security','أمان عام') + '</td></tr>' +
+    '<tr><td>CEH</td><td>' + t('Intermediate','متوسط') + '</td><td>' + t('Ethical hacking','اختراق أخلاقي') + '</td></tr>' +
+    '<tr><td>CySA+</td><td>' + t('Intermediate','متوسط') + '</td><td>' + t('Blue team','الفريق الأزرق') + '</td></tr>' +
+    '<tr><td>CISSP</td><td>' + t('Advanced','متقدم') + '</td><td>' + t('Management','الإدارة') + '</td></tr>' +
+    '<tr><td>OSCP</td><td>' + t('Advanced','متقدم') + '</td><td>' + t('Pen testing','اختبار الاختراق') + '</td></tr></tbody></table></div></div>',
+
+  /* PROGRAMMING */
+  progIntro: () => '<div class="content-card"><h3><i class="fas fa-code"></i> ' + t('Why Program?','لماذا البرمجة؟') + '</h3>' +
+    '<p>' + t('Programming lets you automate tasks, analyze data, and manage networks at scale.','البرمجة تتيح الأتمتة وتحليل البيانات وإدارة الشبكات.') + '</p>' +
+    '<h4>' + t('For IT Professionals','لمهنيي IT') + '</h4>' +
+    '<ul>' +
+    '<li>' + t('Automate repetitive tasks','أتمتة المهام') + '</li>' +
+    '<li>' + t('Parse logs and configs','تحليل السجلات') + '</li>' +
+    '<li>' + t('Interact with APIs','التفاعل مع APIs') + '</li>' +
+    '<li>' + t('Build monitoring tools','أدوات مراقبة') + '</li>' +
+    '<li>' + t('Manage cloud infrastructure','إدارة السحابة') + '</li></ul></div>',
+  progConcepts: () => '<div class="content-card"><h3>' + t('Core Concepts','المفاهيم الأساسية') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Concept','المفهوم') + '</th><th>' + t('Meaning','المعنى') + '</th></tr></thead><tbody>' +
+    '<tr><td>' + t('Variable','متغير') + '</td><td>' + t('Named storage','مخزن باسم') + '</td></tr>' +
+    '<tr><td>' + t('Function','دالة') + '</td><td>' + t('Reusable code block','كتلة كود') + '</td></tr>' +
+    '<tr><td>' + t('Loop','حلقة') + '</td><td>' + t('Repeat code','تكرار') + '</td></tr>' +
+    '<tr><td>' + t('Condition','شرط') + '</td><td>' + t('If/else logic','منطق If/else') + '</td></tr>' +
+    '<tr><td>' + t('Array/List','مصفوفة') + '</td><td>' + t('Collection','مجموعة') + '</td></tr>' +
+    '<tr><td>' + t('Dictionary','قاموس') + '</td><td>' + t('Key-value pairs','مفتاح-قيمة') + '</td></tr></tbody></table></div></div>',
+  pyBasics: () => '<div class="content-card"><h3><i class="fab fa-python"></i> Python</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>' +
+'# Variables\nname = "SultTik"\nage = 25\nprint(f"Hello {name}, age {age}")\n\n' +
+'# Conditional\nif age > 18:\n    print("Adult")\nelse:\n    print("Minor")\n\n' +
+'# Loop\nfor i in range(5):\n    print(i)\n\n' +
+'# Function\ndef greet(name):\n    return f"Hello, {name}"\n\nprint(greet("World"))</pre></div></div>',
+  pyData: () => '<div class="content-card"><h3><i class="fab fa-python"></i> ' + t('Data Structures','البنى البيانية') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>' +
+'# List\nnumbers = [1, 2, 3, 4, 5]\nprint(numbers[0])\nnumbers.append(6)\n\n' +
+'# Dictionary\nuser = {"name": "John", "age": 30}\nprint(user["name"])\n\n' +
+'# Set\nunique = {1, 2, 3, 3, 3}\nprint(unique)\n\n' +
+'# Tuple\ncoords = (10, 20)</pre></div></div>',
+  pyNet: () => '<div class="content-card"><h3><i class="fab fa-python"></i> ' + t('Python for Networking','بايثون للشبكات') + '</h3>' +
+    '<p>' + t('Automate network tasks with libraries like netmiko, paramiko, and requests.','أتمت مهام الشبكة بمكتبات netmiko و paramiko.') + '</p>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>' +
+'import subprocess\n\n' +
+'# Ping a host\ndef ping(host):\n    result = subprocess.run(\n        ["ping", "-c", "1", host],\n        capture_output=True\n    )\n    return result.returncode == 0\n\n' +
+'print(ping("8.8.8.8"))</pre></div></div>',
+  jsBasics: () => '<div class="content-card"><h3><i class="fab fa-js"></i> JavaScript</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>' +
+'// Variables\nlet name = "SultTik";\nconst age = 25;\n\n' +
+'// Function\nfunction greet(name) {\n    return `Hello, ${name}`;\n}\n\n' +
+'// Arrow function\nconst add = (a, b) => a + b;\n\n' +
+'// Array methods\nconst nums = [1, 2, 3, 4];\nconst doubled = nums.map(n => n * 2);\nconsole.log(doubled);</pre></div></div>',
+  apiRest: () => '<div class="content-card"><h3><i class="fas fa-cloud"></i> REST APIs</h3>' +
+    '<p>' + t('REST APIs let you interact with services using HTTP methods.','REST APIs تتيح التفاعل عبر HTTP.') + '</p>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Method','الطريقة') + '</th><th>' + t('Purpose','الغرض') + '</th></tr></thead><tbody>' +
+    '<tr><td>GET</td><td>' + t('Retrieve','استرجاع') + '</td></tr>' +
+    '<tr><td>POST</td><td>' + t('Create','إنشاء') + '</td></tr>' +
+    '<tr><td>PUT</td><td>' + t('Update','تحديث') + '</td></tr>' +
+    '<tr><td>DELETE</td><td>' + t('Delete','حذف') + '</td></tr></tbody></table></div>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>' +
+'# Python\nimport requests\nresponse = requests.get("https://api.github.com")\nprint(response.json())\n\n' +
+'# Curl\ncurl -X GET https://api.github.com</pre></div></div>',
+
+  /* VIRTUALIZATION */
+  virtBasics: () => '<div class="content-card"><h3><i class="fas fa-cube"></i> ' + t('What is Virtualization?','ما هي المحاكاة؟') + '</h3>' +
+    '<p>' + t('Creates virtual versions of physical resources.','ينشئ نسخًا افتراضية من الموارد المادية.') + '</p>' +
+    '<div class="table-wrap"><table class="data-table"><tbody>' +
+    '<tr><td>Hypervisor</td><td>' + t('Manages VMs','يدير VMs') + '</td></tr>' +
+    '<tr><td>Host</td><td>' + t('Physical machine','الجهاز المادي') + '</td></tr>' +
+    '<tr><td>Guest</td><td>' + t('OS in VM','نظام داخل VM') + '</td></tr>' +
+    '<tr><td>vNIC</td><td>' + t('Virtual adapter','محول افتراضي') + '</td></tr>' +
+    '<tr><td>vSwitch</td><td>' + t('Virtual switch','مبدّل افتراضي') + '</td></tr></tbody></table></div></div>',
+  virtHypervisors: () => '<div class="content-card"><h3>' + t('Type 1 vs Type 2','النوع 1 مقابل 2') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Feature','الميزة') + '</th><th>Type 1</th><th>Type 2</th></tr></thead><tbody>' +
+    '<tr><td>' + t('Runs on','يعمل على') + '</td><td>' + t('Hardware','العتاد') + '</td><td>' + t('Host OS','نظام') + '</td></tr>' +
+    '<tr><td>' + t('Performance','الأداء') + '</td><td>' + t('High','عالي') + '</td><td>' + t('Lower','أقل') + '</td></tr>' +
+    '<tr><td>' + t('Examples','أمثلة') + '</td><td>ESXi, Hyper-V</td><td>VirtualBox</td></tr></tbody></table></div></div>',
+  virtContainers: () => '<div class="content-card"><h3><i class="fab fa-docker"></i> Docker</h3>' +
+    '<p>' + t('Containers share the host kernel — lighter than VMs.','الحاويات تشارك النواة — أخف من VMs.') + '</p>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">$</span> docker run -d -p 80:80 nginx\n<span class="cmd">$</span> docker ps\n<span class="cmd">$</span> docker images</pre></div></div>',
+  vmNetworking: () => '<div class="content-card"><h3>' + t('VM Networking','شبكة VMs') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Mode','الوضع') + '</th><th>' + t('Description','الوصف') + '</th></tr></thead><tbody>' +
+    '<tr><td>Bridged</td><td>' + t('VM on physical LAN','على الشبكة المادية') + '</td></tr>' +
+    '<tr><td>NAT</td><td>' + t('Shares host IP','يشارك IP') + '</td></tr>' +
+    '<tr><td>Host-only</td><td>' + t('Only host & VMs','فقط المضيف') + '</td></tr>' +
+    '<tr><td>Internal</td><td>' + t('Only VMs','فقط VMs') + '</td></tr></tbody></table></div></div>',
+  virtPlatforms: () => '<div class="content-card"><h3>' + t('Platforms','المنصات') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Platform','المنصة') + '</th><th>Type</th><th>' + t('Best for','الأفضل') + '</th></tr></thead><tbody>' +
+    '<tr><td>VMware ESXi</td><td>1</td><td>' + t('Enterprise','المؤسسات') + '</td></tr>' +
+    '<tr><td>Hyper-V</td><td>1</td><td>' + t('Windows','ويندوز') + '</td></tr>' +
+    '<tr><td>Proxmox</td><td>1</td><td>' + t('Open-source','مفتوح') + '</td></tr>' +
+    '<tr><td>VirtualBox</td><td>2</td><td>' + t('Free learning','تعلم') + '</td></tr></tbody></table></div></div>',
+
+  /* LABS */
+  ptLab1: () => '<div class="content-card"><h3><i class="fas fa-flask"></i> ' + t('Lab 1: Two PCs Through a Switch','معمل 1') + '</h3>' +
+    '<div class="info-box note">' + t('Beginner · 20 min','مبتدئ · 20 دقيقة') + '</div>' +
+    '<div class="topology">PC1 (192.168.1.1/24) ── Switch ── PC2 (192.168.1.2/24)</div>' +
+    '<ol><li>' + t('Add 2 PCs + 2960 switch.','أضف جهازي PC ومبدل 2960.') + '</li>' +
+    '<li>' + t('Connect PC1 → Fa0/1, PC2 → Fa0/2.','اربط PC1 → Fa0/1.') + '</li>' +
+    '<li>' + t('Configure IPs and ping.','قم بإعداد IP واختبر.') + '</li></ol>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>C:\\&gt; ping 192.168.1.2\nReply from 192.168.1.2: time&lt;1ms TTL=128</pre></div></div>',
+  ptLab2: () => '<div class="content-card"><h3><i class="fas fa-flask"></i> ' + t('Lab 2: Router & Two Networks','معمل 2') + '</h3>' +
+    '<div class="topology">PC1 ── SW1 ── R1 ── SW2 ── PC2\n192.168.1.0/24      192.168.2.0/24</div>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">R1(config)#</span> <span class="keyword">interface</span> Gi0/0\n<span class="cmd">R1(config-if)#</span> <span class="keyword">ip address</span> 192.168.1.1 255.255.255.0\n<span class="cmd">R1(config)#</span> <span class="keyword">interface</span> Gi0/1\n<span class="cmd">R1(config-if)#</span> <span class="keyword">ip address</span> 192.168.2.1 255.255.255.0</pre></div></div>',
+  ptLab3: () => '<div class="content-card"><h3><i class="fas fa-flask"></i> ' + t('Lab 3: Static Routing','معمل 3') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">R1(config)#</span> <span class="keyword">ip route</span> 10.3.3.0 255.255.255.0 10.0.0.2</pre></div></div>',
+  ptVlanLab: () => '<div class="content-card"><h3><i class="fas fa-flask"></i> ' + t('Lab 4: VLAN','معمل 4') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">SW1(config)#</span> <span class="keyword">vlan</span> 10\n<span class="cmd">SW1(config-vlan)#</span> <span class="keyword">name</span> Sales\n<span class="cmd">SW1(config)#</span> <span class="keyword">interface range</span> Fa0/1-5\n<span class="cmd">SW1(config-if-range)#</span> <span class="keyword">switchport mode access</span>\n<span class="cmd">SW1(config-if-range)#</span> <span class="keyword">switchport access vlan</span> 10</pre></div></div>',
+  ptOspfLab: () => '<div class="content-card"><h3><i class="fas fa-flask"></i> ' + t('Lab 5: OSPF','معمل 5') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">R1(config)#</span> <span class="keyword">router ospf</span> 1\n<span class="cmd">R1(config-router)#</span> <span class="keyword">network</span> 192.168.1.0 0.0.0.255 area 0</pre></div></div>',
+  gns3Setup: () => '<div class="content-card"><h3><i class="fas fa-project-diagram"></i> GNS3</h3>' +
+    '<ol><li>' + t('Install VMware/VirtualBox.','ثبّت VMware.') + '</li>' +
+    '<li>' + t('Import GNS3 VM.','استورد GNS3 VM.') + '</li>' +
+    '<li>' + t('Configure GNS3 to connect.','قم بإعداد GNS3.') + '</li>' +
+    '<li>' + t('Add IOS images.','أضف صور IOS.') + '</li></ol>' +
+    '<div class="topology">GNS3 VM → vSwitch → [Router, Switch, Linux VM]</div></div>',
+  ptVsGns3: () => '<div class="content-card"><h3>PT vs GNS3</h3>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>' + t('Feature','الميزة') + '</th><th>PT</th><th>GNS3</th></tr></thead><tbody>' +
+    '<tr><td>' + t('Cost','التكلفة') + '</td><td>' + t('Free','مجاني') + '</td><td>' + t('Free','مجاني') + '</td></tr>' +
+    '<tr><td>' + t('Real IOS','IOS حقيقي') + '</td><td>' + t('No','لا') + '</td><td>' + t('Yes','نعم') + '</td></tr>' +
+    '<tr><td>' + t('Difficulty','الصعوبة') + '</td><td>' + t('Easy','سهل') + '</td><td>' + t('Medium','متوسط') + '</td></tr></tbody></table></div></div>',
+
+  /* TOOLS */
+  subnetCalc: () => '<div class="content-card"><h3><i class="fas fa-calculator"></i> ' + t('Subnet Calculator','حاسبة التقسيم') + '</h3>' +
+    '<input class="tool-input" id="subnetInput" value="192.168.10.0/24">' +
+    '<button class="tool-btn" onclick="calculateSubnet()"><i class="fas fa-play"></i> ' + t('Calculate','احسب') + '</button>' +
+    '<div class="tool-result" id="subnetResult"></div></div>',
+  ipAnalyzer: () => '<div class="content-card"><h3><i class="fas fa-network-wired"></i> ' + t('IP Analyzer','محلل IP') + '</h3>' +
+    '<input class="tool-input" id="ipInput" value="192.168.1.1">' +
+    '<button class="tool-btn" onclick="analyzeIP()"><i class="fas fa-search"></i> ' + t('Analyze','حلل') + '</button>' +
+    '<div class="tool-result" id="ipResult"></div></div>',
+  builderCanvas: () => '<div class="content-card"><h3><i class="fas fa-sitemap"></i> ' + t('Network Builder','بناء الشبكة') + '</h3>' +
+    '<div class="builder-toolbar">' +
+      '<button class="builder-tool" onclick="addDevice(\'PC\')"><i class="fas fa-desktop"></i> PC</button>' +
+      '<button class="builder-tool" onclick="addDevice(\'Laptop\')"><i class="fas fa-laptop"></i> Laptop</button>' +
+      '<button class="builder-tool" onclick="addDevice(\'Switch\')"><i class="fas fa-exchange-alt"></i> Switch</button>' +
+      '<button class="builder-tool" onclick="addDevice(\'Router\')"><i class="fas fa-route"></i> Router</button>' +
+      '<button class="builder-tool" onclick="addDevice(\'Server\')"><i class="fas fa-server"></i> Server</button>' +
+      '<button class="builder-tool" onclick="addDevice(\'Firewall\')"><i class="fas fa-shield-alt"></i> Firewall</button>' +
+      '<button class="builder-tool" onclick="clearBuilder()" style="background:rgba(255,80,80,.1);color:#ff9b9b"><i class="fas fa-trash"></i> ' + t('Clear','مسح') + '</button>' +
+    '</div>' +
+    '<div class="builder-canvas" id="builderCanvas"></div>' +
+    '<div class="builder-info" id="builderInfo">' +
+      '<h5><i class="fas fa-info-circle"></i> ' + t('Instructions','التعليمات') + '</h5>' +
+      '<p>' + t('Click a device type above to add it. Drag devices to move them.','انقر على نوع جهاز لإضافته. اسحب لتحريك.') + '</p>' +
+    '</div></div>',
+  ciscoSim: () => '<div class="content-card"><h3><i class="fas fa-terminal"></i> Cisco IOS Simulator</h3>' +
+    '<p style="font-size:.82rem;color:var(--text-muted)">' + t('Educational simulator.','محاكي تعليمي.') + '</p>' +
+    '<div class="terminal" id="ciscoTerminal">' +
+      '<div class="terminal-header"><span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span></div>' +
+      '<div class="terminal-line">Cisco IOS — type "help" for commands</div>' +
+      '<div class="terminal-input-line"><span class="terminal-prompt" id="ciscoPrompt">Router&gt;</span><input class="terminal-input" id="ciscoInput" autocomplete="off" spellcheck="false"></div>' +
+    '</div></div>',
+  ciscoShow: () => '<div class="content-card"><h3>' + t('Cisco Show Commands','أوامر العرض') + '</h3>' +
+    '<div class="table-wrap"><table class="data-table"><tbody>' +
+    '<tr><td><code>show ip route</code></td><td>' + t('Routing table','جدول التوجيه') + '</td></tr>' +
+    '<tr><td><code>show ip interface brief</code></td><td>' + t('Interface status','حالة المنافذ') + '</td></tr>' +
+    '<tr><td><code>show vlan brief</code></td><td>' + t('VLANs','VLANs') + '</td></tr>' +
+    '<tr><td><code>show mac address-table</code></td><td>' + t('MAC table','جدول MAC') + '</td></tr>' +
+    '<tr><td><code>show running-config</code></td><td>' + t('Current config','الإعداد الحالي') + '</td></tr>' +
+    '<tr><td><code>show version</code></td><td>' + t('IOS version','إصدار IOS') + '</td></tr></tbody></table></div></div>',
+  ciscoConfig: () => '<div class="content-card"><h3>' + t('Configuration','الإعداد') + '</h3>' +
+    '<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="cmd">Router&gt;</span> <span class="keyword">enable</span>\n<span class="cmd">Router#</span> <span class="keyword">configure terminal</span>\n<span class="cmd">Router(config)#</span> <span class="keyword">hostname</span> R1\n<span class="cmd">R1(config)#</span> <span class="keyword">interface</span> Gi0/0\n<span class="cmd">R1(config-if)#</span> <span class="keyword">ip address</span> 192.168.1.1 255.255.255.0\n<span class="cmd">R1(config-if)#</span> <span class="keyword">no shutdown</span>\n<span class="cmd">R1#</span> <span class="keyword">copy running-config startup-config</span></pre></div></div>',
+  portRef: () => {
+    const ports = [
+      ['20/21','FTP','File transfer'],
+      ['22','SSH / SFTP','Secure shell'],
+      ['23','Telnet','Unsecure remote'],
+      ['25','SMTP','Email sending'],
+      ['53','DNS','Name resolution'],
+      ['67/68','DHCP','IP assignment'],
+      ['69','TFTP','Trivial FTP'],
+      ['80','HTTP','Web unencrypted'],
+      ['110','POP3','Email retrieval'],
+      ['123','NTP','Time sync'],
+      ['143','IMAP','Email retrieval'],
+      ['161/162','SNMP','Monitoring'],
+      ['179','BGP','Routing'],
+      ['389','LDAP','Directory'],
+      ['443','HTTPS','Web TLS'],
+      ['445','SMB','Windows file share'],
+      ['500/4500','IPsec','VPN'],
+      ['5060','SIP','VoIP'],
+      ['3306','MySQL','Database'],
+      ['3389','RDP','Remote desktop'],
+      ['8080','HTTP alt','Web proxy']
+    ];
+    return '<div class="content-card"><h3><i class="fas fa-network-wired"></i> ' + t('Port Reference','مرجع المنافذ') + '</h3>' +
+      '<input class="tool-input" id="portSearch" placeholder="' + t('Search port or service...','ابحث...') + '" oninput="filterPorts()">' +
+      '<div id="portList">' + ports.map(p => '<div class="result-row port-row" data-k="' + p[0] + ' ' + p[1] + ' ' + p[2] + '">' +
+        '<span class="result-value">' + p[0] + ' — ' + p[1] + '</span>' +
+        '<span class="result-label">' + p[2] + '</span>' +
+      '</div>').join('') + '</div></div>';
+  },
+
+  /* GLOSSARY */
+  glossaryMain: () => {
+    const cats = [
+      {id:'networking', en:'Networking', ar:'الشبكات', icon:'fa-network-wired'},
+      {id:'security', en:'Security', ar:'الأمان', icon:'fa-shield-alt'},
+      {id:'linux', en:'Linux', ar:'لينكس', icon:'fa-linux'},
+      {id:'windows', en:'Windows', ar:'ويندوز', icon:'fa-windows'},
+      {id:'programming', en:'Programming', ar:'البرمجة', icon:'fa-code'},
+      {id:'virtualization', en:'Virtualization', ar:'المحاكاة', icon:'fa-cube'},
+      {id:'protocols', en:'Protocols', ar:'البروتوكولات', icon:'fa-exchange-alt'},
+      {id:'hardware', en:'Hardware', ar:'العتاد', icon:'fa-server'},
+      {id:'cloud', en:'Cloud', ar:'السحابة', icon:'fa-cloud'},
+      {id:'general', en:'General IT', ar:'عام', icon:'fa-info-circle'}
+    ];
+    return '<div class="content-card"><h3><i class="fas fa-book"></i> ' + t('Glossary','المصطلحات') + '</h3>' +
+      '<input class="tool-input" id="glossarySearch" placeholder="' + t('Search term...','ابحث عن مصطلح...') + '" oninput="filterGlossary()">' +
+      '<div class="glossary-cats">' +
+        '<button class="glossary-cat active" data-cat="all" onclick="filterGlossaryCat(\'all\')">' + t('All','الكل') + '</button>' +
+        cats.map(c => '<button class="glossary-cat" data-cat="' + c.id + '" onclick="filterGlossaryCat(\'' + c.id + '\')"><i class="fas ' + c.icon + '"></i> ' + t(c.en, c.ar) + '</button>').join('') +
+      '</div>' +
+      '<div id="glossaryList"></div>' +
+    '</div>';
+  },
+
+  /* ABOUT */
+  aboutMain: () => '<div class="content-card"><h3><i class="fas fa-user-astronaut"></i> ' + t('About the Developer','عن المطوّر') + '</h3>' +
+    '<div style="display:flex;align-items:center;gap:1.2rem;margin:1rem 0;padding:1.2rem;background:linear-gradient(135deg,rgba(30,109,242,.15),rgba(0,212,255,.05));border-radius:16px;border:1px solid var(--border-glass);flex-wrap:wrap">' +
+      '<div style="width:80px;height:80px;border-radius:50%;background:var(--gradient-2);display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:2.2rem">S</div>' +
+      '<div style="flex:1;min-width:200px">' +
+        '<h4 style="border:none;padding:0;margin:0;color:var(--accent-cyan);font-size:1.3rem">SultTik</h4>' +
+        '<p style="margin:.3rem 0;color:var(--text-secondary);font-size:.9rem">' +
+          '<i class="fas fa-code"></i> ' + t('Founder & Developer','المؤسس والمطوّر') +
+        '</p>' +
+        '<a href="https://instagram.com/sln6_" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:.5rem;padding:.4rem 1rem;border-radius:30px;background:var(--gradient-insta);color:#fff;font-size:.8rem;font-weight:600;text-decoration:none">' +
+          '<i class="fab fa-instagram"></i> @sln6_' +
+        '</a>' +
+      '</div>' +
+    '</div>' +
+    '<h4>' + t('Vision','الرؤية') + '</h4>' +
+    '<p>' + t('NetLab Academy was built with one mission: make high-quality IT education free and accessible to everyone.','بُنيت الأكاديمية برسالة: جعل تعليم IT مجانيًا ومتاحًا للجميع.') + '</p>' +
+    '<h4>' + t('What We Offer','ما نقدمه') + '</h4>' +
+    '<ul>' +
+    '<li>' + t('Complete Networking curriculum','منهج شبكات كامل') + '</li>' +
+    '<li>' + t('Linux & Windows administration','إدارة لينكس وويندوز') + '</li>' +
+    '<li>' + t('Cybersecurity fundamentals','أساسيات الأمن السيبراني') + '</li>' +
+    '<li>' + t('Programming for network engineers','البرمجة لمهندسي الشبكات') + '</li>' +
+    '<li>' + t('Interactive terminals and simulators','محاكيات تفاعلية') + '</li>' +
+    '<li>' + t('Bilingual content (Arabic & English)','محتوى ثنائي اللغة') + '</li>' +
+    '</ul>' +
+    '<div class="free-banner"><i class="fas fa-gift"></i> ' + t('100% Free — No registration, no ads, no cost.','مجاني 100% — بدون تسجيل أو إعلانات.') + '</div>' +
+    '<div class="info-box success" style="margin-top:1.5rem">' +
+      '<i class="fas fa-heart"></i> ' + t('Thank you for using NetLab Academy. Happy learning!','شكرًا لاستخدامك أكاديمية NetLab. تعلّم ممتع!') +
+    '</div></div>',
+  refsList: () => '<div class="content-card"><h3><i class="fas fa-link"></i> ' + t('References','المراجع') + '</h3>' +
+    '<h4>' + t('Networking','الشبكات') + '</h4>' +
+    '<ul><li>Cisco Networking Academy — CCNA</li><li>IETF RFC 791, 793, 768, 1918</li><li>IEEE 802.1Q, 802.1D, 802.3ad</li><li>NIST SP 800-41</li></ul>' +
+    '<h4>Linux</h4>' +
+    '<ul><li>The Linux Documentation Project (TLDP)</li><li>Ubuntu Server Guide</li><li>Red Hat Enterprise Linux Documentation</li><li>man7.org — Linux man pages</li></ul>' +
+    '<h4>Windows</h4>' +
+    '<ul><li>Microsoft Learn — Windows Server</li><li>Microsoft Learn — PowerShell</li><li>Microsoft Learn — Active Directory</li></ul>' +
+    '<h4>Cybersecurity</h4>' +
+    '<ul><li>OWASP Top 10</li><li>NIST Cybersecurity Framework</li><li>CIS Controls</li><li>CompTIA Security+ objectives</li></ul>' +
+    '<h4>Programming</h4>' +
+    '<ul><li>Python.org — Official Documentation</li><li>MDN Web Docs — JavaScript</li><li>GNU Bash Manual</li></ul>' +
+    '<h4>Virtualization</h4>' +
+    '<ul><li>VMware Documentation</li><li>Proxmox VE Documentation</li><li>GNS3 Official Documentation</li><li>Docker Documentation</li></ul>' +
+  '</div>'
+};
+
+/* ============================================================
+   QUESTION BANK — Dynamic Quiz System
+   ============================================================ */
+const QUESTION_BANK = {
+  networking: [
+    {q_en:'How many layers are in the OSI model?', q_ar:'كم عدد طبقات نموذج OSI؟', opts:[['5','٥',0],['7','٧',1],['4','٤',0]], exp_en:'OSI has 7 layers.', exp_ar:'OSI فيه 7 طبقات.'},
+    {q_en:'What does a router do?', q_ar:'ما وظيفة الموجّه؟', opts:[['Connect same network','ربط نفس الشبكة',0],['Forward between networks','توجيه بين الشبكات',1],['Filter MAC','تصفية MAC',0]], exp_en:'Routers forward between networks.', exp_ar:'الموجّه يوجه بين الشبكات.'},
+    {q_en:'Usable hosts in /24?', q_ar:'كم مضيف في /24؟', opts:[['256','٢٥٦',0],['254','٢٥٤',1],['255','٢٥٥',0]], exp_en:'2^8-2=254.', exp_ar:'2^8-2=254.'},
+    {q_en:'LAN stands for?', q_ar:'ماذا يعني LAN؟', opts:[['Local Area Network','الشبكة المحلية',1],['Long Area Node','عقدة طويلة',0],['Large Area Net','شبكة واسعة',0]], exp_en:'LAN = Local Area Network.', exp_ar:'LAN = الشبكة المحلية.'},
+    {q_en:'Star topology uses?', q_ar:'النجمة تستخدم؟', opts:[['Central hub','محور مركزي',1],['Ring','حلقة',0],['Bus','ناقل',0]], exp_en:'Central device connects all.', exp_ar:'جهاز مركزي يربط الكل.'},
+    {q_en:'Bandwidth means?', q_ar:'ماذا يعني عرض النطاق؟', opts:[['Actual rate','المعدل الفعلي',0],['Max theoretical','أقصى نظري',1],['Latency','الكمون',0]], exp_en:'Max theoretical rate.', exp_ar:'أقصى معدل نظري.'},
+    {q_en:'Switch operates at?', q_ar:'المبدّل يعمل في؟', opts:[['Layer 2','الطبقة 2',1],['Layer 3','الطبقة 3',0],['Layer 1','الطبقة 1',0]], exp_en:'Layer 2.', exp_ar:'الطبقة 2.'},
+    {q_en:'DNS port?', q_ar:'منفذ DNS؟', opts:[['53','53',1],['80','80',0],['443','443',0]], exp_en:'DNS = 53.', exp_ar:'DNS = 53.'},
+    {q_en:'DHCP does?', q_ar:'DHCP يفعل؟', opts:[['Assign IPs','يعين IPs',1],['Resolve names','يحل الأسماء',0],['Route','يوجه',0]], exp_en:'Assigns IPs automatically.', exp_ar:'يعين IPs تلقائيًا.'},
+    {q_en:'IP works at?', q_ar:'IP يعمل في؟', opts:[['Layer 2','الطبقة 2',0],['Layer 3','الطبقة 3',1],['Layer 4','الطبقة 4',0]], exp_en:'Layer 3.', exp_ar:'الطبقة 3.'},
+    {q_en:'VLAN does?', q_ar:'VLAN يفعل؟', opts:[['Physical split','فصل مادي',0],['Logical segmentation','تقسيم منطقي',1],['Encrypt','تشفير',0]], exp_en:'Logical segmentation.', exp_ar:'تقسيم منطقي.'},
+    {q_en:'Class C default mask?', q_ar:'قناع Class C؟', opts:[['255.0.0.0','255.0.0.0',0],['255.255.0.0','255.255.0.0',0],['255.255.255.0','255.255.255.0',1]], exp_en:'Class C = /24.', exp_ar:'Class C = /24.'},
+    {q_en:'TCP is?', q_ar:'TCP هو؟', opts:[['Connectionless','بدون اتصال',0],['Reliable','موثوق',1],['Routing','توجيه',0]], exp_en:'TCP reliable.', exp_ar:'TCP موثوق.'},
+    {q_en:'HTTPS port?', q_ar:'منفذ HTTPS؟', opts:[['80','80',0],['443','443',1],['8080','8080',0]], exp_en:'HTTPS = 443.', exp_ar:'HTTPS = 443.'},
+    {q_en:'Default gateway?', q_ar:'البوابة الافتراضية؟', opts:[['DNS server','خادم DNS',0],['Router outside subnet','موجّه خارج الشبكة',1],['Firewall','جدار',0]], exp_en:'Router outside subnet.', exp_ar:'موجّه خارج الشبكة.'},
+    {q_en:'STP prevents?', q_ar:'STP يمنع؟', opts:[['Broadcasts','البث',0],['Layer 2 loops','حلقات L2',1],['IP conflicts','تعارضات IP',0]], exp_en:'Prevents loops.', exp_ar:'يمنع الحلقات.'},
+    {q_en:'OSPF metric?', q_ar:'مقياس OSPF؟', opts:[['Hop count','عدد القفزات',0],['Cost','التكلفة',1],['Speed','السرعة',0]], exp_en:'OSPF uses cost.', exp_ar:'OSPF يستخدم التكلفة.'},
+    {q_en:'NAT does?', q_ar:'NAT يفعل؟', opts:[['Encrypt','تشفير',0],['Translate IPs','ترجمة IPs',1],['Route VLANs','توجيه VLANs',0]], exp_en:'Translates IPs.', exp_ar:'يترجم IPs.'},
+    {q_en:'Cat6 max speed?', q_ar:'أقصى سرعة Cat6؟', opts:[['100 Mbps','100 Mbps',0],['1 Gbps','1 Gbps',0],['10 Gbps','10 Gbps',1]], exp_en:'Cat6 = 10 Gbps short.', exp_ar:'Cat6 = 10 Gbps.'},
+    {q_en:'255.255.255.192 is?', q_ar:'255.255.255.192 هو؟', opts:[['/24','/24',0],['/26','/26',1],['/28','/28',0]], exp_en:'255.255.255.192 = /26.', exp_ar:'255.255.255.192 = /26.'}
+  ],
+  linux: [
+    {q_en:'Who created Linux?', q_ar:'من أنشأ لينكس؟', opts:[['Linus Torvalds','لينوس تورفالدس',1],['Bill Gates','بيل غيتس',0],['Steve Jobs','ستيف جوبز',0]], exp_en:'Linus Torvalds in 1991.', exp_ar:'لينوس تورفالدس عام 1991.'},
+    {q_en:'pwd does?', q_ar:'pwd يفعل؟', opts:[['Print dir','طباعة المجلد',1],['Power off','إيقاف',0],['Password','كلمة المرور',0]], exp_en:'Print working directory.', exp_ar:'طباعة المجلد الحالي.'},
+    {q_en:'chmod 755 =?', q_ar:'chmod 755 =؟', opts:[['rwxr-xr-x','rwxr-xr-x',1],['rw-r--r--','rw-r--r--',0],['rwxrwxrwx','rwxrwxrwx',0]], exp_en:'7=rwx, 5=r-x.', exp_ar:'7=rwx، 5=r-x.'},
+    {q_en:'Root user?', q_ar:'مستخدم الجذر؟', opts:[['Regular','عادي',0],['Superuser','مستخدم خارق',1],['Guest','ضيف',0]], exp_en:'Root = superuser.', exp_ar:'الجذر = مستخدم خارق.'},
+    {q_en:'ls does?', q_ar:'ls يفعل؟', opts:[['List files','عرض الملفات',1],['Lock system','قفل',0],['Login','تسجيل',0]], exp_en:'Lists files.', exp_ar:'يعرض الملفات.'},
+    {q_en:'/etc contains?', q_ar:'/etc يحتوي؟', opts:[['Binaries','الأوامر',0],['Config files','الإعدادات',1],['Temp','مؤقت',0]], exp_en:'/etc = configs.', exp_ar:'/etc = الإعدادات.'},
+    {q_en:'sudo does?', q_ar:'sudo يفعل؟', opts:[['Shutdown','إيقاف',0],['Run as superuser','تشغيل كمسؤول',1],['List users','سرد المستخدمين',0]], exp_en:'Runs as superuser.', exp_ar:'يعمل كمسؤول.'},
+    {q_en:'Show IPs command?', q_ar:'عرض IP؟', opts:[['ip addr','ip addr',1],['show ip','show ip',0],['ipconfig','ipconfig',0]], exp_en:'ip addr.', exp_ar:'ip addr.'},
+    {q_en:'Shell is?', q_ar:'Shell هو؟', opts:[['Kernel','نواة',0],['Command interpreter','مفسر أوامر',1],['File system','نظام ملفات',0]], exp_en:'Command interpreter.', exp_ar:'مفسر أوامر.'},
+    {q_en:'chmod 644 =?', q_ar:'chmod 644 =؟', opts:[['rw-r--r--','rw-r--r--',1],['rwxr-xr-x','rwxr-xr-x',0],['r--r--r--','r--r--r--',0]], exp_en:'6=rw, 4=r.', exp_ar:'6=rw، 4=r.'},
+    {q_en:'Home dirs in?', q_ar:'مجلدات المستخدمين؟', opts:[['/usr','/usr',0],['/home','/home',1],['/var','/var',0]], exp_en:'/home.', exp_ar:'/home.'},
+    {q_en:'systemd is?', q_ar:'systemd هو؟', opts:[['Editor','محرر',0],['Service manager','مدير خدمات',1],['File system','نظام ملفات',0]], exp_en:'Service manager.', exp_ar:'مدير خدمات.'},
+    {q_en:'df -h shows?', q_ar:'df -h يعرض؟', opts:[['Files','الملفات',0],['Disk usage','استخدام القرص',1],['Processes','العمليات',0]], exp_en:'Disk usage.', exp_ar:'استخدام القرص.'},
+    {q_en:'List processes?', q_ar:'سرد العمليات؟', opts:[['ls','ls',0],['ps','ps',1],['cat','cat',0]], exp_en:'ps.', exp_ar:'ps.'},
+    {q_en:'grep does?', q_ar:'grep يفعل؟', opts:[['Search text','البحث النصي',1],['Copy','نسخ',0],['Delete','حذف',0]], exp_en:'Searches text.', exp_ar:'يبحث النصوص.'}
+  ],
+  windows: [
+    {q_en:'ipconfig /all shows?', q_ar:'ipconfig /all يعرض؟', opts:[['Only IP','IP فقط',0],['Full config','إعداد كامل',1],['DNS only','DNS فقط',0]], exp_en:'Full network config.', exp_ar:'إعداد شبكة كامل.'},
+    {q_en:'AD DS is?', q_ar:'AD DS هو؟', opts:[['Directory service','خدمة دليل',1],['Data system','نظام بيانات',0],['Auto domain','دومين تلقائي',0]], exp_en:'Directory service.', exp_ar:'خدمة دليل.'},
+    {q_en:'GPO =?', q_ar:'GPO =؟', opts:[['Group Policy Object','نهج المجموعة',1],['General Purpose OS','نظام عام',0],['Global Process','عملية عامة',0]], exp_en:'Group Policy Object.', exp_ar:'نهج المجموعة.'},
+    {q_en:'PowerShell pattern?', q_ar:'نمط PowerShell؟', opts:[['Noun-Verb','اسم-فعل',0],['Verb-Noun','فعل-اسم',1],['CamelCase','CamelCase',0]], exp_en:'Verb-Noun.', exp_ar:'فعل-اسم.'},
+    {q_en:'RDP port?', q_ar:'منفذ RDP؟', opts:[['22','22',0],['3389','3389',1],['443','443',0]], exp_en:'RDP = 3389.', exp_ar:'RDP = 3389.'},
+    {q_en:'Hyper-V is?', q_ar:'Hyper-V هو؟', opts:[['Hypervisor','هايبرفايزر',1],['Web server','خادم ويب',0],['File system','نظام ملفات',0]], exp_en:'Hypervisor.', exp_ar:'هايبرفايزر.'},
+    {q_en:'Show connections?', q_ar:'عرض الاتصالات؟', opts:[['netstat -an','netstat -an',1],['show conn','show conn',0],['conn list','conn list',0]], exp_en:'netstat -an.', exp_ar:'netstat -an.'},
+    {q_en:'OU =?', q_ar:'OU =؟', opts:[['Operating Unit','وحدة تشغيل',0],['Organizational Unit','وحدة تنظيمية',1],['Online User','مستخدم متصل',0]], exp_en:'Organizational Unit.', exp_ar:'وحدة تنظيمية.'},
+    {q_en:'SMB is?', q_ar:'SMB هو؟', opts:[['Mail box','صندوق بريد',0],['File sharing','مشاركة ملفات',1],['Memory bus','ناقل ذاكرة',0]], exp_en:'File sharing.', exp_ar:'مشاركة ملفات.'},
+    {q_en:'List services?', q_ar:'سرد الخدمات؟', opts:[['Get-Process','Get-Process',0],['Get-Service','Get-Service',1],['Get-Item','Get-Item',0]], exp_en:'Get-Service.', exp_ar:'Get-Service.'},
+    {q_en:'DC runs?', q_ar:'DC يشغل؟', opts:[['AD DS','AD DS',1],['Switch','مبدل',0],['Router','موجّه',0]], exp_en:'Runs AD DS.', exp_ar:'يشغل AD DS.'},
+    {q_en:'Trace route command?', q_ar:'أمر تتبع المسار؟', opts:[['traceroute','traceroute',0],['tracert','tracert',1],['trace','trace',0]], exp_en:'Windows: tracert.', exp_ar:'ويندوز: tracert.'}
+  ],
+  cybersecurity: [
+    {q_en:'CIA Triad =?', q_ar:'ثالوث CIA =؟', opts:[['Confidentiality, Integrity, Availability','السرية والسلامة والتوفر',1],['Agency','وكالة',0],['Internet Access','وصول',0]], exp_en:'Three pillars.', exp_ar:'ثلاثة أركان.'},
+    {q_en:'Phishing is?', q_ar:'التصيد هو؟', opts:[['Fake messages','رسائل مزيفة',1],['Scanning','مسح',0],['Backup','نسخ',0]], exp_en:'Social engineering.', exp_ar:'هندسة اجتماعية.'},
+    {q_en:'MFA =?', q_ar:'MFA =؟', opts:[['Multi-Factor Auth','مصادقة متعددة',1],['Main Frame','إطار',0],['File Access','وصول ملفات',0]], exp_en:'Multi-Factor.', exp_ar:'متعددة العوامل.'},
+    {q_en:'Ransomware?', q_ar:'برنامج الفدية؟', opts:[['Encrypts for ransom','تشفير للفدية',1],['Free AV','مضاد مجاني',0],['Firewall','جدار',0]], exp_en:'Encrypts for payment.', exp_ar:'تشفير مقابل فدية.'},
+    {q_en:'Zero Trust =?', q_ar:'الثقة الصفرية =؟', opts:[['Trust all','ثق بالكل',0],['Never trust, always verify','لا تثق، تحقق',1],['No auth','لا مصادقة',0]], exp_en:'Verify every request.', exp_ar:'تحقق من كل طلب.'},
+    {q_en:'Symmetric =?', q_ar:'المتماثل =؟', opts:[['Different keys','مفاتيح مختلفة',0],['Same key','نفس المفتاح',1],['No key','بلا مفتاح',0]], exp_en:'Same key.', exp_ar:'نفس المفتاح.'},
+    {q_en:'VPN is?', q_ar:'VPN هو؟', opts:[['Public net','شبكة عامة',0],['Encrypted tunnel','نفق مشفر',1],['Antivirus','مضاد فيروسات',0]], exp_en:'Encrypted tunnel.', exp_ar:'نفق مشفر.'},
+    {q_en:'SQL Injection?', q_ar:'SQL Injection؟', opts:[['Malicious SQL','SQL خبيث',1],['Encrypt DB','تشفير DB',0],['Backup SQL','نسخ',0]], exp_en:'Injects SQL code.', exp_ar:'يحقن SQL خبيث.'},
+    {q_en:'SOC =?', q_ar:'SOC =؟', opts:[['Security Ops Center','مركز الأمان',1],['System on Chip','نظام على شريحة',0],['Social Comm','تواصل اجتماعي',0]], exp_en:'Security Operations Center.', exp_ar:'مركز عمليات الأمان.'},
+    {q_en:'Least privilege?', q_ar:'أقل صلاحية؟', opts:[['All perms','كل الصلاحيات',0],['Minimum access','أقل وصول',1],['No access','لا وصول',0]], exp_en:'Minimum access.', exp_ar:'أقل وصول.'},
+    {q_en:'OWASP covers?', q_ar:'OWASP يغطي؟', opts:[['Web security','أمان الويب',1],['Hardware','العتاد',0],['Cloud','السحابة',0]], exp_en:'Web app security.', exp_ar:'أمان الويب.'},
+    {q_en:'Hashing is?', q_ar:'التجزئة هي؟', opts:[['Reversible','قابلة للعكس',0],['One-way','باتجاه واحد',1],['Compression','ضغط',0]], exp_en:'One-way function.', exp_ar:'دالة باتجاه واحد.'},
+    {q_en:'TLS =?', q_ar:'TLS =؟', opts:[['Transport Layer Security','أمان طبقة النقل',1],['Total Loss','خسارة كلية',0],['Terminal Line','خط طرفية',0]], exp_en:'Transport Layer Security.', exp_ar:'أمان طبقة النقل.'},
+    {q_en:'Zero-day =?', q_ar:'Zero-day =؟', opts:[['Known','معروفة',0],['Unknown','غير معروفة',1],['Update','تحديث',0]], exp_en:'Unknown vulnerability.', exp_ar:'ثغرة غير معروفة.'}
+  ],
+  programming: [
+    {q_en:'Variable is?', q_ar:'المتغير؟', opts:[['Named storage','مخزن باسم',1],['Loop','حلقة',0],['Function','دالة',0]], exp_en:'Named storage.', exp_ar:'مخزن باسم.'},
+    {q_en:'Function does?', q_ar:'الدالة؟', opts:[['Store data','تخزين',0],['Group reusable code','كود قابل لإعادة الاستخدام',1],['Compile','تجميع',0]], exp_en:'Reusable code.', exp_ar:'كود قابل لإعادة الاستخدام.'},
+    {q_en:'Loop is for?', q_ar:'الحلقة لـ؟', opts:[['Delete files','حذف',0],['Repeat code','تكرار',1],['Encrypt','تشفير',0]], exp_en:'Repeats code.', exp_ar:'تكرر الكود.'},
+    {q_en:'Python extension?', q_ar:'امتداد بايثون؟', opts:[['.py','.py',1],['.js','.js',0],['.txt','.txt',0]], exp_en:'.py.', exp_ar:'.py.'},
+    {q_en:'JSON is?', q_ar:'JSON هو؟', opts:[['Data format','صيغة بيانات',1],['Language','لغة',0],['Database','قاعدة بيانات',0]], exp_en:'Data format.', exp_ar:'صيغة بيانات.'},
+    {q_en:'API =?', q_ar:'API =؟', opts:[['Application Programming Interface','واجهة برمجة',1],['Applied Protocol','بروتوكول مطبق',0],['Automatic Process','عملية تلقائية',0]], exp_en:'Application Programming Interface.', exp_ar:'واجهة برمجة التطبيقات.'},
+    {q_en:'GET does?', q_ar:'GET يفعل؟', opts:[['Retrieve','استرجاع',1],['Create','إنشاء',0],['Delete','حذف',0]], exp_en:'Retrieves data.', exp_ar:'يسترجع البيانات.'},
+    {q_en:'Python dictionary?', q_ar:'قاموس بايثون؟', opts:[['Ordered list','قائمة',0],['Key-value pairs','مفتاح-قيمة',1],['Tuple','مجموعة ثابتة',0]], exp_en:'Key-value pairs.', exp_ar:'مفتاح-قيمة.'},
+    {q_en:'SSH library in Python?', q_ar:'مكتبة SSH؟', opts:[['paramiko','paramiko',1],['numpy','numpy',0],['flask','flask',0]], exp_en:'paramiko.', exp_ar:'paramiko.'},
+    {q_en:'Automation is?', q_ar:'الأتمتة؟', opts:[['Manual','يدوي',0],['Reduce manual work','تقليل العمل اليدوي',1],['Random','عشوائي',0]], exp_en:'Reduce manual work.', exp_ar:'تقليل العمل اليدوي.'}
+  ],
+  virtualization: [
+    {q_en:'Hypervisor is?', q_ar:'الهايبرفايزر؟', opts:[['Manages VMs','يدير VMs',1],['Switch','مبدل',0],['Router','موجّه',0]], exp_en:'Manages VMs.', exp_ar:'يدير VMs.'},
+    {q_en:'Type 1 runs on?', q_ar:'النوع 1 على؟', opts:[['Hardware','العتاد',1],['Host OS','نظام',0]], exp_en:'Bare-metal.', exp_ar:'معدني.'},
+    {q_en:'Docker is?', q_ar:'Docker هو؟', opts:[['Containers','حاويات',1],['Hypervisor','هايبرفايزر',0],['Language','لغة',0]], exp_en:'Containerization.', exp_ar:'حاويات.'},
+    {q_en:'Snapshot is?', q_ar:'اللقطة؟', opts:[['Saved state','حالة محفوظة',1],['Screenshot','لقطة شاشة',0],['Backup host','نسخة المضيف',0]], exp_en:'Saved VM state.', exp_ar:'حالة محفوظة.'},
+    {q_en:'Lighter: VM or Container?', q_ar:'أخف: VM أم حاوية؟', opts:[['VM','VM',0],['Container','حاوية',1]], exp_en:'Containers share kernel.', exp_ar:'الحاويات تشارك النواة.'},
+    {q_en:'vSwitch is?', q_ar:'vSwitch هو؟', opts:[['Virtual switch','مبدل افتراضي',1],['Virtual server','خادم',0],['Storage','تخزين',0]], exp_en:'Virtual switch.', exp_ar:'مبدل افتراضي.'},
+    {q_en:'VM on physical LAN?', q_ar:'VM على الشبكة المادية؟', opts:[['NAT','NAT',0],['Bridged','جسر',1],['Host-only','المضيف فقط',0]], exp_en:'Bridged mode.', exp_ar:'وضع Bridged.'},
+    {q_en:'Proxmox is?', q_ar:'Proxmox هو؟', opts:[['Type 1','النوع 1',1],['Type 2','النوع 2',0]], exp_en:'Type 1 hypervisor.', exp_ar:'هايبرفايزر النوع 1.'},
+    {q_en:'Kubernetes is?', q_ar:'Kubernetes هو؟', opts:[['Orchestration','تنسيق',1],['Hypervisor','هايبرفايزر',0],['Language','لغة',0]], exp_en:'Container orchestration.', exp_ar:'تنسيق الحاويات.'}
+  ]
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const NAV = {category:'dashboard', topic:null, lesson:null};
+let LANG = 'en';
+let PROGRESS = {};
+try { PROGRESS = JSON.parse(localStorage.getItem('netlab-progress') || '{}'); } catch(e){ PROGRESS = {}; }
+const QUIZ_STATE = {};
+let GLOSSARY_FILTER = 'all';
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+function t(en, ar){ return LANG === 'ar' ? ar : en; }
+function catName(c){ return LANG === 'ar' ? c.ar : c.en; }
+function catDesc(c){ return LANG === 'ar' ? c.desc_ar : c.desc_en; }
+function topicName(tp){ return LANG === 'ar' ? tp.ar : tp.en; }
+function lessonName(ls){ return LANG === 'ar' ? ls.ar : ls.en; }
+function getCat(id){ return DATA[id]; }
+function getTopic(cid, tid){ const c = DATA[cid]; return c && c.topics ? c.topics.find(x => x.id === tid) : null; }
+function totalLessons(){
+  let n = 0;
+  Object.values(DATA).forEach(c => { if(c.topics) c.topics.forEach(tp => { n += tp.lessons.length; }); });
+  return n;
+}
+function completedCount(){ return Object.keys(PROGRESS).filter(k => PROGRESS[k]).length; }
+function lessonKey(cid, tid, lid){ return cid + '::' + tid + '::' + lid; }
+function isComplete(cid, tid, lid){ return !!PROGRESS[lessonKey(cid, tid, lid)]; }
+function toggleComplete(cid, tid, lid){
+  const k = lessonKey(cid, tid, lid);
+  if(PROGRESS[k]) delete PROGRESS[k];
+  else PROGRESS[k] = true;
+  try { localStorage.setItem('netlab-progress', JSON.stringify(PROGRESS)); } catch(e){}
+  const btn = document.querySelector('.lesson-complete-btn');
+  if(btn){
+    const done = isComplete(cid, tid, lid);
+    btn.className = 'btn lesson-complete-btn' + (done ? ' done' : '');
+    btn.innerHTML = '<i class="fas ' + (done ? 'fa-check-circle' : 'fa-check') + '"></i> ' + (done ? t('Completed','مكتمل') : t('Mark Complete','ضع علامة مكتمل'));
+  }
+}
+
+/* ============================================================
+   LOGIN — الدالة التي كانت مفقودة!
+   ============================================================ */
+function checkPassword(){
+  const input = document.getElementById('passwordInput');
+  const error = document.getElementById('loginError');
+  if(!input || !error) return;
+  if(input.value === NETLAB_PASSWORD){
+    try { sessionStorage.setItem('netlab_authed','1'); } catch(e){}
+    unlockSite();
+  } else {
+    error.textContent = t('Incorrect password. Please try again.','كلمة مرور خاطئة. حاول مرة أخرى.');
+    error.classList.add('show');
+    input.value = '';
+    input.focus();
+    setTimeout(() => error.classList.remove('show'), 2500);
+  }
+}
+function unlockSite(){
+  const ls = document.getElementById('loginScreen'); if(ls) ls.style.display = 'none';
+  const ms = document.getElementById('mainSite'); if(ms) ms.classList.add('unlocked');
+  buildNav();
+  buildMobileMenu();
+  initApp();
+}
+function logout(){
+  try { sessionStorage.removeItem('netlab_authed'); } catch(e){}
+  const ms = document.getElementById('mainSite'); if(ms) ms.classList.remove('unlocked');
+  const ls = document.getElementById('loginScreen'); if(ls) ls.style.display = 'flex';
+  const pw = document.getElementById('passwordInput'); if(pw){ pw.value = ''; pw.focus(); }
+}
+
+/* ============================================================
+   LANGUAGE
+   ============================================================ */
+function setLanguage(lang){
+  LANG = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  const en = document.getElementById('langEn'); if(en) en.classList.toggle('active', lang === 'en');
+  const ar = document.getElementById('langAr'); if(ar) ar.classList.toggle('active', lang === 'ar');
+  document.querySelectorAll('.lang-en').forEach(el => {
+    el.classList.toggle('active', lang === 'en');
+    el.style.display = lang === 'en' ? (el.classList.contains('inline') ? 'inline' : 'block') : 'none';
+  });
+  document.querySelectorAll('.lang-ar').forEach(el => {
+    el.classList.toggle('active', lang === 'ar');
+    el.style.display = lang === 'ar' ? (el.classList.contains('inline') ? 'inline' : 'block') : 'none';
+  });
+  try { localStorage.setItem('netlab-lang', lang); } catch(e){}
+  if(document.getElementById('mainSite').classList.contains('unlocked')){
+    renderCurrentView();
+    buildNav();
+    buildMobileMenu();
+  }
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+const NAV_CATEGORIES = ['dashboard','networking','linux','windows','cybersecurity','programming','virtualization','labs','tools','commands','glossary','about','references'];
+function buildNav(){
+  const ul = document.getElementById('navLinks');
+  if(!ul) return;
+  ul.innerHTML = NAV_CATEGORIES.map(id => {
+    const c = getCat(id); if(!c) return '';
+    return '<li><a onclick="navigate(\'' + id + '\')" class="' + (NAV.category === id ? 'active' : '') + '">' + catName(c) + '</a></li>';
+  }).join('');
+}
+function buildMobileMenu(){
+  const ul = document.getElementById('mobileMenuList');
+  if(!ul) return;
+  ul.innerHTML = NAV_CATEGORIES.map(id => {
+    const c = getCat(id); if(!c) return '';
+    return '<li onclick="navigate(\'' + id + '\');closeMobileMenu()">' + catName(c) + '</li>';
+  }).join('');
+}
+function toggleMobileMenu(){
+  const m = document.getElementById('mobileMenu'); if(!m) return;
+  m.classList.toggle('show');
+  document.body.classList.toggle('menu-open', m.classList.contains('show'));
+}
+function closeMobileMenu(){
+  const m = document.getElementById('mobileMenu'); if(!m) return;
+  m.classList.remove('show');
+  document.body.classList.remove('menu-open');
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function goHome(){ navigate('dashboard'); }
+function navigate(cat, topic, lesson){
+  try {
+    if(!DATA[cat]) return;
+    NAV.category = cat;
+    NAV.topic = topic || null;
+    NAV.lesson = lesson || null;
+    renderCurrentView();
+    buildNav();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    closeMobileMenu();
+  } catch(e){ console.error('Nav error:', e); }
+}
+function openTopic(tid){ navigate(NAV.category, tid, null); }
+function openLesson(lid){ navigate(NAV.category, NAV.topic, lid); }
+function backToCategory(){ navigate(NAV.category, null, null); }
+function backToTopic(){ if(NAV.topic) navigate(NAV.category, NAV.topic, null); else goHome(); }
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function renderCurrentView(){
+  const container = document.getElementById('viewContainer');
+  const crumb = document.getElementById('breadcrumb');
+  if(!container) return;
+  const cat = getCat(NAV.category);
+  if(!cat){ container.innerHTML = renderEmpty(t('Category not found.','الفئة غير موجودة.')); return; }
+  if(crumb){
+    if(NAV.category === 'dashboard'){
+      crumb.innerHTML = '<span class="current"><i class="fas fa-th-large"></i> ' + t('Dashboard','لوحة التحكم') + '</span>';
+    } else {
+      const topic = NAV.topic ? getTopic(NAV.category, NAV.topic) : null;
+      const lesson = NAV.lesson && topic ? topic.lessons.find(l => l.id === NAV.lesson) : null;
+      let html = '<span class="crumb" onclick="goHome()"><i class="fas fa-th-large"></i> ' + t('Dashboard','لوحة التحكم') + '</span><span class="sep">›</span>';
+      if(topic) html += '<span class="crumb" onclick="backToCategory()">' + catName(cat) + '</span>';
+      else html += '<span class="current">' + catName(cat) + '</span>';
+      if(topic){
+        html += '<span class="sep">›</span>';
+        if(lesson) html += '<span class="crumb" onclick="backToTopic()">' + topicName(topic) + '</span>';
+        else html += '<span class="current">' + topicName(topic) + '</span>';
+      }
+      if(lesson) html += '<span class="sep">›</span><span class="current">' + lessonName(lesson) + '</span>';
+      crumb.innerHTML = html;
+    }
+  }
+  try {
+    if(NAV.category === 'dashboard') container.innerHTML = renderDashboard();
+    else if(!cat.topics || !cat.topics.length) container.innerHTML = renderEmpty(t('No topics available.','لا توجد مواضيع.'));
+    else if(NAV.topic && NAV.lesson) container.innerHTML = renderLesson(cat);
+    else if(NAV.topic) container.innerHTML = renderTopic(cat);
+    else container.innerHTML = renderCategory(cat);
+    attachPageHooks();
+  } catch(e){
+    console.error('Render error:', e);
+    container.innerHTML = renderEmpty(t('An error occurred.','حدث خطأ.'));
+  }
+}
+function attachPageHooks(){
+  const ci = document.getElementById('ciscoInput');
+  if(ci){ ci.onkeydown = function(e){ if(e.key === 'Enter'){ e.preventDefault(); runCisco(); } }; }
+  const li = document.getElementById('linuxInput');
+  if(li){ li.onkeydown = function(e){ if(e.key === 'Enter'){ e.preventDefault(); runLinux(); } }; }
+  const pi = document.getElementById('psInput');
+  if(pi){ pi.onkeydown = function(e){ if(e.key === 'Enter'){ e.preventDefault(); runPowershell(); } }; }
+  if(NAV.category === 'glossary'){ setTimeout(renderGlossary, 20); }
+}
+function renderDashboard(){
+  const total = totalLessons();
+  const done = completedCount();
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  const trackCards = NAV_CATEGORIES.filter(id => id !== 'dashboard').map(id => {
+    const c = getCat(id); if(!c) return '';
+    const topicCount = (c.topics || []).length;
+    const lessonCount = (c.topics || []).reduce((s, tp) => s + tp.lessons.length, 0);
+    let completed = 0;
+    (c.topics || []).forEach(tp => tp.lessons.forEach(ls => { if(isComplete(id, tp.id, ls.id)) completed++; }));
+    const progress = lessonCount ? Math.round((completed / lessonCount) * 100) : 0;
+    let cls = 'dash-card';
+    if(id === 'linux') cls += ' linux';
+    else if(id === 'windows') cls += ' windows';
+    else if(id === 'cybersecurity') cls += ' cyber';
+    else if(id === 'programming') cls += ' code';
+    else if(id === 'virtualization') cls += ' cloud';
+    else if(id === 'tools') cls += ' tools';
+    const badge = (id === 'cybersecurity' || id === 'programming') ? '<span class="badge-new">NEW</span>' : '';
+    return '<div class="' + cls + '" onclick="navigate(\'' + id + '\')">' +
+      badge +
+      '<i class="fas ' + c.icon + ' dash-icon"></i>' +
+      '<h4>' + catName(c) + '</h4>' +
+      '<p>' + catDesc(c) + '</p>' +
+      '<div class="dash-meta"><span>' + topicCount + ' ' + t('modules','وحدات') + ' · ' + lessonCount + ' ' + t('lessons','دروس') + '</span><span>' + progress + '%</span></div>' +
+      '<div class="dash-progress"><span style="width:' + progress + '%"></span></div>' +
+    '</div>';
+  }).join('');
+  return '<div class="section">' +
+    '<div class="progress-banner">' +
+      '<i class="fas fa-graduation-cap pb-icon"></i>' +
+      '<div class="pb-content">' +
+        '<h3>' + t('Welcome to NetLab Academy','مرحبًا بك في أكاديمية NetLab') + '</h3>' +
+        '<p>' + t('Track your progress across all learning tracks.','تابع تقدمك في جميع المسارات.') + '</p>' +
+        '<div class="pb-dev"><i class="fas fa-code"></i> ' + t('Developed by SultTik','تم تطويره من قبل SultTik') + '</div>' +
+      '</div>' +
+      '<div class="pb-stats">' +
+        '<div class="pb-stat"><strong>' + done + '/' + total + '</strong><span>' + t('Lessons','دروس') + '</span></div>' +
+        '<div class="pb-stat"><strong>' + pct + '%</strong><span>' + t('Complete','مكتمل') + '</span></div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="stats-banner">' +
+      '<div class="stat-item"><strong>' + total + '+</strong><span>' + t('Lessons','درس') + '</span></div>' +
+      '<div class="stat-item"><strong>' + NAV_CATEGORIES.length + '</strong><span>' + t('Tracks','مسار') + '</span></div>' +
+      '<div class="stat-item"><strong>200+</strong><span>' + t('Terms','مصطلح') + '</span></div>' +
+      '<div class="stat-item"><strong>100%</strong><span>' + t('Free','مجاني') + '</span></div>' +
+    '</div>' +
+    '<div class="section-header"><h2>' + t('Learning Tracks','مسارات التعلم') + '</h2>' +
+      '<p>' + t('Choose your path.','اختر مسارك.') + '</p>' +
+      '<div class="accent-line"></div>' +
+    '</div>' +
+    '<div class="dash-grid">' + trackCards + '</div>' +
+    '<div style="margin-top:2rem">' + heroHTML() + '</div>' +
+    '<div class="cta-box">' +
+      '<h2>' + t('Ready to start?','مستعد للبدء؟') + '</h2>' +
+      '<p>' + t('Pick a track and begin today. 100% Free.','اختر مسارًا وابدأ اليوم. مجاني 100%.') + '</p>' +
+      '<div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">' +
+        '<button class="btn btn-primary" onclick="navigate(\'networking\')"><i class="fas fa-network-wired"></i> Networking</button>' +
+        '<button class="btn btn-green" onclick="navigate(\'linux\')"><i class="fab fa-linux"></i> Linux</button>' +
+        '<button class="btn btn-red" onclick="navigate(\'cybersecurity\')"><i class="fas fa-shield-halved"></i> Cybersecurity</button>' +
+        '<button class="btn btn-purple" onclick="navigate(\'programming\')"><i class="fas fa-code"></i> Programming</button>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+}
+function heroHTML(){
+  return '<header class="hero">' +
+    '<div class="hero-content">' +
+      '<span class="hero-badge">' + t('Free · Bilingual · Interactive','مجاني · ثنائي · تفاعلي') + '</span>' +
+      '<div class="hero-dev"><i class="fas fa-code"></i> ' + t('Developed by SultTik','تم تطويره من قبل SultTik') + '</div>' +
+      '<h1>' + t('Master IT.<br>Networking, Linux, Cyber & Code.','أتقن IT.<br>الشبكات، لينكس، الأمن والبرمجة.') + '</h1>' +
+      '<p>' + t('Complete free academy with labs, terminals, quizzes, and bilingual content.','أكاديمية مجانية كاملة مع معامل، طرفيات، اختبارات، ومحتوى ثنائي.') + '</p>' +
+      '<div class="hero-buttons">' +
+        '<button class="btn btn-primary" onclick="navigate(\'networking\')"><i class="fas fa-rocket"></i> ' + t('Start Learning','ابدأ التعلم') + '</button>' +
+        '<button class="btn btn-outline" onclick="navigate(\'glossary\')"><i class="fas fa-book"></i> ' + t('Glossary','المصطلحات') + '</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="hero-visual">' +
+      '<svg class="network-canvas" viewBox="0 0 520 380" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<defs><linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e6df2" stop-opacity=".6"/><stop offset="100%" stop-color="#00d4ff" stop-opacity=".6"/></linearGradient>' +
+        '<filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>' +
+        '<line x1="260" y1="40" x2="260" y2="110" stroke="url(#lineGrad)" stroke-width="2.5" class="data-line"/>' +
+        '<line x1="260" y1="140" x2="260" y2="200" stroke="url(#lineGrad)" stroke-width="2.5" class="data-line"/>' +
+        '<line x1="260" y1="230" x2="120" y2="290" stroke="url(#lineGrad)" stroke-width="2" class="data-line"/>' +
+        '<line x1="260" y1="230" x2="260" y2="300" stroke="url(#lineGrad)" stroke-width="2" class="data-line"/>' +
+        '<line x1="260" y1="230" x2="400" y2="290" stroke="url(#lineGrad)" stroke-width="2" class="data-line"/>' +
+        '<g filter="url(#glow)"><rect x="200" y="10" width="120" height="40" rx="20" fill="#111827" stroke="#1e6df2" stroke-width="1.8"/><text x="260" y="35" text-anchor="middle" fill="#b0c4de" font-size="12" font-family="Inter">Internet</text></g>' +
+        '<g filter="url(#glow)"><rect x="215" y="105" width="90" height="40" rx="14" fill="#111827" stroke="#00d4ff" stroke-width="1.8"/><text x="260" y="130" text-anchor="middle" fill="#00d4ff" font-size="12" font-weight="600" font-family="Inter">Router</text></g>' +
+        '<g filter="url(#glow)"><rect x="215" y="195" width="90" height="40" rx="14" fill="#111827" stroke="#00d4ff" stroke-width="1.8"/><text x="260" y="220" text-anchor="middle" fill="#00d4ff" font-size="12" font-weight="600" font-family="Inter">Switch</text></g>' +
+        '<g filter="url(#glow)"><rect x="70" y="280" width="90" height="36" rx="12" fill="#111827" stroke="#00c878" stroke-width="1.5"/><text x="115" y="303" text-anchor="middle" fill="#00c878" font-size="11" font-family="Inter">Linux</text></g>' +
+        '<g filter="url(#glow)"><rect x="215" y="290" width="90" height="36" rx="12" fill="#111827" stroke="#1e6df2" stroke-width="1.5"/><text x="260" y="313" text-anchor="middle" fill="#b0c4de" font-size="11" font-family="Inter">Windows</text></g>' +
+        '<g filter="url(#glow)"><rect x="360" y="280" width="90" height="36" rx="12" fill="#111827" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4 3"/><text x="405" y="303" text-anchor="middle" fill="#a855f7" font-size="11" font-family="Inter">Code</text></g>' +
+        '<circle cx="260" cy="125" r="4" fill="#00d4ff" class="node-pulse"/><circle cx="260" cy="215" r="4" fill="#00d4ff" class="node-pulse"/>' +
+        '<circle cx="115" cy="298" r="3" fill="#00c878" class="node-pulse"/><circle cx="260" cy="308" r="3" fill="#1e6df2" class="node-pulse"/><circle cx="405" cy="298" r="3" fill="#a855f7" class="node-pulse"/>' +
+      '</svg>' +
+    '</div>' +
+  '</header>';
+}
+function renderCategory(cat){
+  const topics = cat.topics.map(tp => {
+    let completed = 0;
+    tp.lessons.forEach(ls => { if(isComplete(NAV.category, tp.id, ls.id)) completed++; });
+    const pct = tp.lessons.length ? Math.round((completed / tp.lessons.length) * 100) : 0;
+    return '<div class="category-card" onclick="openTopic(\'' + tp.id + '\')">' +
+      '<i class="fas ' + cat.icon + ' category-icon"></i>' +
+      '<h3>' + topicName(tp) + '</h3>' +
+      '<p>' + tp.lessons.length + ' ' + t('lessons','درسًا') + '</p>' +
+      '<div class="dash-progress"><span style="width:' + pct + '%"></span></div>' +
+      '<div class="dash-meta" style="margin-top:.3rem"><span>' + completed + '/' + tp.lessons.length + '</span><span>' + pct + '%</span></div>' +
+      '<button class="btn btn-outline btn-small" style="margin-top:.5rem" onclick="event.stopPropagation();openTopic(\'' + tp.id + '\')">' +
+        t('Open','فتح') + ' <i class="fas fa-arrow-right"></i>' +
+      '</button>' +
+    '</div>';
+  }).join('');
+  return '<div class="section">' +
+    '<div class="section-header"><h2>' + catName(cat) + '</h2><p>' + catDesc(cat) + '</p><div class="accent-line"></div></div>' +
+    '<div class="category-grid">' + topics + '</div>' +
+  '</div>';
+}
+function renderTopic(cat){
+  const topic = getTopic(NAV.category, NAV.topic);
+  if(!topic) return renderEmpty(t('Topic not found.','الموضوع غير موجود.'));
+  const lessons = topic.lessons.map((ls, i) => {
+    const done = isComplete(NAV.category, NAV.topic, ls.id);
+    return '<div class="category-card" onclick="openLesson(\'' + ls.id + '\')">' +
+      '<i class="fas ' + (done ? 'fa-check-circle' : 'fa-book-open') + ' category-icon" style="' + (done ? 'color:var(--accent-green)' : '') + '"></i>' +
+      '<h3>' + lessonName(ls) + '</h3>' +
+      '<p>' + t('Lesson','درس') + ' ' + (i + 1) + ' ' + t('of','من') + ' ' + topic.lessons.length + ' · ' + ls.min + ' ' + t('min','دقيقة') + ' · ' + ls.level + '</p>' +
+      '<button class="btn btn-outline btn-small" onclick="event.stopPropagation();openLesson(\'' + ls.id + '\')">' +
+        (done ? t('Review','مراجعة') : t('Read','اقرأ')) + ' <i class="fas fa-arrow-right"></i>' +
+      '</button>' +
+    '</div>';
+  }).join('');
+  return '<div class="section">' +
+    '<div class="section-header"><h2>' + topicName(topic) + '</h2><p>' + catName(cat) + '</p><div class="accent-line"></div></div>' +
+    '<div class="category-grid">' + lessons + '</div>' +
+    '<div class="lesson-nav" style="margin-top:1.5rem">' +
+      '<button class="btn btn-outline" onclick="backToCategory()"><i class="fas fa-arrow-left"></i> ' + t('Back','رجوع') + ' ' + catName(cat) + '</button>' +
+      '<button class="btn btn-primary" onclick="goHome()"><i class="fas fa-th-large"></i> ' + t('Dashboard','لوحة التحكم') + '</button>' +
+    '</div>' +
+  '</div>';
+}
+function renderLesson(cat){
+  const topic = getTopic(NAV.category, NAV.topic);
+  if(!topic) return renderEmpty(t('Topic not found.','الموضوع غير موجود.'));
+  const idx = topic.lessons.findIndex(l => l.id === NAV.lesson);
+  if(idx === -1) return renderEmpty(t('Lesson not found.','الدرس غير موجود.'));
+  const lesson = topic.lessons[idx];
+  let body = '';
+  try {
+    body = LESSON_BODIES[lesson.body] ? LESSON_BODIES[lesson.body]() : renderEmpty(t('Content unavailable.','المحتوى غير متاح.'));
+  } catch(e){
+    console.error('Lesson error:', e);
+    body = renderEmpty(t('Error loading lesson.','خطأ في تحميل الدرس.'));
+  }
+  const quiz = renderQuiz(NAV.category, lesson.id);
+  const prev = idx > 0 ? topic.lessons[idx - 1] : null;
+  const next = idx < topic.lessons.length - 1 ? topic.lessons[idx + 1] : null;
+  const done = isComplete(NAV.category, NAV.topic, lesson.id);
+  return '<div class="section">' +
+    '<div class="section-header"><h2>' + lessonName(lesson) + '</h2><p>' + catName(cat) + ' › ' + topicName(topic) + '</p><div class="accent-line"></div></div>' +
+    '<div class="lesson-meta">' +
+      '<span><i class="fas fa-clock"></i> ' + lesson.min + ' ' + t('min','دقيقة') + '</span>' +
+      '<span><i class="fas fa-signal"></i> ' + lesson.level + '</span>' +
+      '<span><i class="fas fa-book"></i> ' + catName(cat) + '</span>' +
+      '<span><i class="fas fa-folder"></i> ' + topicName(topic) + '</span>' +
+    '</div>' +
+    body +
+    quiz +
+    '<div class="lesson-nav">' +
+      (prev ? '<button class="btn btn-outline" onclick="openLesson(\'' + prev.id + '\')"><i class="fas fa-arrow-left"></i> ' + lessonName(prev) + '</button>' : '<button class="btn btn-outline" onclick="backToTopic()"><i class="fas fa-arrow-left"></i> ' + t('Back','رجوع') + '</button>') +
+      '<button class="btn ' + (done ? 'lesson-complete-btn done' : 'lesson-complete-btn') + '" onclick="toggleComplete(\'' + NAV.category + '\',\'' + NAV.topic + '\',\'' + lesson.id + '\')">' +
+        '<i class="fas ' + (done ? 'fa-check-circle' : 'fa-check') + '"></i> ' + (done ? t('Completed','مكتمل') : t('Mark Complete','ضع علامة مكتمل')) +
+      '</button>' +
+      '<button class="btn btn-primary" onclick="goHome()"><i class="fas fa-th-large"></i> ' + t('Dashboard','لوحة التحكم') + '</button>' +
+      (next ? '<button class="btn btn-outline" onclick="openLesson(\'' + next.id + '\')">' + lessonName(next) + ' <i class="fas fa-arrow-right"></i></button>' : '<button class="btn btn-outline" onclick="backToTopic()">' + t('Topics','المواضيع') + ' <i class="fas fa-arrow-right"></i></button>') +
+    '</div>' +
+  '</div>';
+}
+function renderEmpty(msg){
+  return '<div class="empty-state"><i class="fas fa-info-circle"></i><p>' + msg + '</p></div>';
+}
+
+/* ============================================================
+   QUIZ SYSTEM
+   ============================================================ */
+function getQuestionKey(category){
+  if(category === 'networking') return 'networking';
+  if(category === 'linux') return 'linux';
+  if(category === 'windows') return 'windows';
+  if(category === 'cybersecurity') return 'cybersecurity';
+  if(category === 'programming') return 'programming';
+  if(category === 'virtualization') return 'virtualization';
+  return null;
+}
+function renderQuiz(category, lessonId){
+  const key = getQuestionKey(category);
+  if(!key || !QUESTION_BANK[key]) return '';
+  const pool = QUESTION_BANK[key];
+  if(!pool.length) return '';
+  let seed = 0;
+  const seedStr = category + '::' + lessonId;
+  for(let i = 0; i < seedStr.length; i++) seed = (seed * 31 + seedStr.charCodeAt(i)) >>> 0;
+  const indices = [];
+  const temp = pool.map((_, i) => i);
+  for(let i = 0; i < 2 && temp.length; i++){
+    seed = (seed * 1103515245 + 12345) >>> 0;
+    const idx = seed % temp.length;
+    indices.push(temp.splice(idx, 1)[0]);
+  }
+  const questions = indices.map(i => pool[i]);
+  const html = questions.map((q, qi) => {
+    const qKey = seedStr + '::' + qi;
+    const saved = QUIZ_STATE[qKey];
+    const disabled = saved ? ' disabled' : '';
+    return '<div class="quiz-question">' +
+      '<p>' + (qi + 1) + '. ' + t(q.q_en, q.q_ar) + '</p>' +
+      q.opts.map((o, oi) => {
+        let extraCls = disabled;
+        if(saved){
+          if(o[2] === 1) extraCls += ' correct';
+          else if(saved === oi) extraCls += ' wrong';
+        }
+        return '<div class="quiz-option' + extraCls + '" data-correct="' + o[2] + '" onclick="answerQuiz(this, ' + o[2] + ', \'' + qKey + '\', ' + oi + ')">' +
+          '<i class="far fa-circle"></i> ' + t(o[0], o[1]) +
+        '</div>';
+      }).join('') +
+      '<div class="quiz-feedback' + (saved ? ' show ' + (saved === 'correct' ? 'correct' : 'wrong') : '') + '" data-exp-en="' + q.exp_en.replace(/"/g, '&quot;') + '" data-exp-ar="' + q.exp_ar.replace(/"/g, '&quot;') + '"></div>' +
+    '</div>';
+  }).join('');
+  return '<div class="quiz-container"><h4><i class="fas fa-question-circle"></i> ' + t('Quick Quiz','اختبار سريع') + '</h4>' + html + '</div>';
+}
+function answerQuiz(el, isCorrect, qKey, oi){
+  const parent = el.parentElement;
+  parent.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+  el.querySelector('i').className = isCorrect ? 'fas fa-check-circle' : 'fas fa-times-circle';
+  parent.querySelectorAll('.quiz-option').forEach(o => {
+    if(o.dataset.correct === '1'){ o.classList.add('correct'); o.querySelector('i').className = 'fas fa-check-circle'; }
+  });
+  const fb = parent.querySelector('.quiz-feedback');
+  fb.classList.add('show', isCorrect ? 'correct' : 'wrong');
+  const exp = isCorrect ? t(fb.dataset.expEn, fb.dataset.expAr) : t('Incorrect. Correct answer highlighted.','خطأ. الإجابة الصحيحة مميزة.');
+  fb.textContent = (isCorrect ? '✓ ' : '✗ ') + exp;
+  QUIZ_STATE[qKey] = isCorrect ? 'correct' : 'wrong';
+}
+
+/* ============================================================
+   TOOLS
+   ============================================================ */
+function ipToInt(ip){ return ip.split('.').reduce((a, o) => (a << 8) + parseInt(o), 0) >>> 0; }
+function intToIp(n){ return [(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255].join('.'); }
+function calculateSubnet(){
+  const input = document.getElementById('subnetInput');
+  const out = document.getElementById('subnetResult');
+  if(!input || !out) return;
+  const m = input.value.trim().match(/^(\d+\.\d+\.\d+\.\d+)\/(\d+)$/);
+  if(!m){ out.innerHTML = '<span style="color:#ff9b9b">' + t('Invalid format','صيغة خاطئة') + '</span>'; out.classList.add('show'); return; }
+  const ip = m[1], cidr = parseInt(m[2]);
+  if(cidr < 0 || cidr > 32){ out.innerHTML = '<span style="color:#ff9b9b">CIDR 0-32</span>'; out.classList.add('show'); return; }
+  const ipInt = ipToInt(ip);
+  const mask = cidr === 0 ? 0 : (0xFFFFFFFF << (32 - cidr)) >>> 0;
+  const network = (ipInt & mask) >>> 0;
+  const broadcast = (network | (~mask >>> 0)) >>> 0;
+  const hosts = cidr >= 31 ? 0 : Math.pow(2, 32 - cidr) - 2;
+  out.innerHTML =
+    '<div class="result-row"><span class="result-label">IP</span><span class="result-value">' + ip + '</span></div>' +
+    '<div class="result-row"><span class="result-label">CIDR</span><span class="result-value">/' + cidr + '</span></div>' +
+    '<div class="result-row"><span class="result-label">' + t('Mask','القناع') + '</span><span class="result-value">' + intToIp(mask) + '</span></div>' +
+    '<div class="result-row"><span class="result-label">' + t('Network','الشبكة') + '</span><span class="result-value">' + intToIp(network) + '</span></div>' +
+    '<div class="result-row"><span class="result-label">' + t('Broadcast','البث') + '</span><span class="result-value">' + intToIp(broadcast) + '</span></div>' +
+    '<div class="result-row"><span class="result-label">' + t('First','أول') + '</span><span class="result-value">' + intToIp(network + 1) + '</span></div>' +
+    '<div class="result-row"><span class="result-label">' + t('Last','آخر') + '</span><span class="result-value">' + intToIp(broadcast - 1) + '</span></div>' +
+    '<div class="result-row"><span class="result-label">' + t('Hosts','المضيفون') + '</span><span class="result-value">' + hosts + '</span></div>';
+  out.classList.add('show');
+}
+function analyzeIP(){
+  const input = document.getElementById('ipInput');
+  const out = document.getElementById('ipResult');
+  if(!input || !out) return;
+  const ip = input.value.trim();
+  if(!/^(\d+\.\d+\.\d+\.\d+)$/.test(ip)){ out.innerHTML = '<span style="color:#ff9b9b">' + t('Invalid IPv4','IPv4 خاطئ') + '</span>'; out.classList.add('show'); return; }
+  const o = ip.split('.').map(Number);
+  let type = t('Public','عام');
+  if((o[0] === 10) || (o[0] === 172 && o[1] >= 16 && o[1] <= 31) || (o[0] === 192 && o[1] === 168)) type = t('Private','خاص');
+  if(o[0] === 127) type = t('Loopback','استرجاع');
+  if(o[0] === 169 && o[1] === 254) type = 'APIPA';
+  const c = o[0];
+  let cls = 'A';
+  if(c >= 128 && c <= 191) cls = 'B';
+  else if(c >= 192 && c <= 223) cls = 'C';
+  else if(c >= 224 && c <= 239) cls = 'D';
+  else if(c >= 240) cls = 'E';
+  out.innerHTML =
+    '<div class="result-row"><span class="result-label">IP</span><span class="result-value">' + ip + '</span></div>' +
+    '<div class="result-row"><span class="result-label">' + t('Class','الفئة') + '</span><span class="result-value">' + cls + '</span></div>' +
+    '<div class="result-row"><span class="result-label">' + t('Type','النوع') + '</span><span class="result-value">' + type + '</span></div>';
+  out.classList.add('show');
+}
+function filterPorts(){
+  const q = (document.getElementById('portSearch')?.value || '').toLowerCase();
+  document.querySelectorAll('.port-row').forEach(r => {
+    r.style.display = r.dataset.k.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+/* ============================================================
+   GLOSSARY
+   ============================================================ */
+const GLOSSARY_DATA = [
+  {t:'Router', a:'الموجّه', c:'networking', d:'Layer 3 device that forwards packets between networks.'},
+  {t:'Switch', a:'المبدّل', c:'networking', d:'Layer 2 device that forwards frames based on MAC addresses.'},
+  {t:'Hub', a:'الموزّع', c:'networking', d:'Legacy device that repeats signals to all ports.'},
+  {t:'Access Point', a:'نقطة الوصول', c:'networking', d:'Connects wireless clients to a wired network.'},
+  {t:'Gateway', a:'البوابة', c:'networking', d:'Entry/exit point of a network.'},
+  {t:'Firewall', a:'الجدار الناري', c:'networking', d:'Filters traffic based on rules.'},
+  {t:'Modem', a:'المودم', c:'networking', d:'Converts digital signals to analog for ISP.'},
+  {t:'NIC', a:'بطاقة الشبكة', c:'networking', d:'Network Interface Card.'},
+  {t:'LAN', a:'الشبكة المحلية', c:'networking', d:'Local Area Network.'},
+  {t:'WAN', a:'الشبكة الواسعة', c:'networking', d:'Wide Area Network.'},
+  {t:'MAN', a:'شبكة المدينة', c:'networking', d:'Metropolitan Area Network.'},
+  {t:'PAN', a:'الشبكة الشخصية', c:'networking', d:'Personal Area Network (~10m).'},
+  {t:'WLAN', a:'الشبكة اللاسلكية', c:'networking', d:'Wireless LAN using Wi-Fi.'},
+  {t:'Topology', a:'الطوبولوجيا', c:'networking', d:'Physical/logical arrangement of devices.'},
+  {t:'Bandwidth', a:'عرض النطاق', c:'networking', d:'Maximum theoretical data rate.'},
+  {t:'Throughput', a:'الإنتاجية', c:'networking', d:'Actual measured data rate.'},
+  {t:'Latency', a:'الكمون', c:'networking', d:'Time for packet to travel.'},
+  {t:'Jitter', a:'التذبذب', c:'networking', d:'Variation in latency.'},
+  {t:'Packet Loss', a:'فقدان الحزم', c:'networking', d:'Percentage of lost packets.'},
+  {t:'Subnet', a:'الشبكة الفرعية', c:'networking', d:'Logical subdivision of an IP network.'},
+  {t:'Subnet Mask', a:'قناع الشبكة', c:'networking', d:'Separates network and host portions.'},
+  {t:'CIDR', a:'CIDR', c:'networking', d:'Classless Inter-Domain Routing.'},
+  {t:'Default Gateway', a:'البوابة الافتراضية', c:'networking', d:'Router forwarding outside the subnet.'},
+  {t:'NAT', a:'ترجمة العناوين', c:'networking', d:'Network Address Translation.'},
+  {t:'VLAN', a:'الشبكة الافتراضية', c:'networking', d:'Virtual LAN.'},
+  {t:'Trunk', a:'الترنك', c:'networking', d:'Port carrying multiple VLANs.'},
+  {t:'STP', a:'الشجرة الممتدة', c:'networking', d:'Spanning Tree Protocol.'},
+  {t:'EtherChannel', a:'قناة الإيثرنت', c:'networking', d:'Bundles multiple links.'},
+  {t:'OSPF', a:'OSPF', c:'networking', d:'Open Shortest Path First.'},
+  {t:'BGP', a:'BGP', c:'networking', d:'Border Gateway Protocol.'},
+  {t:'EIGRP', a:'EIGRP', c:'networking', d:'Enhanced Interior Gateway Routing Protocol.'},
+  {t:'RIP', a:'RIP', c:'networking', d:'Routing Information Protocol.'},
+  {t:'CIA Triad', a:'ثالوث CIA', c:'security', d:'Confidentiality, Integrity, Availability.'},
+  {t:'Encryption', a:'التشفير', c:'security', d:'Converting data into unreadable form.'},
+  {t:'Hashing', a:'التجزئة', c:'security', d:'One-way cryptographic function.'},
+  {t:'Symmetric Encryption', a:'التشفير المتماثل', c:'security', d:'Same key for encrypt/decrypt (AES).'},
+  {t:'Asymmetric Encryption', a:'التشفير غير المتماثل', c:'security', d:'Public/private key pairs (RSA).'},
+  {t:'PKI', a:'البنية التحتية للمفتاح العام', c:'security', d:'Public Key Infrastructure.'},
+  {t:'TLS', a:'TLS', c:'security', d:'Transport Layer Security.'},
+  {t:'VPN', a:'الشبكة الافتراضية الخاصة', c:'security', d:'Virtual Private Network.'},
+  {t:'IPsec', a:'IPsec', c:'security', d:'Suite for secure IP communications.'},
+  {t:'ACL', a:'قائمة التحكم بالوصول', c:'security', d:'Access Control List.'},
+  {t:'Malware', a:'البرمجيات الخبيثة', c:'security', d:'Malicious software.'},
+  {t:'Ransomware', a:'برامج الفدية', c:'security', d:'Encrypts data for ransom.'},
+  {t:'Phishing', a:'التصيد', c:'security', d:'Fake messages to steal credentials.'},
+  {t:'Social Engineering', a:'الهندسة الاجتماعية', c:'security', d:'Manipulating people.'},
+  {t:'Zero Trust', a:'الثقة الصفرية', c:'security', d:'Never trust, always verify.'},
+  {t:'MFA', a:'المصادقة متعددة العوامل', c:'security', d:'Multi-Factor Authentication.'},
+  {t:'SOC', a:'مركز عمليات الأمان', c:'security', d:'Security Operations Center.'},
+  {t:'SIEM', a:'SIEM', c:'security', d:'Security Information and Event Management.'},
+  {t:'IDS', a:'نظام كشف الاختراق', c:'security', d:'Intrusion Detection System.'},
+  {t:'IPS', a:'نظام منع الاختراق', c:'security', d:'Intrusion Prevention System.'},
+  {t:'OWASP', a:'OWASP', c:'security', d:'Open Web Application Security Project.'},
+  {t:'Kernel', a:'النواة', c:'linux', d:'Core of the Linux OS.'},
+  {t:'Shell', a:'الصدفة', c:'linux', d:'Command-line interpreter.'},
+  {t:'Terminal', a:'الطرفية', c:'linux', d:'Interface to interact with shell.'},
+  {t:'Root', a:'الجذر', c:'linux', d:'Superuser with full access.'},
+  {t:'Sudo', a:'سودو', c:'linux', d:'Execute with elevated privileges.'},
+  {t:'APT', a:'APT', c:'linux', d:'Package manager for Debian/Ubuntu.'},
+  {t:'YUM/DNF', a:'YUM/DNF', c:'linux', d:'Package managers for RHEL/Fedora.'},
+  {t:'Systemd', a:'Systemd', c:'linux', d:'Service manager.'},
+  {t:'Cron', a:'Cron', c:'linux', d:'Scheduler for tasks.'},
+  {t:'iptables', a:'iptables', c:'linux', d:'Firewall tool.'},
+  {t:'UFW', a:'UFW', c:'linux', d:'Uncomplicated Firewall.'},
+  {t:'SSH', a:'SSH', c:'linux', d:'Secure Shell.'},
+  {t:'Grep', a:'Grep', c:'linux', d:'Search text using patterns.'},
+  {t:'Bash', a:'Bash', c:'linux', d:'Bourne Again SHell.'},
+  {t:'Chmod', a:'Chmod', c:'linux', d:'Change file permissions.'},
+  {t:'Chown', a:'Chown', c:'linux', d:'Change file ownership.'},
+  {t:'Active Directory', a:'الدليل النشط', c:'windows', d:'Microsoft directory service.'},
+  {t:'Domain Controller', a:'وحدة تحكم الدومين', c:'windows', d:'Server running AD DS.'},
+  {t:'GPO', a:'نهج المجموعة', c:'windows', d:'Group Policy Object.'},
+  {t:'OU', a:'الوحدة التنظيمية', c:'windows', d:'Organizational Unit.'},
+  {t:'PowerShell', a:'PowerShell', c:'windows', d:'Microsoft automation shell.'},
+  {t:'Cmdlet', a:'Cmdlet', c:'windows', d:'PowerShell command (Verb-Noun).'},
+  {t:'SMB', a:'SMB', c:'windows', d:'Server Message Block.'},
+  {t:'RDP', a:'RDP', c:'windows', d:'Remote Desktop Protocol.'},
+  {t:'WinRM', a:'WinRM', c:'windows', d:'Windows Remote Management.'},
+  {t:'IIS', a:'IIS', c:'windows', d:'Internet Information Services.'},
+  {t:'Hyper-V', a:'Hyper-V', c:'windows', d:'Microsoft Type-1 hypervisor.'},
+  {t:'Variable', a:'متغير', c:'programming', d:'Named storage for data.'},
+  {t:'Function', a:'دالة', c:'programming', d:'Reusable block of code.'},
+  {t:'Loop', a:'حلقة', c:'programming', d:'Repeat code multiple times.'},
+  {t:'Condition', a:'شرط', c:'programming', d:'If/else logic.'},
+  {t:'Array', a:'مصفوفة', c:'programming', d:'Ordered collection.'},
+  {t:'Dictionary', a:'قاموس', c:'programming', d:'Key-value pairs.'},
+  {t:'API', a:'واجهة برمجية', c:'programming', d:'Application Programming Interface.'},
+  {t:'REST', a:'REST', c:'programming', d:'Representational State Transfer.'},
+  {t:'JSON', a:'JSON', c:'programming', d:'JavaScript Object Notation.'},
+  {t:'Python', a:'بايثون', c:'programming', d:'High-level programming language.'},
+  {t:'JavaScript', a:'جافاسكربت', c:'programming', d:'Web scripting language.'},
+  {t:'Automation', a:'الأتمتة', c:'programming', d:'Using scripts to reduce manual work.'},
+  {t:'Hypervisor', a:'الهايبرفايزر', c:'virtualization', d:'Software that manages VMs.'},
+  {t:'VM', a:'الجهاز الافتراضي', c:'virtualization', d:'Virtual Machine.'},
+  {t:'Host', a:'المضيف', c:'virtualization', d:'Physical machine running hypervisor.'},
+  {t:'Guest', a:'الضيف', c:'virtualization', d:'OS running inside a VM.'},
+  {t:'vCPU', a:'vCPU', c:'virtualization', d:'Virtual CPU.'},
+  {t:'vRAM', a:'vRAM', c:'virtualization', d:'Virtual RAM.'},
+  {t:'vNIC', a:'vNIC', c:'virtualization', d:'Virtual network adapter.'},
+  {t:'vSwitch', a:'vSwitch', c:'virtualization', d:'Virtual switch.'},
+  {t:'Container', a:'الحاوية', c:'virtualization', d:'Lightweight isolated environment.'},
+  {t:'Docker', a:'Docker', c:'virtualization', d:'Containerization platform.'},
+  {t:'Kubernetes', a:'Kubernetes', c:'virtualization', d:'Container orchestration.'},
+  {t:'Snapshot', a:'اللقطة', c:'virtualization', d:'Saved state of a VM.'},
+  {t:'TCP', a:'TCP', c:'protocols', d:'Reliable, connection-oriented transport.'},
+  {t:'UDP', a:'UDP', c:'protocols', d:'Fast, connectionless transport.'},
+  {t:'IP', a:'IP', c:'protocols', d:'Internet Protocol.'},
+  {t:'IPv4', a:'IPv4', c:'protocols', d:'32-bit IP addressing.'},
+  {t:'IPv6', a:'IPv6', c:'protocols', d:'128-bit IP addressing.'},
+  {t:'HTTP', a:'HTTP', c:'protocols', d:'Hypertext Transfer Protocol (port 80).'},
+  {t:'HTTPS', a:'HTTPS', c:'protocols', d:'HTTP over TLS (port 443).'},
+  {t:'FTP', a:'FTP', c:'protocols', d:'File Transfer Protocol.'},
+  {t:'SFTP', a:'SFTP', c:'protocols', d:'SSH File Transfer Protocol.'},
+  {t:'DNS', a:'DNS', c:'protocols', d:'Domain Name System (port 53).'},
+  {t:'DHCP', a:'DHCP', c:'protocols', d:'Dynamic Host Configuration Protocol.'},
+  {t:'ARP', a:'ARP', c:'protocols', d:'Address Resolution Protocol.'},
+  {t:'ICMP', a:'ICMP', c:'protocols', d:'Internet Control Message Protocol.'},
+  {t:'SMTP', a:'SMTP', c:'protocols', d:'Simple Mail Transfer Protocol.'},
+  {t:'POP3', a:'POP3', c:'protocols', d:'Post Office Protocol v3.'},
+  {t:'IMAP', a:'IMAP', c:'protocols', d:'Internet Message Access Protocol.'},
+  {t:'SNMP', a:'SNMP', c:'protocols', d:'Simple Network Management Protocol.'},
+  {t:'NTP', a:'NTP', c:'protocols', d:'Network Time Protocol.'},
+  {t:'LDAP', a:'LDAP', c:'protocols', d:'Lightweight Directory Access Protocol.'},
+  {t:'SIP', a:'SIP', c:'protocols', d:'Session Initiation Protocol.'},
+  {t:'RDP', a:'RDP', c:'protocols', d:'Remote Desktop Protocol.'},
+  {t:'CPU', a:'المعالج', c:'hardware', d:'Central Processing Unit.'},
+  {t:'RAM', a:'الذاكرة', c:'hardware', d:'Random Access Memory.'},
+  {t:'SSD', a:'SSD', c:'hardware', d:'Solid State Drive.'},
+  {t:'HDD', a:'HDD', c:'hardware', d:'Hard Disk Drive.'},
+  {t:'PSU', a:'مزود الطاقة', c:'hardware', d:'Power Supply Unit.'},
+  {t:'Motherboard', a:'اللوحة الأم', c:'hardware', d:'Main circuit board.'},
+  {t:'RAID', a:'RAID', c:'hardware', d:'Redundant Array of Independent Disks.'},
+  {t:'Cloud Computing', a:'الحوسبة السحابية', c:'cloud', d:'On-demand computing over internet.'},
+  {t:'IaaS', a:'IaaS', c:'cloud', d:'Infrastructure as a Service.'},
+  {t:'PaaS', a:'PaaS', c:'cloud', d:'Platform as a Service.'},
+  {t:'SaaS', a:'SaaS', c:'cloud', d:'Software as a Service.'},
+  {t:'AWS', a:'AWS', c:'cloud', d:'Amazon Web Services.'},
+  {t:'Azure', a:'Azure', c:'cloud', d:'Microsoft Azure cloud platform.'},
+  {t:'GCP', a:'GCP', c:'cloud', d:'Google Cloud Platform.'},
+  {t:'OSI Model', a:'نموذج OSI', c:'general', d:'7-layer reference model.'},
+  {t:'TCP/IP Model', a:'نموذج TCP/IP', c:'general', d:'4-layer practical model.'},
+  {t:'Encapsulation', a:'التغليف', c:'general', d:'Adding headers at each layer.'},
+  {t:'Port', a:'المنفذ', c:'general', d:'Numeric identifier for a service.'},
+  {t:'Socket', a:'المقبس', c:'general', d:'IP + port combination.'},
+  {t:'DevOps', a:'DevOps', c:'general', d:'Development + Operations culture.'},
+  {t:'CI/CD', a:'CI/CD', c:'general', d:'Continuous Integration / Deployment.'},
+  {t:'Git', a:'Git', c:'general', d:'Distributed version control.'},
+  {t:'Repository', a:'المستودع', c:'general', d:'Storage for code.'}
+];
+function renderGlossary(){
+  const list = document.getElementById('glossaryList');
+  if(!list) return;
+  const q = (document.getElementById('glossarySearch')?.value || '').toLowerCase();
+  const filtered = GLOSSARY_DATA.filter(g => {
+    if(GLOSSARY_FILTER !== 'all' && g.c !== GLOSSARY_FILTER) return false;
+    if(q && !g.t.toLowerCase().includes(q) && !g.a.includes(q) && !g.d.toLowerCase().includes(q)) return false;
+    return true;
+  });
+  if(!filtered.length){
+    list.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><p>' + t('No results.','لا توجد نتائج.') + '</p></div>';
+    return;
+  }
+  list.innerHTML = filtered.map(g => '<div class="glossary-item">' +
+    '<div class="term"><span>' + g.t + '</span><span class="term-ar">' + g.a + '</span></div>' +
+    '<div class="def">' + g.d + '</div>' +
+  '</div>').join('');
+}
+function filterGlossary(){ renderGlossary(); }
+function filterGlossaryCat(cat){
+  GLOSSARY_FILTER = cat;
+  document.querySelectorAll('.glossary-cat').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  renderGlossary();
+}
+
+/* ============================================================
+   TERMINALS
+   ============================================================ */
+let ciscoMode = 'user', ciscoHost = 'Router';
+const ciscoCmds = {
+  'enable': () => { ciscoMode = 'priv'; return ciscoHost + '#'; },
+  'configure terminal': () => { ciscoMode = 'config'; return ciscoHost + '(config)#'; },
+  'exit': () => { if(ciscoMode === 'config'){ ciscoMode = 'priv'; return ciscoHost + '#'; } if(ciscoMode === 'priv'){ ciscoMode = 'user'; return ciscoHost + '>'; } return ciscoHost + '>'; },
+  'end': () => { ciscoMode = 'priv'; return ciscoHost + '#'; },
+  'show running-config': () => 'hostname ' + ciscoHost + '\n!\ninterface Gi0/0\n ip address 192.168.1.1 255.255.255.0\n no shutdown\n!',
+  'show ip interface brief': () => 'Interface   IP-Address      Status   Protocol\nGi0/0       192.168.1.1     up       up\nGi0/1       unassigned      admin down',
+  'show vlan brief': () => 'VLAN Name       Status  Ports\n---- ---------- ------ -------\n1    default    active  Gi0/1\n10   Sales      active  Gi0/3\n20   IT         active  Gi0/4',
+  'show ip route': () => 'Codes: C - connected, S - static, O - OSPF\nC  192.168.1.0/24 directly connected, Gi0/0\nS* 0.0.0.0/0 [1/0] via 10.0.0.2',
+  'show mac address-table': () => 'Vlan Mac Address       Type     Ports\n10   0001.0203.0405    DYNAMIC  Gi0/3\n20   0001.0203.0406    DYNAMIC  Gi0/4',
+  'show version': () => 'Cisco IOS Software, Version 15.7\nRouter uptime is 1 day',
+  'ping': () => 'Sending 5, 100-byte ICMP Echos:\n!!!!!\nSuccess rate is 100 percent',
+  'help': () => 'Commands:\n  enable, configure terminal, exit, end\n  show running-config | show ip interface brief\n  show vlan brief | show ip route | show mac address-table\n  show version | ping'
+};
+function runCisco(){
+  const input = document.getElementById('ciscoInput');
+  const term = document.getElementById('ciscoTerminal');
+  const prompt = document.getElementById('ciscoPrompt');
+  if(!input || !term || !prompt) return;
+  const cmd = input.value.trim();
+  if(!cmd) return;
+  const echo = document.createElement('div'); echo.className = 'terminal-line echo'; echo.textContent = prompt.textContent + ' ' + cmd;
+  term.insertBefore(echo, term.lastElementChild);
+  const key = cmd.toLowerCase();
+  let out;
+  try {
+    if(ciscoCmds[key]) out = ciscoCmds[key]();
+    else if(key.startsWith('ping ')) out = ciscoCmds['ping']();
+    else if(key.startsWith('hostname ')){ ciscoHost = cmd.split(' ')[1] || 'Router'; out = 'Hostname set.'; }
+    else out = '% Invalid input. Type "help".';
+  } catch(e){ out = 'Error.'; }
+  const ol = document.createElement('div'); ol.className = 'terminal-line'; ol.textContent = out;
+  term.insertBefore(ol, term.lastElementChild);
+  prompt.textContent = ciscoMode === 'config' ? ciscoHost + '(config)#' : ciscoMode === 'priv' ? ciscoHost + '#' : ciscoHost + '>';
+  input.value = '';
+  term.scrollTop = term.scrollHeight;
+}
+const linuxCmds = {
+  'pwd': () => '/home/user',
+  'ls': () => 'Desktop  Documents  Downloads  Music  Pictures',
+  'ls -la': () => 'drwxr-xr-x 15 user user 4096 .\ndrwxr-xr-x  3 root root 4096 ..',
+  'whoami': () => 'user',
+  'id': () => 'uid=1000(user) gid=1000(user)',
+  'hostname': () => 'netlab',
+  'uname': () => 'Linux',
+  'uname -a': () => 'Linux netlab 5.15.0 x86_64',
+  'ip addr': () => '2: eth0: inet 192.168.1.100/24',
+  'ip route': () => 'default via 192.168.1.1 dev eth0',
+  'ss -tuln': () => 'tcp LISTEN 0.0.0.0:22',
+  'df -h': () => '/dev/sda1 50G 20G 30G 40% /',
+  'ps': () => '  PID TTY TIME CMD\n 1234 pts/0 00:00:00 bash',
+  'ping': () => 'PING 8.8.8.8: 64 bytes time=12.4 ms',
+  'systemctl': () => 'UNIT          LOAD ACTIVE\nssh.service   loaded active running',
+  'help': () => 'Commands: pwd, ls, ls -la, whoami, id, hostname, uname, uname -a, ip addr, ip route, ss -tuln, df -h, ps, ping, systemctl'
+};
+function runLinux(){
+  const input = document.getElementById('linuxInput');
+  const term = document.getElementById('linuxTerminal');
+  const prompt = document.getElementById('linuxPrompt');
+  if(!input || !term || !prompt) return;
+  const cmd = input.value.trim();
+  if(!cmd) return;
+  const echo = document.createElement('div'); echo.className = 'terminal-line echo'; echo.textContent = prompt.textContent + ' ' + cmd;
+  term.insertBefore(echo, term.lastElementChild);
+  const key = cmd.toLowerCase();
+  let out;
+  try {
+    if(linuxCmds[key]) out = linuxCmds[key]();
+    else if(key.startsWith('ping ')) out = linuxCmds['ping']();
+    else if(/^(mkdir|touch|cd|cp|mv|rm|chmod|chown)\s/.test(key)) out = '';
+    else out = 'command not found: ' + cmd;
+  } catch(e){ out = 'Error.'; }
+  const ol = document.createElement('div'); ol.className = 'terminal-line'; ol.textContent = out;
+  term.insertBefore(ol, term.lastElementChild);
+  input.value = '';
+  term.scrollTop = term.scrollHeight;
+}
+const psCmds = {
+  'get-help': () => 'Name: Get-Process\nSynopsis: Gets running processes.',
+  'get-process': () => 'Handles  NPM(K)    PM(K)  Id ProcessName\n-------  ------    -----  -- -----------\n    345      25    15000 1234 chrome',
+  'get-service': () => 'Status   Name       DisplayName\nRunning  AudioSrv   Windows Audio\nRunning  Dhcp       DHCP Client',
+  'get-childitem': () => 'Mode   LastWriteTime  Length Name\nd----  01/15/2025    Documents\nd----  01/15/2025    Downloads',
+  'get-command': () => 'CommandType  Name         Version\nCmdlet       Get-Process  3.1.0.0',
+  'test-connection': () => 'Source  Destination  Time(ms)\nnetlab  8.8.8.8      12',
+  'ipconfig': () => 'Ethernet adapter Ethernet:\n   IPv4 Address. . . : 192.168.1.100\n   Subnet Mask . . . : 255.255.255.0\n   Default Gateway . : 192.168.1.1',
+  'ping': () => 'Pinging 8.8.8.8: Reply time=12ms TTL=117',
+  'help': () => 'Commands: Get-Help, Get-Process, Get-Service, Get-ChildItem, Get-Command, Test-Connection, ipconfig, ping'
+};
+function runPowershell(){
+  const input = document.getElementById('psInput');
+  const term = document.getElementById('psTerminal');
+  const prompt = document.getElementById('psPrompt');
+  if(!input || !term || !prompt) return;
+  const cmd = input.value.trim();
+  if(!cmd) return;
+  const echo = document.createElement('div'); echo.className = 'terminal-line echo'; echo.textContent = prompt.textContent + ' ' + cmd; echo.style.color = '#fff';
+  term.insertBefore(echo, term.lastElementChild);
+  const key = cmd.toLowerCase();
+  let out;
+  try {
+    if(psCmds[key]) out = psCmds[key]();
+    else if(key.startsWith('ping ')) out = psCmds['ping']();
+    else out = 'The term \'' + cmd + '\' is not recognized. Type "help".';
+  } catch(e){ out = 'Error.'; }
+  const ol = document.createElement('div'); ol.className = 'terminal-line'; ol.textContent = out; ol.style.color = '#e0e0e0';
+  term.insertBefore(ol, term.lastElementChild);
+  input.value = '';
+  term.scrollTop = term.scrollHeight;
+}
+
+/* ============================================================
+   BUILDER
+   ============================================================ */
+const deviceInfo = {
+  'PC':{icon:'fa-desktop',en:'PC',ar:'حاسوب',layer:'7',protocols:'HTTP, DNS, DHCP'},
+  'Switch':{icon:'fa-exchange-alt',en:'Switch',ar:'مبدّل',layer:'2',protocols:'STP, 802.1Q'},
+  'Router':{icon:'fa-route',en:'Router',ar:'موجّه',layer:'3',protocols:'OSPF, BGP, IP'},
+  'Server':{icon:'fa-server',en:'Server',ar:'خادم',layer:'7',protocols:'HTTP, DNS, FTP'},
+  'Laptop':{icon:'fa-laptop',en:'Laptop',ar:'محمول',layer:'7',protocols:'HTTP, Wi-Fi'},
+  'Firewall':{icon:'fa-shield-alt',en:'Firewall',ar:'جدار ناري',layer:'3-7',protocols:'IPsec, ACL'}
+};
+let deviceCount = 0;
+function addDevice(type){
+  const canvas = document.getElementById('builderCanvas');
+  if(!canvas) return;
+  deviceCount++;
+  const div = document.createElement('div');
+  div.className = 'builder-device';
+  div.dataset.type = type;
+  const cw = canvas.clientWidth || 400;
+  const ch = canvas.clientHeight || 400;
+  div.style.left = (20 + (deviceCount * 30) % Math.max(1, cw - 100)) + 'px';
+  div.style.top = (20 + (deviceCount * 40) % Math.max(1, ch - 80)) + 'px';
+  div.innerHTML = '<i class="fas ' + deviceInfo[type].icon + '"></i><span>' + type + deviceCount + '</span>';
+  div.onclick = (e) => { e.stopPropagation(); selectDevice(div); };
+  makeDraggable(div);
+  canvas.appendChild(div);
+}
+function makeDraggable(el){
+  let offsetX = 0, offsetY = 0, dragging = false;
+  const down = (cx, cy) => { dragging = true; const r = el.getBoundingClientRect(); offsetX = cx - r.left; offsetY = cy - r.top; el.style.cursor = 'grabbing'; };
+  const move = (cx, cy) => {
+    if(!dragging) return;
+    const p = el.parentElement.getBoundingClientRect();
+    let x = cx - p.left - offsetX;
+    let y = cy - p.top - offsetY;
+    x = Math.max(0, Math.min(p.width - el.offsetWidth, x));
+    y = Math.max(0, Math.min(p.height - el.offsetHeight, y));
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+  };
+  const up = () => { dragging = false; el.style.cursor = 'grab'; };
+  el.addEventListener('mousedown', e => down(e.clientX, e.clientY));
+  el.addEventListener('touchstart', e => { const t = e.touches[0]; down(t.clientX, t.clientY); }, {passive: true});
+  document.addEventListener('mousemove', e => move(e.clientX, e.clientY));
+  document.addEventListener('touchmove', e => { const t = e.touches[0]; move(t.clientX, t.clientY); }, {passive: true});
+  document.addEventListener('mouseup', up);
+  document.addEventListener('touchend', up);
+}
+function selectDevice(el){
+  document.querySelectorAll('.builder-device').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  const info = deviceInfo[el.dataset.type];
+  const bi = document.getElementById('builderInfo');
+  if(!bi) return;
+  bi.innerHTML = '<h5><i class="fas ' + info.icon + '"></i> ' + info.en + ' (' + info.ar + ')</h5>' +
+    '<p><strong>' + t('OSI Layer','الطبقة') + ':</strong> ' + info.layer + '</p>' +
+    '<p><strong>' + t('Protocols','البروتوكولات') + ':</strong> ' + info.protocols + '</p>';
+}
+function clearBuilder(){
+  const c = document.getElementById('builderCanvas'); if(c) c.innerHTML = '';
+  deviceCount = 0;
+  const bi = document.getElementById('builderInfo');
+  if(bi) bi.innerHTML = '<h5><i class="fas fa-info-circle"></i> ' + t('Instructions','التعليمات') + '</h5><p>' + t('Click a device type above to add.','انقر على نوع جهاز لإضافته.') + '</p>';
+}
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+function openSearch(){
+  openModal('<h3><i class="fas fa-search"></i> ' + t('Global Search','بحث شامل') + '</h3>' +
+    '<input class="tool-input" id="globalSearch" placeholder="' + t('Search...','ابحث...') + '" oninput="debounceSearch()">' +
+    '<div id="searchResults" style="margin-top:1rem"></div>');
+  setTimeout(() => { const el = document.getElementById('globalSearch'); if(el) el.focus(); }, 100);
+}
+let searchTimer = null;
+function debounceSearch(){ clearTimeout(searchTimer); searchTimer = setTimeout(performSearch, 150); }
+function performSearch(){
+  const q = (document.getElementById('globalSearch')?.value || '').toLowerCase().trim();
+  const out = document.getElementById('searchResults');
+  if(!out) return;
+  if(!q){ out.innerHTML = ''; return; }
+  const results = [];
+  Object.keys(DATA).forEach(cid => {
+    const c = DATA[cid];
+    if(c.en.toLowerCase().includes(q) || c.ar.includes(q)) results.push({cat: t('Track','مسار'), name: catName(c), go: 'navigate(\'' + cid + '\')'});
+    (c.topics || []).forEach(tp => {
+      if(tp.en.toLowerCase().includes(q) || tp.ar.includes(q)) results.push({cat: t('Topic','موضوع'), name: topicName(tp), go: 'navigate(\'' + cid + '\',\'' + tp.id + '\')'});
+      (tp.lessons || []).forEach(ls => {
+        if(ls.en.toLowerCase().includes(q) || ls.ar.includes(q)) results.push({cat: t('Lesson','درس'), name: lessonName(ls), go: 'navigate(\'' + cid + '\',\'' + tp.id + '\',\'' + ls.id + '\')'});
+      });
+    });
+  });
+  if(!results.length){ out.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><p>' + t('No results.','لا توجد نتائج.') + '</p></div>'; return; }
+  const grouped = results.reduce((a, r) => { (a[r.cat] = a[r.cat] || []).push(r); return a; }, {});
+  out.innerHTML = Object.entries(grouped).map(([cat, items]) =>
+    '<h4 style="color:var(--accent-cyan);margin-top:1rem">' + cat + ' (' + items.length + ')</h4>' +
+    items.map(it => '<div class="result-row" style="cursor:pointer" onclick="closeModal();' + it.go + '">' +
+      '<span class="result-value">' + it.name + '</span>' +
+      '<span class="result-label">' + it.cat + '</span>' +
+    '</div>').join('')
+  ).join('');
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+function copyCode(btn){
+  const pre = btn.parentElement.querySelector('pre');
+  if(!pre) return;
+  const text = pre.innerText;
+  const done = () => { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 1500); };
+  if(navigator.clipboard){ navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(text); done(); }); }
+  else { fallbackCopy(text); done(); }
+}
+function fallbackCopy(text){
+  const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch(e){}
+  document.body.removeChild(ta);
+}
+function openModal(html){
+  const mc = document.getElementById('modalContent');
+  const mo = document.getElementById('modalOverlay');
+  if(!mc || !mo) return;
+  mc.innerHTML = '<button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>' + html;
+  mo.classList.add('show');
+}
+function closeModal(){
+  const mo = document.getElementById('modalOverlay');
+  if(mo) mo.classList.remove('show');
+}
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  if(!btn) return;
+  if(window.scrollY > 400) btn.classList.add('show');
+  else btn.classList.remove('show');
+});
+document.addEventListener('keydown', e => {
+  if((e.ctrlKey || e.metaKey) && e.key === 'k'){
+    e.preventDefault();
+    if(document.getElementById('mainSite').classList.contains('unlocked')) openSearch();
+  }
+  if(e.key === 'Escape'){ closeModal(); closeMobileMenu(); }
+});
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+function initApp(){
+  NAV.category = 'dashboard';
+  NAV.topic = null;
+  NAV.lesson = null;
+  renderCurrentView();
+  buildNav();
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('netlab-lang') || 'en';
+  setLanguage(saved);
+  const pw = document.getElementById('passwordInput');
+  if(pw){
+    pw.addEventListener('keydown', e => { if(e.key === 'Enter') checkPassword(); });
+    setTimeout(() => pw.focus(), 100);
+  }
+  if(sessionStorage.getItem('netlab_authed') === '1') unlockSite();
+});
+
+</script>
+</body>
+</html>
